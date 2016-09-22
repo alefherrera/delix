@@ -1,0 +1,22 @@
+{
+  "name": "delix",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ungs-pp1g2/delix.git"
+  },
+  "keywords": [
+    "delix"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ungs-pp1g2/delix/issues"
+  },
+  "homepage": "https://github.com/ungs-pp1g2/delix#readme"
+}
