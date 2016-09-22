@@ -5,7 +5,7 @@
 - instalar dependencias
 
 ```
-npm start
+npm install
 ```
 
 - ejecutar
