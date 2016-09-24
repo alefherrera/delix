@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('recepciones_has_productos', {
+  return sequelize.define('productos_por_recepciones', {
     recepciones_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
@@ -21,6 +21,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'recepciones_has_productos'
+    tableName: 'productos_por_recepciones'
   });
 };
