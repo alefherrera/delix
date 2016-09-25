@@ -1,10 +1,10 @@
-module.exports = (sequelize, DataTypes) {
+module.exports = (sequelize, DataTypes) => ({
   comandas: require('./comandas')(sequelize, DataTypes),
   franjas: require('./franjas')(sequelize, DataTypes),
   grupoDeMesas: require('./grupo_de_mesas')(sequelize, DataTypes),
   mesas: require('./mesas')(sequelize, DataTypes),
   mesas: require('./mesas')(sequelize, DataTypes),
-  pedidoEstado: require('./perdido_estado')(sequelize, DataTypes),
+  pedidoEstado: require('./pedido_estado')(sequelize, DataTypes),
   pedidos: require('./pedidos')(sequelize, DataTypes),
   platosPorComandas: require('./platos_por_comandas')(sequelize, DataTypes),
   platosPorPromos: require('./platos_por_promos')(sequelize, DataTypes),
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) {
   productosPorPromos: require('./productos_por_promos')(sequelize, DataTypes),
   productosPorRecepciones: require('./productos_por_recepciones')(sequelize, DataTypes),
   productosPorRubros: require('./productos_por_rubros')(sequelize, DataTypes),
-  productosPorSolicitudes: require('./prodctos_por_solicitudes')(sequelize, DataTypes),
+  productosPorSolicitudes: require('./productos_por_solicitudes')(sequelize, DataTypes),
   productos: require('./productos')(sequelize, DataTypes),
   promosPorComandas: require('./promos_por_comandas')(sequelize, DataTypes),
   promos: require('./promos')(sequelize, DataTypes),
@@ -26,4 +26,4 @@ module.exports = (sequelize, DataTypes) {
   solicitudes: require('./solicitudes')(sequelize, DataTypes),
   usuarioTipo: require('./usuario_tipo')(sequelize, DataTypes),
   usuarios: require('./usuarios')(sequelize, DataTypes),
-}
+})

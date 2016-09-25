@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize(require('../config').connection, {});
-const Schemas = require('./schema')(sequelize);
+const Models = require('./models')(sequelize, Sequelize);
 
 const init = () => {
   sequelize
@@ -18,5 +18,5 @@ sequelize.sync();
 
 module.exports = {
   init,
-  Schemas
+  Models
 };
