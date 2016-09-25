@@ -1,10 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Router, Route } from 'react-router';
-import Title from './components/Title';
+import {
+  App,
+  Order,
+} from './containers';
 
 const Routes = ({ history }) => (
   <Router history={history}>
-    <Route name="Title" path="/" component={Title} />
+    <Route name="App" path="/" component={App}>
+      <Route name="Order" path="order" component={Order} />
+    </Route>
   </Router>
 );
 

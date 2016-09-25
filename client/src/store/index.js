@@ -5,7 +5,7 @@ import createLogger from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
-import '../util/io';
+// import '../util/io';
 const router = routerMiddleware(browserHistory);
 const logger = createLogger();
 const storeCreator =
