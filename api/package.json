@@ -19,6 +19,7 @@
     "socket.io": "^1.4.8"
   },
   "devDependencies": {
+    "node-inspector": "^0.12.8",
     "sequelize-auto": "^0.4.15"
   }
 }
