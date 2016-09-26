@@ -3,4 +3,8 @@ module.exports = (router, io) => {
   // require('./promo')(router);
   require('./rubros')(router);
   require('./productos')(router);
+  require('./franjas')(router);
+  require('./platos')(router);
+  require('./proveedores')(router);
+  require('./sectores')(router);
 };

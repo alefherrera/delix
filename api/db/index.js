@@ -14,6 +14,8 @@ const init = () => {
 };
 sequelize.sync();
 
+require('./defaults')(Models);
+
 // Schemas.User.create({ email: 'aa@gmail.com', password: 'secreto'});
 
 module.exports = {
