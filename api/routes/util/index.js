@@ -1,12 +1,17 @@
-const { Models } = require('../db');
+const { Models } = require('../../db');
 module.exports = {
   abm: (router, tableName) => {
-    
+
     const entity = Models[tableName];
     const url = `/${tableName}`;
 
     router.post(url, (req, res) => {
-      entity.upsert(req.body).then(r => res.json(r));
+      const obj = req.body;
+      if (!obj.id) {
+        entity.create(obj).then(r => res.json(r));
+      } else {
+        entity.upsert(obj).then(r => res.json(r));
+      }
     });
 
     router.get(url, (req, res) => {
