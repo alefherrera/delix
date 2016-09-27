@@ -7,4 +7,5 @@ module.exports = (router, io) => {
   require('./platos')(router);
   require('./proveedores')(router);
   require('./sectores')(router);
+  require('./pedidos')(router);
 };
