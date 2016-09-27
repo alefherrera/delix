@@ -8,14 +8,6 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    sectores_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      references: {
-        model: 'sectores',
-        key: 'id'
-      }
-    },
     grupo_de_mesas_id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,

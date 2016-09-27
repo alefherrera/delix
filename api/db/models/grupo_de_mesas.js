@@ -8,9 +8,13 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    mesa_estado_id: {
+    sectores_id: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'sectores',
+        key: 'id'
+      }
     }
   }, {
     tableName: 'grupo_de_mesas'
