@@ -4,9 +4,13 @@ import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router';
 
 const OrderLink = (
-  <Link to="order">
-    <FlatButton label="Order" />
-  </Link>
+  <FlatButton
+    label={
+      <Link to="order">
+        Order
+      </Link>
+    }
+  />
 );
 
 const Header = () => (

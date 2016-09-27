@@ -1,8 +1,7 @@
-
-import login from './login';
+import API from './api';
 import order from './order';
 
 export default {
-  login,
+  login: () => API.post('login'),
   order,
 };

@@ -14,6 +14,4 @@ const API = {
   ).then(r => r.json()),
 };
 
-export default {
-  login: () => API.post('login'),
-};
+export default API;

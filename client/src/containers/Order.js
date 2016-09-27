@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import OrderForm from '../components/OrderForm/OrderForm';
+import { connect } from 'react-redux';
+import * as actions from '../actions/order';
 
-const Order = () => (
-  <OrderForm />
+const Order = ({
+  createOrder,
+}) => (
+  <OrderForm
+    onCreateClick={createOrder}
+  />
 );
 
-export default Order;
+Order.propTypes = {
+  createOrder: PropTypes.func,
+};
+
+export default connect(state => state.order, { ...actions })(Order);
