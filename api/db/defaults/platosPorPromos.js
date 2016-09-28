@@ -3,12 +3,12 @@ module.exports = ({
 }) => {
     return Promise.all(
         platosPorPromos.upsert({
-            platos_id: 4,
-            promos_id: 1,
+            platoId: 4,
+            promoId: 1,
         }),
         platosPorPromos.upsert({
-            platos_id: 3,
-            promos_id: 2,
+            platoId: 3,
+            promoId: 2,
         })
     );
 };

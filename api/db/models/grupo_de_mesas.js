@@ -1,14 +1,14 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('grupo_de_mesas', {
+  return sequelize.define('gruposDeMesas', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    sectores_id: {
+    sectorId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
@@ -17,6 +17,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'grupo_de_mesas'
+    tableName: 'gruposDeMesas'
   });
 };

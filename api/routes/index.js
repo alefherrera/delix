@@ -9,4 +9,5 @@ module.exports = (router, io) => {
   require('./sectores')(router);
   require('./pedidos')(router);
   require('./comandas')(router);
+  require('./promos')(router);
 };

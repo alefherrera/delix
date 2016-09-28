@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
-    pedidos_id: {
+    pedidoId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
