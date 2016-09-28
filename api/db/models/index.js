@@ -3,7 +3,6 @@ module.exports = (sequelize, DataTypes) => ({
   franjas: require('./franjas')(sequelize, DataTypes),
   grupoDeMesas: require('./grupo_de_mesas')(sequelize, DataTypes),
   mesas: require('./mesas')(sequelize, DataTypes),
-  mesas: require('./mesas')(sequelize, DataTypes),
   pedidoEstado: require('./pedido_estado')(sequelize, DataTypes),
   pedidos: require('./pedidos')(sequelize, DataTypes),
   platosPorComandas: require('./platos_por_comandas')(sequelize, DataTypes),
@@ -26,4 +25,4 @@ module.exports = (sequelize, DataTypes) => ({
   solicitudes: require('./solicitudes')(sequelize, DataTypes),
   usuarioTipo: require('./usuario_tipo')(sequelize, DataTypes),
   usuarios: require('./usuarios')(sequelize, DataTypes),
-})
+});
