@@ -11,7 +11,10 @@ module.exports = router => {
     router.get('/promo', (req, res) => {
 
         Models.promos.findAll({
-            include: [Models.productos]
+            include: {
+              model: Models.productosPorPromos,
+              include: [Models.productos]
+            }
         }).then(result => {
             res.json(result);
         });

@@ -6,7 +6,7 @@ module.exports = ({
             id: 1,
             Nombre: 'Alejandro',
             Apellido: 'Herrera',
-            usuario_tipo_id: 1
+            usuarioTipoId: 1
         })
     );
 };
