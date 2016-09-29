@@ -9,6 +9,10 @@ module.exports = ({
         productosPorPromos.upsert({
             productoId: 2,
             promoId: 2
+        }),
+        productosPorPromos.upsert({
+            productoId: 1,
+            promoId: 2
         })
     );
 };
