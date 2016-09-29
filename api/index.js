@@ -12,6 +12,8 @@ const router = express.Router();
 require('./routes')(router, io);
 app.use('/', router);
 
+app.use(express.static('../client/dist'));
+
 app.listen(3001, function () {
   console.log('Example app listening on port 3001!');
 });
