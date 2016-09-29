@@ -1,5 +1,5 @@
 import store from '../store';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { hashHistory } from 'react-router';
 
-export default syncHistoryWithStore(browserHistory, store);
+export default syncHistoryWithStore(hashHistory, store);
