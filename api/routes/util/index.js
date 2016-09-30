@@ -20,7 +20,7 @@ module.exports = {
 
     router.delete(`${url}/:id`, (req, res) => {
       entity.destroy({ where: { id: req.params.id }}).then(r => res.json(r));
-    })
+    });
 
   }
-}
+};
