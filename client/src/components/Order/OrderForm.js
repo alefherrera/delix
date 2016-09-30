@@ -1,14 +1,21 @@
 import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardText, CardActions } from 'material-ui/Card';
+import { Grid, Row, Col } from 'react-flexbox-grid';
 
 const OrderForm = ({ onCreateClick }) => (
   <Card>
     <CardText>
-      Order
+      Pedido
     </CardText>
     <CardActions>
-      <RaisedButton label="Create" onTouchTap={onCreateClick} />
+      <Grid>
+        <Row center="xs">
+          <Col xs>
+            <RaisedButton label="Create" onTouchTap={onCreateClick} />
+          </Col>
+        </Row>
+      </Grid>
     </CardActions>
   </Card>
 );

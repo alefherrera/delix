@@ -1,9 +1,9 @@
 import React, { PropTypes } from 'react';
-import OrderForm from '../components/Order/OrderForm';
+import OrderAddForm from '../components/Order/OrderAddForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/order';
 
-class Order extends React.Component {
+class OrderAdd extends React.Component {
 
   constructor(props) {
     super(props);
@@ -11,16 +11,12 @@ class Order extends React.Component {
   }
 
   handleCreateClick() {
-    this.props.createOrder({
-      usuariosId: 1,
-      grupoDeMesaId: 1,
-      pedidoEstadoId: 1,
-    });
+    this.props.createOrder();
   }
 
   render() {
     return (
-      <OrderForm
+      <OrderAddForm
         onCreateClick={this.handleCreateClick}
       />
     );
@@ -28,8 +24,8 @@ class Order extends React.Component {
 
 }
 
-Order.propTypes = {
+OrderAdd.propTypes = {
   createOrder: PropTypes.func,
 };
 
-export default connect(state => state.order, { ...actions })(Order);
+export default connect(state => state.order, { ...actions })(OrderAdd);

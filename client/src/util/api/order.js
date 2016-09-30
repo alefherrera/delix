@@ -1,5 +1,5 @@
 import API from './api';
 
 export default {
-  create: () => API.post('pedidos'),
+  create: pedido => API.post('pedidos', pedido),
 };
