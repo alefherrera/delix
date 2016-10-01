@@ -6,8 +6,8 @@ import { Link } from 'react-router';
 const OrderLink = (
   <FlatButton
     label={
-      <Link to="order">
-        Order
+      <Link to="/pedido">
+        Pedido
       </Link>
     }
   />

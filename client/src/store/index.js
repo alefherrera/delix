@@ -5,11 +5,12 @@ import createLogger from 'redux-logger';
 import promiseMiddleware from 'redux-promise';
 import thunk from 'redux-thunk';
 import { browserHistory } from 'react-router';
+import middlewares from '../middlewares';
 // import '../util/io';
 const router = routerMiddleware(browserHistory);
 const logger = createLogger();
 const storeCreator =
-  applyMiddleware(thunk, promiseMiddleware, router, logger)(createStore);
+  applyMiddleware(thunk, promiseMiddleware, router, ...middlewares, logger)(createStore);
 const store = storeCreator(
   combineReducers({
     ...reducers,
