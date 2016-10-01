@@ -1,21 +1,21 @@
 //const util = require('./util');
-const {pedidos} = require('../db').Models;
+const {Models} = require('../db');
 
 module.exports = router => {
     //util.abml(router, 'pedidos');
 
     router.post('/pedidos', (req, res) => {
-        const pedido = req.body;
-        pedido.include = [{
-            model: Models.productosPorPromos,
-            include: [Models.productos]
-        }, {
-            model: Models.platosPorPromos,
-            include: [Models.platos]
-        }];
+        const param = {where: req.body, include: [
+            {
+                model: Models.usuarios
+            }, {
+                model: Models.grupoDeMesas
+            }, {
+                model: Models.pedidoEstado
+            }
+        ]};
 
-        pedidos.findOrCreate(pedido).then();
-
+        Models.pedidos.findOrCreate(param).then(result => res.json(result));
 
     });
 
