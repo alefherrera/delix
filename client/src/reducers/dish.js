@@ -1,5 +1,6 @@
 import {
   GET_DISHES,
+  SET_DISH,
   FILTER_DISHES,
 } from '../constants';
 
@@ -19,6 +20,12 @@ export default handleActions({
     {
       ...state,
       list: filter(payload, state.all),
+    }
+  ),
+  [SET_DISH]: (state, { payload }) => (
+    {
+      ...state,
+      selected: payload,
     }
   ),
 }, initialState);

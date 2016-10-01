@@ -13,10 +13,24 @@ import { createAction } from 'redux-actions';
 import { order } from '../util/api';
 export const createOrder = createAction(CREATE_ORDER, order.create, () => pedido => pedido.id);
 export const changeOrderState = createAction(CHANGE_ORDER_STATE);
-export const closeOrder = createAction(CLOSE_ORDER);
+export const closeOrder = createAction(CLOSE_ORDER,
+  ({
+    promos, products, dishes, current,
+  }) => {
+    const comandas = {
+      pedidoId: current.id,
+      promos: promos.map(promo => ({ id: promo.selected.id, cant: promo.quantity })),
+      productos: products.map(product => ({ id: product.selected.id, cant: product.quantity })),
+      platos: dishes.map(dish => ({ id: dish.selected.id, cant: dish.quantity })),
+    };
+    return order.add(comandas);
+  });
 export const addOrderLine = createAction(ADD_ORDERLINE);
 export const editOrderLine = createAction(EDIT_ORDERLINE);
 export const postOrderLines = createAction(POST_ORDERLINES);
-export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO);
-export const addOrderLineProduct = createAction(ADD_ORDERLINE_PRODUCT);
-export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH);
+export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO, null,
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+export const addOrderLineProduct = createAction(ADD_ORDERLINE_PRODUCT, null,
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH, null,
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
