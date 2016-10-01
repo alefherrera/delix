@@ -8,6 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     sectorId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
