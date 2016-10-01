@@ -22,13 +22,16 @@ const Routes = ({ history }) => (
           <IndexRoute component={OrderAdd} />
           <Route name="Comanda" path="comanda">
             <IndexRoute component={SelectAdd} />
-            <Route name="Promos" path="promos" component={PromoList}>
+            <Route name="Promos" path="promos">
+              <IndexRoute component={PromoList} />
               <Route name="Add" path=":idPromo" component={PromoAdd} />
             </Route>
-            <Route name="Productos" path="productos" component={ProductList}>
+            <Route name="Productos" path="productos">
+              <IndexRoute component={ProductList} />
               <Route name="Add" path=":idProduct" component={ProductAdd} />
             </Route>
-            <Route name="Platos" path="platos" component={DishList}>
+            <Route name="Platos" path="platos">
+              <IndexRoute component={DishList} />
               <Route name="Add" path=":idDish" component={DishAdd} />
             </Route>
           </Route>

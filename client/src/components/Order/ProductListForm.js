@@ -6,12 +6,12 @@ import Divider from 'material-ui/Divider';
 const ProductListForm = ({ products, onFilter, onSelect }) => (
   <Card>
     <CardText>
-      <TextField onChange={e => onFilter(e.target.value)} />
+      <TextField hintText="Buscar" onChange={e => onFilter(e.target.value)} />
       <Card>
         <List>
           {
-            products.map(product => (
-              <div>
+            products.map((product, i) => (
+              <div key={i}>
                 <ListItem
                   primaryText={product.descripcion}
                   onTouchTap={() => onSelect(product)}

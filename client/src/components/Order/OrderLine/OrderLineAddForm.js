@@ -11,10 +11,13 @@ class OrderLineAddForm extends React.Component {
     this.state = {
       quantity: 0,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSave = this.handleSave.bind(this);
   }
 
   handleChange(e) {
-    this.setState({ quantity: parseInt(e.target.value, 10) });
+    const quantity = parseInt(e.target.value || 0, 10);
+    this.setState({ quantity });
   }
 
   handleSave() {
@@ -33,6 +36,7 @@ class OrderLineAddForm extends React.Component {
               </Col>
               <Col xs>
                 <TextField
+                  type="number"
                   hintText="Cantidad"
                   value={this.state.quantity}
                   onChange={this.handleChange}
@@ -45,7 +49,7 @@ class OrderLineAddForm extends React.Component {
           <Grid fluid>
             <Row>
               <Col xs>
-                <RaisedButton onTouchTap={this.handleSave} />
+                <RaisedButton label="Agregar" onTouchTap={this.handleSave} />
               </Col>
             </Row>
           </Grid>

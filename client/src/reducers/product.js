@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  SET_PRODUCT,
   FILTER_PRODUCTS,
 } from '../constants';
 
@@ -19,6 +20,12 @@ export default handleActions({
     {
       ...state,
       list: filter(payload, state.all),
+    }
+  ),
+  [SET_PRODUCT]: (state, { payload }) => (
+    {
+      ...state,
+      selected: payload,
     }
   ),
 }, initialState);
