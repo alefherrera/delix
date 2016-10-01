@@ -1,5 +1,5 @@
 const util = require('./util');
 
 module.exports = router => {
-  util.abm(router, 'proveedores');
-}
+  util.abml(router, 'proveedores');
+};
