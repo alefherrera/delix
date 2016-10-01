@@ -8,6 +8,9 @@ import {
   PromoList,
   ProductList,
   DishList,
+  PromoAdd,
+  ProductAdd,
+  DishAdd,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -19,9 +22,15 @@ const Routes = ({ history }) => (
           <IndexRoute component={OrderAdd} />
           <Route name="Comanda" path="comanda">
             <IndexRoute component={SelectAdd} />
-            <Route name="Promos" path="promos" component={PromoList} />
-            <Route name="Productos" path="productos" component={ProductList} />
-            <Route name="Platos" path="platos" component={DishList} />
+            <Route name="Promos" path="promos" component={PromoList}>
+              <Route name="Add" path=":idPromo" component={PromoAdd} />
+            </Route>
+            <Route name="Productos" path="productos" component={ProductList}>
+              <Route name="Add" path=":idProduct" component={ProductAdd} />
+            </Route>
+            <Route name="Platos" path="platos" component={DishList}>
+              <Route name="Add" path=":idDish" component={DishAdd} />
+            </Route>
           </Route>
         </Route>
       </Route>

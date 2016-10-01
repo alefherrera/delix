@@ -5,6 +5,7 @@ import SelectAdd from './SelectAdd';
 import PromoList from './PromoList';
 import ProductList from './ProductList';
 import DishList from './DishList';
+import OrderLineAdd from './OrderLineAdd';
 
 export {
   App,
@@ -14,4 +15,5 @@ export {
   PromoList,
   ProductList,
   DishList,
+  OrderLineAdd,
 };

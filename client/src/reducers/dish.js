@@ -10,7 +10,8 @@ const initialState = {
   list: [],
 };
 
-const filter = (f, all) => all.filter(s => s.descripcion.indexOf(f) !== -1);
+const filter = (f, all) =>
+  all.filter(s => s.descripcion.toLowerCase().indexOf(f.toLowerCase()) !== -1);
 
 export default handleActions({
   [GET_DISHES]: (state, { payload }) => ({ ...state, all: payload, list: payload }),

@@ -1,20 +1,35 @@
 import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
-import AutoComplete from 'material-ui/AutoComplete';
-
-const ProductListForm = ({ products }) => (
+import TextField from 'material-ui/TextField';
+import { List, ListItem } from 'material-ui/List';
+import Divider from 'material-ui/Divider';
+const ProductListForm = ({ products, onFilter, onSelect }) => (
   <Card>
     <CardText>
-      <AutoComplete
-        hintText="Productos"
-        dataSource={products}
-      />
+      <TextField onChange={e => onFilter(e.target.value)} />
+      <Card>
+        <List>
+          {
+            products.map(product => (
+              <div>
+                <ListItem
+                  primaryText={product.descripcion}
+                  onTouchTap={() => onSelect(product)}
+                />
+                <Divider />
+              </div>
+            ))
+          }
+        </List>
+      </Card>
     </CardText>
   </Card>
 );
 
 ProductListForm.propTypes = {
   products: PropTypes.array,
+  onSelect: PropTypes.func,
+  onFilter: PropTypes.func,
 };
 
 export default ProductListForm;
