@@ -1,5 +1,6 @@
 import {
   GET_PROMOS,
+  SET_PROMO,
   FILTER_PROMOS,
 } from '../constants';
 
@@ -11,7 +12,7 @@ const initialState = {
 };
 
 const filter = (f, all) =>
-  all.filter(s => s.descripcion.toLowerCase().indexOf(f.toLowerCase()) !== -1);
+  all.filter(s => s.nombre.toLowerCase().indexOf(f.toLowerCase()) !== -1);
 
 export default handleActions({
   [GET_PROMOS]: (state, { payload }) => ({ ...state, all: payload, list: payload }),
@@ -19,6 +20,12 @@ export default handleActions({
     {
       ...state,
       list: filter(payload, state.all),
+    }
+  ),
+  [SET_PROMO]: (state, { payload }) => (
+    {
+      ...state,
+      selected: payload,
     }
   ),
 }, initialState);

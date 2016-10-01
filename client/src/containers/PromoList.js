@@ -19,11 +19,16 @@ class PromoList extends React.Component {
     this.props.setPromo(promo);
   }
 
+  handleFilter(filter) {
+    this.props.filterPromos(filter);
+  }
+
   render() {
     const { list } = this.props;
     return (
       <PromoListForm
-        promos={list.map(s => s.descripcion)}
+        promos={list}
+        onFilter={this.handleFilter}
         onSelect={this.handleSelect}
       />
     );
@@ -35,6 +40,7 @@ PromoList.propTypes = {
   list: PropTypes.array,
   getPromos: PropTypes.func,
   setPromo: PropTypes.func,
+  filterPromos: PropTypes.func,
 };
 
 export default connect(
