@@ -6,7 +6,7 @@ module.exports = router => {
     router.post('/comandas', (req, res) => {
         const comanda = req.body;
 
-        //         {
+        // {
         //     pedidoId: 1,
         //     platos: [],
         //     productos: [{id: 1000, cant: 2}],
