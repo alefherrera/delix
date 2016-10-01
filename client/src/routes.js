@@ -15,7 +15,8 @@ const Routes = ({ history }) => (
     <Route name="App" path="/" component={App}>
       <Route name="Pedido" path="pedido">
         <IndexRoute component={Order} />
-        <Route path=":idPedido" component={OrderAdd}>
+        <Route path=":idPedido">
+          <IndexRoute component={OrderAdd} />
           <Route name="Comanda" path="comanda">
             <IndexRoute component={SelectAdd} />
             <Route name="Promos" path="promos" component={PromoList} />
