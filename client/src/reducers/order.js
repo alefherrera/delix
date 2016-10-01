@@ -20,7 +20,7 @@ const initialState = {
 export default handleActions({
   [CREATE_ORDER]: (state, action) => ({ ...state, current: action.payload }),
   [CHANGE_ORDER_STATE]: (state, action) => ({ ...state, current: action.payload }),
-  [CLOSE_ORDER]: (state, action) => ({ ...state, current: action.payload }),
+  [CLOSE_ORDER]: (state) => ({ ...state, current: null }),
   [ADD_ORDERLINE]: (state, action) => ({ ...state, current: action.payload }),
   [ADD_ORDERLINE_PROMO]: (state, { payload }) => ({
     ...state,

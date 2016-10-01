@@ -15,7 +15,7 @@ module.exports = router => {
             }
         ]};
 
-        Models.pedidos.findOrCreate(param).then(result => res.json(result));
+        Models.pedidos.findOrCreate(param).then(result => res.json(result[0]));
 
     });
 
