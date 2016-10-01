@@ -7,11 +7,16 @@ module.exports = router => {
 
     router.get('/productos', (req, res) => {
         const {esFinal} = req.query;
-        
-        productos.findAll({
-            where: {
-                esFinal: (esFinal === 'true' ? true : false)
-            }
-        }).then(r => res.json(r));
+
+        if (esFinal) {
+          productos.findAll({
+              where: {
+                  esFinal: (esFinal === 'true' ? true : false)
+              }
+          }).then(r => res.json(r));
+        }
+        else
+          productos.findAll().then(r => res.json(r));
+
     });
 };
