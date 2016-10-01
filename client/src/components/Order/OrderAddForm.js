@@ -30,7 +30,8 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
           promos && promos.map((promo, i) => (
             <ListItem
               key={i}
-              primaryText={promo.nombre}
+              primaryText={promo.selected.nombre}
+              secondaryText={promo.quantity}
             />
           ))
         }
@@ -41,7 +42,8 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
           dishes && dishes.map((dish, i) => (
             <ListItem
               key={i}
-              primaryText={dish.nombre}
+              primaryText={dish.selected.nombre}
+              secondaryText={dish.quantity}
             />
           ))
         }

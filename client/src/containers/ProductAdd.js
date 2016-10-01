@@ -15,7 +15,7 @@ class ProductAdd extends React.Component {
     addOrderLineProduct({
       selected,
       quantity,
-    }, this.props.params.idPedido);
+    }, this.props.params);
   }
 
   render() {

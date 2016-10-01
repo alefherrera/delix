@@ -19,11 +19,16 @@ class DishList extends React.Component {
     this.props.setDish(promo);
   }
 
+  handleFilter(filter) {
+    this.props.filterDishes(filter);
+  }
+
   render() {
     const { list } = this.props;
     return (
       <DishListForm
         dishes={list}
+        onFilter={this.handleFilter}
         onSelect={this.handleSelect}
       />
     );
@@ -35,6 +40,7 @@ DishList.propTypes = {
   list: PropTypes.array,
   getDishes: PropTypes.func,
   setDish: PropTypes.func,
+  filterDishes: PropTypes.func,
 };
 
 export default connect(

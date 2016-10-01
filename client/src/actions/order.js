@@ -28,7 +28,9 @@ export const closeOrder = createAction(CLOSE_ORDER,
 export const addOrderLine = createAction(ADD_ORDERLINE);
 export const editOrderLine = createAction(EDIT_ORDERLINE);
 export const postOrderLines = createAction(POST_ORDERLINES);
-export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO);
+export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO, null,
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
 export const addOrderLineProduct = createAction(ADD_ORDERLINE_PRODUCT, null,
-  (obj, idPedido) => () => `/pedido/${idPedido}`);
-export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH);
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH, null,
+  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
