@@ -22,7 +22,7 @@ class TableForm extends React.Component {
               tables.map(table => (
                 <MenuItem
                   value={table.id}
-                  primaryText={`Mesa ${table.id}`}
+                  primaryText={table.nombre}
                 />
               ))
             }
