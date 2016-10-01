@@ -22,7 +22,7 @@ class PromoList extends React.Component {
     const { list } = this.props;
     return (
       <PromoListForm
-        promos={list}
+        promos={list.map(s => s.descripcion)}
         onSelect={this.handleSelect}
       />
     );

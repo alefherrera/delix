@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import DishListForm from '../components/Order/DishListForm';
-import * as actions from '../actions/promo';
+import * as actions from '../actions/dish';
 
 class DishList extends React.Component {
 

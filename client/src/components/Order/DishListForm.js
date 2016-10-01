@@ -6,7 +6,7 @@ const DishListForm = ({ dishes }) => (
   <Card>
     <CardText>
       <AutoComplete
-        hintText="Platos/Productos"
+        hintText="Platos"
         dataSource={dishes}
       />
     </CardText>

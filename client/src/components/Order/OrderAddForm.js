@@ -2,8 +2,9 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Link } from 'react-router';
 
-const OrderAddForm = ({ onCreateClick }) => (
+const OrderAddForm = ({ addLink }) => (
   <Card>
     <CardText>
       Pedido Add
@@ -12,18 +13,9 @@ const OrderAddForm = ({ onCreateClick }) => (
       <Grid fluid>
         <Row center="xs">
           <Col xs>
-            <RaisedButton label="Platos/Productos" onTouchTap={onCreateClick} />
-          </Col>
-          <Col xs>
-            <RaisedButton label="Promos" onTouchTap={onCreateClick} />
-          </Col>
-        </Row>
-        <Row center="xs">
-          <Col xs>
-            <RaisedButton label="Enviar" onTouchTap={onCreateClick} />
-          </Col>
-          <Col xs>
-            <RaisedButton label="Cerrar" onTouchTap={onCreateClick} />
+            <Link to={addLink}>
+              <RaisedButton label="Agregar Comanda" />
+            </Link>
           </Col>
         </Row>
       </Grid>
@@ -32,7 +24,7 @@ const OrderAddForm = ({ onCreateClick }) => (
 );
 
 OrderAddForm.propTypes = {
-  onCreateClick: PropTypes.func,
+  addLink: PropTypes.string,
 };
 
 export default OrderAddForm;

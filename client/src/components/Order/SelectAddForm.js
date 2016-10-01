@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Link } from 'react-router';
 
-const SelectAddForm = ({ linkPromo, linkPP }) => (
+const SelectAddForm = ({ linkPromo, linkProduct, linkDish }) => (
   <Card>
     <CardText>
       Seleccionar que agregar
@@ -14,12 +14,17 @@ const SelectAddForm = ({ linkPromo, linkPP }) => (
         <Row center="xs">
           <Col xs>
             <Link to={linkPromo}>
-              <RaisedButton label="Platos/Productos" />
+              <RaisedButton label="Promos" />
             </Link>
           </Col>
           <Col xs>
-            <Link to={linkPP}>
-              <RaisedButton label="Platos/Productos" />
+            <Link to={linkProduct}>
+              <RaisedButton label="Productos" />
+            </Link>
+          </Col>
+          <Col xs>
+            <Link to={linkDish}>
+              <RaisedButton label="Platos" />
             </Link>
           </Col>
         </Row>
@@ -30,7 +35,8 @@ const SelectAddForm = ({ linkPromo, linkPP }) => (
 
 SelectAddForm.propTypes = {
   linkPromo: PropTypes.string,
-  linkPP: PropTypes.string,
+  linkProduct: PropTypes.string,
+  linkDish: PropTypes.string,
 };
 
 export default SelectAddForm;

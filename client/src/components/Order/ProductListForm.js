@@ -6,7 +6,7 @@ const ProductListForm = ({ products }) => (
   <Card>
     <CardText>
       <AutoComplete
-        hintText="Promociones"
+        hintText="Productos"
         dataSource={products}
       />
     </CardText>

@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import ProductListForm from '../components/Order/ProductListForm';
-import * as actions from '../actions/promo';
+import * as actions from '../actions/product';
 
 class PromoList extends React.Component {
 
@@ -22,7 +22,7 @@ class PromoList extends React.Component {
     const { list } = this.props;
     return (
       <ProductListForm
-        products={list}
+        products={list.map(s => s.descripcion)}
         onSelect={this.handleSelect}
       />
     );
