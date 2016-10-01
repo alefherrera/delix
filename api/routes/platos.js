@@ -1,5 +1,5 @@
 const util = require('./util');
 
 module.exports = router => {
-  util.abm(router, 'platos');
+  util.abml(router, 'platos');
 };
