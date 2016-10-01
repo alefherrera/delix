@@ -19,10 +19,10 @@ class PromoList extends React.Component {
   }
 
   render() {
-    const { products } = this.props;
+    const { list } = this.props;
     return (
       <ProductListForm
-        products={products}
+        products={list}
         onSelect={this.handleSelect}
       />
     );
@@ -31,12 +31,12 @@ class PromoList extends React.Component {
 }
 
 PromoList.propTypes = {
-  products: PropTypes.array,
+  list: PropTypes.array,
   getProducts: PropTypes.func,
   setProduct: PropTypes.func,
 };
 
 export default connect(
-  state => state.promos,
+  state => state.product,
   { ...actions }
 )(PromoList);

@@ -19,10 +19,10 @@ class DishList extends React.Component {
   }
 
   render() {
-    const { dishes } = this.props;
+    const { list } = this.props;
     return (
       <DishListForm
-        dishes={dishes}
+        dishes={list}
         onSelect={this.handleSelect}
       />
     );
@@ -31,12 +31,12 @@ class DishList extends React.Component {
 }
 
 DishList.propTypes = {
-  dishes: PropTypes.array,
+  list: PropTypes.array,
   getDishes: PropTypes.func,
   setDish: PropTypes.func,
 };
 
 export default connect(
-  state => state.promos,
+  state => state.dish,
   { ...actions }
 )(DishList);
