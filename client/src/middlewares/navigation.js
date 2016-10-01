@@ -4,9 +4,13 @@ const navigation = ({ dispatch }) => next => action => {
   if (action.meta) {
     if (typeof action.meta === 'function') {
       const param = action.meta(action.payload);
+      let base = `${location.pathname}/`;
+      if (typeof param === 'string' && param.startsWith('/')) {
+        base = '';
+      }
       const { type, payload } = action;
       dispatch({ type, payload });
-      dispatch(push(`${location.pathname}/${param}`));
+      dispatch(push(`${base}${param}`));
       return null;
     }
   }

@@ -13,9 +13,9 @@ class ProductAdd extends React.Component {
   handleAdd(quantity) {
     const { selected, addOrderLineProduct } = this.props;
     addOrderLineProduct({
-      id: selected.id,
+      selected,
       quantity,
-    });
+    }, this.props.params.idPedido);
   }
 
   render() {
@@ -31,6 +31,7 @@ class ProductAdd extends React.Component {
 }
 
 ProductAdd.propTypes = {
+  params: PropTypes.object,
   selected: PropTypes.object,
   addOrderLineProduct: PropTypes.func,
 };
