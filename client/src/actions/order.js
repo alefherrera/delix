@@ -18,7 +18,7 @@ export const closeOrder = createAction(CLOSE_ORDER,
     promos, products, dishes, current,
   }) => {
     const comandas = {
-      id: current.id,
+      pedidoId: current.id,
       promos: promos.map(promo => ({ id: promo.selected.id, cant: promo.quantity })),
       productos: products.map(product => ({ id: product.selected.id, cant: product.quantity })),
       platos: dishes.map(dish => ({ id: dish.selected.id, cant: dish.quantity })),
