@@ -12,7 +12,7 @@ class Order extends React.Component {
 
   handleCreateClick() {
     this.props.createOrder({
-      usuariosId: 1,
+      usuarioId: 1,
       grupoDeMesasId: 1,
       pedidoEstadoId: 1,
     });

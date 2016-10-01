@@ -8,6 +8,7 @@ class PromoList extends React.Component {
   constructor(props) {
     super(props);
     this.handleSelect = this.handleSelect.bind(this);
+    this.handleFilter = this.handleFilter.bind(this);
   }
 
   componentWillMount() {
@@ -18,11 +19,16 @@ class PromoList extends React.Component {
     this.props.setProduct(promo);
   }
 
+  handleFilter(filter) {
+    this.props.filterProducts(filter);
+  }
+
   render() {
     const { list } = this.props;
     return (
       <ProductListForm
-        products={list.map(s => s.descripcion)}
+        products={list}
+        onFilter={this.handleFilter}
         onSelect={this.handleSelect}
       />
     );
@@ -34,6 +40,7 @@ PromoList.propTypes = {
   list: PropTypes.array,
   getProducts: PropTypes.func,
   setProduct: PropTypes.func,
+  filterProducts: PropTypes.func,
 };
 
 export default connect(

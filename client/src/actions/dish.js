@@ -1,5 +1,6 @@
 import {
   GET_DISHES,
+  FILTER_DISHES,
   SET_DISH,
   ADD_DISH,
   EDIT_DISH,
@@ -9,6 +10,7 @@ import { createAction } from 'redux-actions';
 import { dish } from '../util/api';
 
 export const getDishes = createAction(GET_DISHES, dish.getAll);
+export const filterDishes = createAction(FILTER_DISHES);
 export const setDish = createAction(SET_DISH);
 export const addDish = createAction(ADD_DISH);
 export const editDish = createAction(EDIT_DISH);
