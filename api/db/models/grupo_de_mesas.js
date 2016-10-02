@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'gruposDeMesas'
+    tableName: 'gruposDeMesas',
+    paranoid: true,
   });
 };

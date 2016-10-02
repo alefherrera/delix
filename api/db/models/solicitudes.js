@@ -9,6 +9,7 @@ module.exports = function(sequelize, DataTypes) {
       autoIncrement: true
     }
   }, {
-    tableName: 'solicitudes'
+    tableName: 'solicitudes',
+    paranoid: true,
   });
 };
