@@ -1,8 +1,5 @@
 const Sequelize = require('sequelize');
-const sequelize = new Sequelize(require('../config').connection, {
-    underscored: true,
-    underscoredAll: true
-});
+const sequelize = new Sequelize(require('../config').connection, {});
 const Models = require('./models')(sequelize, Sequelize);
 require('./relations')(Models);
 
