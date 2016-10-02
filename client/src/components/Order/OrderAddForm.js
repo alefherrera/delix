@@ -58,7 +58,7 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
             </Link>
           </Col>
           <Col xs>
-            <RaisedButton label="Cerrar Pedido" onTouchTap={() => onCloseOrder()} />
+            <RaisedButton label="Enviar Comandas" onTouchTap={() => onCloseOrder()} />
           </Col>
         </Row>
       </Grid>

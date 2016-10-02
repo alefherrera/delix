@@ -4,6 +4,7 @@ export const GET_TABLES = 'GET_TABLES';
 export const SET_TABLE = 'SET_TABLE';
 
 export const CREATE_ORDER = 'CREATE_PEDIDO';
+export const GET_ORDER = 'GET_ORDER';
 export const CHANGE_ORDER_STATE = 'CHANGE_ORDER_STATE';
 export const CLOSE_ORDER = 'CLOSE_ORDER';
 export const ADD_ORDERLINE = 'ADD_ORDERLINE';

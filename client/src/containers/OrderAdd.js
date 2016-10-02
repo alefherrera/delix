@@ -10,6 +10,12 @@ class OrderAdd extends React.Component {
     this.handleCloseOrder = this.handleCloseOrder.bind(this);
   }
 
+  componentWillMount() {
+    if (!this.props.current) {
+      this.props.getOrder({ id: this.props.params.idPedido });
+    }
+  }
+
   handleCloseOrder() {
     const { promos, products, dishes, current } = this.props;
     this.props.closeOrder({
@@ -39,6 +45,8 @@ OrderAdd.propTypes = {
   dishes: PropTypes.array,
   closeOrder: PropTypes.func,
   current: PropTypes.object,
+  getOrder: PropTypes.func,
+  params: PropTypes.object,
 };
 
 export default connect(state => state.order, { ...actions })(OrderAdd);

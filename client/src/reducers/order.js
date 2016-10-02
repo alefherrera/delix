@@ -1,5 +1,6 @@
 import {
   CREATE_ORDER,
+  GET_ORDER,
   CHANGE_ORDER_STATE,
   CLOSE_ORDER,
   ADD_ORDERLINE,
@@ -19,6 +20,7 @@ const initialState = {
 };
 export default handleActions({
   [CREATE_ORDER]: (state, action) => ({ ...state, current: action.payload }),
+  [GET_ORDER]: (state, action) => ({ ...state, current: action.payload }),
   [CHANGE_ORDER_STATE]: (state, action) => ({ ...state, current: action.payload }),
   [CLOSE_ORDER]: () => initialState,
   [ADD_ORDERLINE]: (state, action) => ({ ...state, current: action.payload }),
