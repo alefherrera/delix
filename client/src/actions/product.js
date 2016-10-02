@@ -13,6 +13,6 @@ export const getProducts = createAction(GET_PRODUCTS, product.getAll);
 export const setProduct = createAction(SET_PRODUCT, null,
   () => p => p.id);
 export const filterProducts = createAction(FILTER_PRODUCTS);
-export const addProduct = createAction(ADD_PRODUCT, product.create);
+export const addProduct = createAction(ADD_PRODUCT, product.create, () => () => '/producto');
 export const editProduct = createAction(EDIT_PRODUCT);
 export const deleteProduct = createAction(DELETE_PRODUCT);

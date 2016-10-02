@@ -1,6 +1,6 @@
 import API from './api';
 
 export default {
-  getAll: () => API.get('productos?esFinal=true'),
+  getAll: all => API.get(`productos${all ? '' : '?esFinal=true'}`),
   create: product => API.post('productos', product),
 };

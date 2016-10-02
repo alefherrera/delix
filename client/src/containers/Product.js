@@ -6,7 +6,7 @@ import * as actions from '../actions/product';
 class Product extends React.Component {
 
   componentWillMount() {
-    this.props.getProducts();
+    this.props.getProducts(true);
   }
 
   render() {
