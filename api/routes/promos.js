@@ -1,8 +1,10 @@
 const {Models} = require('../db');
+const util = require('./util');
 
 module.exports = router => {
+    util.b(router, 'promos');
 
-    router.post('/promo', (req, res) => {
+    router.post('/promos', (req, res) => {
         const promoToSave = req.body;
 
         if (!promoToSave.id) {
@@ -65,7 +67,7 @@ module.exports = router => {
         }
     });
 
-    router.get('/promo', (req, res) => {
+    router.get('/promos', (req, res) => {
 
         Models.promos.findAll({
             include: [
