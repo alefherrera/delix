@@ -1,39 +1,20 @@
 import React, { PropTypes } from 'react';
-import OrderLineAddForm from '../components/Order/OrderLine/OrderLineAddForm';
-import * as actions from '../actions/order';
+import ProductAddForm from '../components/Product/ProductAddForm';
+import * as actions from '../actions/product';
 import { connect } from 'react-redux';
 
 class ProductAdd extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleAdd = this.handleAdd.bind(this);
-  }
-
-  handleAdd(quantity) {
-    const { selected, addOrderLineProduct } = this.props;
-    addOrderLineProduct({
-      selected,
-      quantity,
-    }, this.props.params);
-  }
-
   render() {
-    const { selected } = this.props;
     return (
-      <OrderLineAddForm
-        text={selected.descripcion}
-        onSave={this.handleAdd}
-      />
+      <ProductAddForm onSave={this.props.addProduct} />
     );
   }
 
 }
 
 ProductAdd.propTypes = {
-  params: PropTypes.object,
-  selected: PropTypes.object,
-  addOrderLineProduct: PropTypes.func,
+  addProduct: PropTypes.func,
 };
 
-export default connect(state => state.product, { ...actions })(ProductAdd);
+export default connect(null, { ...actions })(ProductAdd);

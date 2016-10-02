@@ -6,11 +6,12 @@ import PromoList from './PromoList';
 import ProductList from './ProductList';
 import DishList from './DishList';
 import PromoAdd from './PromoAdd';
-import ProductAdd from './ProductAdd';
+import OrderProductAdd from './OrderProductAdd';
 import DishAdd from './DishAdd';
 import Product from './Product';
 import Dish from './Dish';
 import Promo from './Promo';
+import ProductAdd from './ProductAdd';
 
 export {
   App,
@@ -21,9 +22,10 @@ export {
   ProductList,
   DishList,
   PromoAdd,
-  ProductAdd,
+  OrderProductAdd,
   DishAdd,
   Product,
   Dish,
   Promo,
+  ProductAdd,
 };
