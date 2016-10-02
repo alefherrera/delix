@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'productos'
+    tableName: 'productos',
+    paranoid: true,
   });
 };

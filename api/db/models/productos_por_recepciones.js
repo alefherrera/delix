@@ -21,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'productosPorRecepciones'
+    tableName: 'productosPorRecepciones',
+    paranoid: true,
   });
 };

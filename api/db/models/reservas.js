@@ -25,6 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'reservas'
+    tableName: 'reservas',
+    paranoid: true,
   });
 };

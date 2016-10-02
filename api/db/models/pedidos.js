@@ -33,6 +33,7 @@ module.exports = function(sequelize, DataTypes) {
             }
         }
     }, {
-        tableName: 'pedidos'
+        tableName: 'pedidos',
+        paranoid: true,
     });
 };
