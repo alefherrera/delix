@@ -8,6 +8,9 @@ import DishList from './DishList';
 import PromoAdd from './PromoAdd';
 import ProductAdd from './ProductAdd';
 import DishAdd from './DishAdd';
+import Product from './Product';
+import Dish from './Dish';
+import Promo from './Promo';
 
 export {
   App,
@@ -20,4 +23,7 @@ export {
   PromoAdd,
   ProductAdd,
   DishAdd,
+  Product,
+  Dish,
+  Promo,
 };
