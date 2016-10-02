@@ -25,7 +25,7 @@ export default handleActions({
   [ADD_ORDERLINE_PROMO]: (state, { payload }) => ({
     ...state,
     promos: [
-      ...state.products,
+      ...state.promos,
       payload,
     ],
   }),
@@ -39,7 +39,7 @@ export default handleActions({
   [ADD_ORDERLINE_DISH]: (state, { payload }) => ({
     ...state,
     dishes: [
-      ...state.products,
+      ...state.dishes,
       payload,
     ],
   }),
