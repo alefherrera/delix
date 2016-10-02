@@ -18,11 +18,20 @@ module.exports = router => {
                     model: Models.comandas,
                     include: [
                         {
-                            model: Models.productosPorComandas
+                            model: Models.productosPorComandas,
+                            include: {
+                                model: Models.productos
+                            }
                         }, {
-                            model: Models.platosPorComandas
+                            model: Models.platosPorComandas,
+                            include: {
+                                model: Models.platos
+                            }
                         }, {
-                            model: Models.promosPorComandas
+                            model: Models.promosPorComandas,
+                            include: {
+                                model: Models.promos
+                            }
                         }
                     ]
                 }
