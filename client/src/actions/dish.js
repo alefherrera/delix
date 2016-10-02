@@ -13,6 +13,6 @@ export const getDishes = createAction(GET_DISHES, dish.getAll);
 export const filterDishes = createAction(FILTER_DISHES);
 export const setDish = createAction(SET_DISH, null,
   () => p => p.id);
-export const addDish = createAction(ADD_DISH);
+export const addDish = createAction(ADD_DISH, dish.create, () => () => '/plato');
 export const editDish = createAction(EDIT_DISH);
 export const deleteDish = createAction(DELETE_DISH);

@@ -10,11 +10,12 @@ import {
   DishList,
   PromoAdd,
   OrderProductAdd,
-  DishAdd,
+  OrderDishAdd,
   Product,
   Dish,
   Promo,
   ProductAdd,
+  DishAdd,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -24,7 +25,10 @@ const Routes = ({ history }) => (
         <IndexRoute component={Product} />
         <Route name="Add" path="add" component={ProductAdd} />
       </Route>
-      <Route name="Platos" path="plato" component={Dish} />
+      <Route name="Platos" path="plato" >
+        <IndexRoute component={Dish} />
+        <Route name="Add" path="add" component={DishAdd} />
+      </Route>
       <Route name="Promo" path="promo" component={Promo} />
       <Route name="Pedido" path="pedido">
         <IndexRoute component={Order} />
@@ -42,7 +46,7 @@ const Routes = ({ history }) => (
             </Route>
             <Route name="Platos" path="platos">
               <IndexRoute component={DishList} />
-              <Route name="Add" path=":idDish" component={DishAdd} />
+              <Route name="Add" path=":idDish" component={OrderDishAdd} />
             </Route>
           </Route>
         </Route>
