@@ -35,6 +35,7 @@ const OrderForm = ({ orders, onCreateClick }) => (
 
 OrderForm.propTypes = {
   onCreateClick: PropTypes.func,
+  orders: PropTypes.array,
 };
 
 export default OrderForm;
