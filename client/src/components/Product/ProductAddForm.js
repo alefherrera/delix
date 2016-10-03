@@ -30,6 +30,9 @@ class ProductAddForm extends React.Component {
           <CardText>
             <Grid fluid>
               <Row>
+                <Col xs={2}>
+                  <h3>Descripcion</h3>
+                </Col>
                 <Col xs>
                   <TextField
                     hintText="Descripcion"
@@ -39,6 +42,9 @@ class ProductAddForm extends React.Component {
                 </Col>
               </Row>
               <Row>
+                <Col xs={2}>
+                  <h3>Precio</h3>
+                </Col>
                 <Col xs>
                   <TextField
                     hintText="Precio"
@@ -48,7 +54,10 @@ class ProductAddForm extends React.Component {
                 </Col>
               </Row>
               <Row>
-                <Col xs>
+                <Col xs={2}>
+                  <h3>Venta directa</h3>
+                </Col>
+                <Col>
                   <Toggle
                     toggled={esFinal}
                     onToggle={(e, v) => this.setState({ esFinal: v })}

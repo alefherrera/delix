@@ -29,6 +29,9 @@ class DishAddForm extends React.Component {
           <CardText>
             <Grid fluid>
               <Row>
+                <Col xs={2}>
+                  <h3>Nombre</h3>
+                </Col>
                 <Col xs>
                   <TextField
                     hintText="Nombre"
@@ -38,6 +41,9 @@ class DishAddForm extends React.Component {
                 </Col>
               </Row>
               <Row>
+                <Col xs={2}>
+                  <h3>Descripcion</h3>
+                </Col>
                 <Col xs>
                   <TextField
                     hintText="Descripcion"
@@ -47,6 +53,9 @@ class DishAddForm extends React.Component {
                 </Col>
               </Row>
               <Row>
+                <Col xs={2}>
+                  <h3>Precio</h3>
+                </Col>
                 <Col xs>
                   <TextField
                     hintText="Precio"
