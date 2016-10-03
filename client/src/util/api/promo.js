@@ -1,5 +1,5 @@
 import API from './api';
 
 export default {
-  getAll: () => API.get('promo'),
+  getAll: () => API.get('promos'),
 };
