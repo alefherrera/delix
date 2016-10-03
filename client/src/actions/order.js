@@ -1,6 +1,7 @@
 import {
   CREATE_ORDER,
   GET_ORDER,
+  GET_ORDERS,
   CHANGE_ORDER_STATE,
   CLOSE_ORDER,
   ADD_ORDERLINE,
@@ -14,6 +15,7 @@ import { createAction } from 'redux-actions';
 import { order } from '../util/api';
 export const createOrder = createAction(CREATE_ORDER, order.create, () => pedido => pedido.id);
 export const getOrder = createAction(GET_ORDER, order.create);
+export const getOrders = createAction(GET_ORDERS, order.getAll);
 export const changeOrderState = createAction(CHANGE_ORDER_STATE);
 export const closeOrder = createAction(CLOSE_ORDER,
   ({
