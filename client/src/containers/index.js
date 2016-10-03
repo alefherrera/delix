@@ -7,6 +7,7 @@ import ProductList from './ProductList';
 import DishList from './DishList';
 import PromoAdd from './PromoAdd';
 import OrderProductAdd from './OrderProductAdd';
+import OrderDishAdd from './OrderDishAdd';
 import DishAdd from './DishAdd';
 import Product from './Product';
 import Dish from './Dish';
@@ -23,6 +24,7 @@ export {
   DishList,
   PromoAdd,
   OrderProductAdd,
+  OrderDishAdd,
   DishAdd,
   Product,
   Dish,
