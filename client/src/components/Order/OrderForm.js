@@ -13,7 +13,9 @@ const OrderForm = ({ orders, onCreateClick }) => (
         {
           orders && orders.map((order, i) => (
             <Card key={i}>
-              {`Order ${order.id}`}
+              <CardText>
+                {`Order ${order.id}`}
+              </CardText>
             </Card>
           ))
         }
