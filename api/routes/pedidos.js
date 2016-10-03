@@ -35,7 +35,7 @@ module.exports = router => {
                     ]
                 }
             ],
-            order: 'updatedAt DESC'
+            order: 'updatedAt'
         };
 
         Models.pedidos.findAll(param).then(result => {
