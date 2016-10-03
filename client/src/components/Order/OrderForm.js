@@ -1,35 +1,58 @@
 import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Card, CardText, CardActions } from 'material-ui/Card';
+import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
+import Fab from '../Fab';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import Receipt from 'material-ui/svg-icons/action/receipt';
 
 const OrderForm = ({ orders, onCreateClick }) => (
   <Card>
-    <CardText>
+    <CardTitle>
       Pedido
-    </CardText>
-    <CardText>
-      <div>
-        {
+      </CardTitle>
+      <CardText>
+        <div>
+          {
           orders && orders.map((order, i) => (
             <Card key={i}>
-              <CardText>
-                {`Order ${order.id}`}
-              </CardText>
+              <CardHeader
+                title={`Order ${order.id}`}
+                avatar={<Receipt />}
+              />
+              {order.comandas && order.comandas.map((comanda, i) => (
+                comanda.platosPorComandas && comanda.platosPorComandas.map((plato, i) => (
+                  <CardText>
+                    {plato.plato.nombre}
+                  </CardText>
+                ))
+                ))
+              }
+              {order.comandas && order.comandas.map((comanda, i) => (
+                comanda.promosPorComandas && comanda.promosPorComandas.map((promo, i) => (
+                  <CardText>
+                    {promo.promo.nombre}
+                  </CardText>
+                ))
+                ))
+              }
+              {order.comandas && order.comandas.map((comanda, i) => (
+                comanda.productosPorComandas && comanda.productosPorComandas.map((producto, i) => (
+                  <CardText>
+                    {producto.producto.descripcion}
+                  </CardText>
+                ))
+                ))
+              }
+
             </Card>
           ))
         }
       </div>
     </CardText>
-    <CardActions>
-      <Grid>
-        <Row center="xs">
-          <Col xs>
-            <RaisedButton label="Create" onTouchTap={onCreateClick} />
-          </Col>
-        </Row>
-      </Grid>
-    </CardActions>
+    <Fab onClick={onCreateClick}>
+      <ContentAdd />
+    </Fab>
   </Card>
 );
 
