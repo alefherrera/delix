@@ -37,6 +37,7 @@ class OrderLineAddForm extends React.Component {
               <Col xs>
                 <TextField
                   type="number"
+                  min="0"
                   hintText="Cantidad"
                   value={this.state.quantity}
                   onChange={this.handleChange}
