@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import { List, ListItem } from 'material-ui/List';
 
 const OrderForm = ({ orders, onCreateClick }) => (
   <Card>
@@ -10,16 +9,15 @@ const OrderForm = ({ orders, onCreateClick }) => (
       Pedido
     </CardText>
     <CardText>
-      <Grid>
+      <div>
         {
-          orders.map((order, i) => (
-            <ListItem
-              key={i}
-              primaryText={order.id}
-            />
+          orders && orders.map((order, i) => (
+            <Card key={i}>
+              {`Order ${order.id}`}
+            </Card>
           ))
         }
-      </Grid>
+      </div>
     </CardText>
     <CardActions>
       <Grid>
