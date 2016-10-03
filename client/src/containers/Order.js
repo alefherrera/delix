@@ -10,6 +10,10 @@ class Order extends React.Component {
     this.handleCreateClick = this.handleCreateClick.bind(this);
   }
 
+  componentWillMount() {
+    this.props.getOrders();
+  }
+
   handleCreateClick() {
     this.props.createOrder({
       id: null,
@@ -20,8 +24,10 @@ class Order extends React.Component {
   }
 
   render() {
+    const { list } = this.props;
     return (
       <OrderForm
+        orders={list}
         onCreateClick={this.handleCreateClick}
       />
     );
@@ -31,6 +37,7 @@ class Order extends React.Component {
 
 Order.propTypes = {
   createOrder: PropTypes.func,
+  list: PropTypes.array,
 };
 
 export default connect(state => state.order, { ...actions })(Order);

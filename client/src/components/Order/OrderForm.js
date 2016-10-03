@@ -3,10 +3,21 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-const OrderForm = ({ onCreateClick }) => (
+const OrderForm = ({ orders, onCreateClick }) => (
   <Card>
     <CardText>
       Pedido
+    </CardText>
+    <CardText>
+      <div>
+        {
+          orders && orders.map((order, i) => (
+            <Card key={i}>
+              {`Order ${order.id}`}
+            </Card>
+          ))
+        }
+      </div>
     </CardText>
     <CardActions>
       <Grid>
@@ -22,6 +33,7 @@ const OrderForm = ({ onCreateClick }) => (
 
 OrderForm.propTypes = {
   onCreateClick: PropTypes.func,
+  orders: PropTypes.array,
 };
 
 export default OrderForm;
