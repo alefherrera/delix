@@ -37,6 +37,7 @@ class Order extends React.Component {
 
 Order.propTypes = {
   createOrder: PropTypes.func,
+  getOrders: PropTypes.func,
   list: PropTypes.array,
 };
 
