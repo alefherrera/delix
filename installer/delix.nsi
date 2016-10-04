@@ -14,7 +14,7 @@
 
 ;Nombre de la aplicaci�n y del ejecutable
    Name "${NOMBREAPP}"
-   Icon "delix.ico"
+   Icon "favicon.ico"
    OutFile "DelixInstaller.exe"
 
 ;Directorio de instalaci�n
@@ -61,16 +61,20 @@ Section "Delix" delix
 
   ;Archivos a instalar (solo archivos, los ejecutables van en la secci�n "prerequisitos"
   File delix.exe
-  File "delix.ico"
+  File "favicon.ico"
+  File "bundle.js"
+  File "bundle.js.map"
+  File "index.html"
+
 
 ;Menu inicio
   SetShellVarContext all
   createDirectory "$SMPROGRAMS\${NOMBREAPP}"
-    createShortCut "$SMPROGRAMS\${NOMBREAPP}\${NOMBREAPP}.lnk" "$INSTDIR\delix.exe" "" "$INSTDIR\delix.ico"
+    createShortCut "$SMPROGRAMS\${NOMBREAPP}\${NOMBREAPP}.lnk" "$INSTDIR\delix.exe" "" "$INSTDIR\favicon.ico"
     createShortCut "$SMPROGRAMS\${NOMBREAPP}\Desinstalar.lnk" "$INSTDIR\Uninstall.exe" "" ""
 
 ;Acceso directo en el escritorio
-  CreateShortCut "$DESKTOP\${NOMBREAPP}.lnk" "$INSTDIR\${NOMBREAPP}.exe" "" "$INSTDIR\delix.ico"
+  CreateShortCut "$DESKTOP\${NOMBREAPP}.lnk" "$INSTDIR\${NOMBREAPP}.exe" "" "$INSTDIR\favicon.ico"
 
 ;Hacemos que la instalaci�n se realice para todos los usuarios del sistema
   SetShellVarContext all
@@ -101,10 +105,13 @@ SetShellVarContext all
 
 ;Archivos a desinstalar
     delete $INSTDIR\delix.exe
-    delete $INSTDIR\delix.ico
+    delete $INSTDIR\favicon.ico
     delete $INSTDIR\mysql.msi
     delete $INSTDIR\script.sql
     delete $INSTDIR\initdb.bat
+    delete $INSTDIR\bundle.js
+    delete $INSTDIR\bundle.js.map
+    delete $INSTDIR\index.html
 
 ;Borramos el desinstalador
   delete $INSTDIR\Uninstall.exe
