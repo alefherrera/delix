@@ -6,25 +6,26 @@ import { Link } from 'react-router';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 
-const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
+const OrderAddForm = (
+  { promos, products, dishes, onCloseOrder,
+    linkPromo, linkProduct, linkDish }) => (
   <Card>
     <CardText>
       Pedido Add
     </CardText>
     <CardText>
-      <List>
-        <Subheader inset>Productos</Subheader>
-        {
-          products && products.map((product, i) => (
-            <ListItem
-              key={i}
-              primaryText={product.selected.descripcion}
-              secondaryText={product.quantity}
-            />
-          ))
-        }
-      </List>
-      <Subheader inset>Promociones</Subheader>
+      <Grid fluid>
+        <Row>
+          <Col xs>
+            <Subheader inset>Promociones</Subheader>
+          </Col>
+          <Col xs>
+            <Link to={linkPromo}>
+              <RaisedButton label="Agregar" />
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
       <List>
         {
           promos && promos.map((promo, i) => (
@@ -36,7 +37,41 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
           ))
         }
       </List>
-      <Subheader inset>Platos</Subheader>
+      <Grid fluid>
+        <Row>
+          <Col xs>
+            <Subheader inset>Productos</Subheader>
+          </Col>
+          <Col xs>
+            <Link to={linkProduct}>
+              <RaisedButton label="Agregar" />
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
+      <List>
+        {
+          products && products.map((product, i) => (
+            <ListItem
+              key={i}
+              primaryText={product.selected.descripcion}
+              secondaryText={product.quantity}
+            />
+          ))
+        }
+      </List>
+      <Grid fluid>
+        <Row>
+          <Col xs>
+            <Subheader inset>Platos</Subheader>
+          </Col>
+          <Col xs>
+            <Link to={linkDish}>
+              <RaisedButton label="Agregar" />
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
       <List>
         {
           dishes && dishes.map((dish, i) => (
@@ -53,11 +88,6 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
       <Grid fluid>
         <Row center="xs">
           <Col xs>
-            <Link to={addLink}>
-              <RaisedButton label="Agregar Comanda" />
-            </Link>
-          </Col>
-          <Col xs>
             <RaisedButton label="Enviar Comandas" onTouchTap={() => onCloseOrder()} />
           </Col>
         </Row>
@@ -67,11 +97,13 @@ const OrderAddForm = ({ promos, products, dishes, addLink, onCloseOrder }) => (
 );
 
 OrderAddForm.propTypes = {
-  addLink: PropTypes.string,
   promos: PropTypes.array,
   products: PropTypes.array,
   dishes: PropTypes.array,
   onCloseOrder: PropTypes.func,
+  linkPromo: PropTypes.string,
+  linkProduct: PropTypes.string,
+  linkDish: PropTypes.string,
 };
 
 export default OrderAddForm;

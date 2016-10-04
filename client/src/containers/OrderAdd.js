@@ -27,11 +27,13 @@ class OrderAdd extends React.Component {
     const { location, promos, products, dishes } = this.props;
     return (
       <OrderAddForm
-        addLink={`${location.pathname}/comanda`}
         promos={promos}
         products={products}
         dishes={dishes}
         onCloseOrder={this.handleCloseOrder}
+        linkPromo={`${location.pathname}/comanda/promos`}
+        linkProduct={`${location.pathname}/comanda/productos`}
+        linkDish={`${location.pathname}/comanda/platos`}
       />
     );
   }

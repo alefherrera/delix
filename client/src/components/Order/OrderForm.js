@@ -1,7 +1,5 @@
 import React, { PropTypes } from 'react';
-import RaisedButton from 'material-ui/RaisedButton';
-import { Card, CardActions, CardHeader, CardMedia, CardTitle, CardText } from 'material-ui/Card';
-import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Card, CardHeader, CardTitle, CardText } from 'material-ui/Card';
 import Fab from '../Fab';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import Receipt from 'material-ui/svg-icons/action/receipt';
@@ -10,35 +8,35 @@ const OrderForm = ({ orders, onCreateClick }) => (
   <Card>
     <CardTitle>
       Pedido
-      </CardTitle>
-      <CardText>
-        <div>
-          {
+    </CardTitle>
+    <CardText>
+      <div>
+        {
           orders && orders.map((order, i) => (
             <Card key={i}>
               <CardHeader
                 title={`Order ${order.id}`}
                 avatar={<Receipt />}
               />
-              {order.comandas && order.comandas.map((comanda, i) => (
-                comanda.platosPorComandas && comanda.platosPorComandas.map((plato, i) => (
-                  <CardText>
+              {order.comandas && order.comandas.map((comanda) => (
+                comanda.platosPorComandas && comanda.platosPorComandas.map((plato, k) => (
+                  <CardText key={k}>
                     {plato.plato.nombre}
                   </CardText>
                 ))
                 ))
               }
-              {order.comandas && order.comandas.map((comanda, i) => (
-                comanda.promosPorComandas && comanda.promosPorComandas.map((promo, i) => (
-                  <CardText>
+              {order.comandas && order.comandas.map((comanda) => (
+                comanda.promosPorComandas && comanda.promosPorComandas.map((promo, k) => (
+                  <CardText key={k}>
                     {promo.promo.nombre}
                   </CardText>
                 ))
                 ))
               }
-              {order.comandas && order.comandas.map((comanda, i) => (
-                comanda.productosPorComandas && comanda.productosPorComandas.map((producto, i) => (
-                  <CardText>
+              {order.comandas && order.comandas.map((comanda) => (
+                comanda.productosPorComandas && comanda.productosPorComandas.map((producto, k) => (
+                  <CardText key={k}>
                     {producto.producto.descripcion}
                   </CardText>
                 ))
