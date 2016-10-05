@@ -16,6 +16,10 @@ class DishAddForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps.dish);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.onSave(this.state);

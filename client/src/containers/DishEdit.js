@@ -27,4 +27,4 @@ DishEdit.propTypes = {
   current: PropTypes.object,
 };
 
-export default connect(null, { ...actions })(DishEdit);
+export default connect(state => state.dish, { ...actions })(DishEdit);
