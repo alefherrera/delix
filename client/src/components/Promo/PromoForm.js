@@ -1,6 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
+import { List } from 'material-ui/List';
+import PromoRow from './PromoRow';
+import Fab from '../Fab';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import { Link } from 'react-router';
 
 const PromoForm = ({ promos }) => (
   <Card>
@@ -8,14 +12,20 @@ const PromoForm = ({ promos }) => (
       <List>
         {
           promos.map((promo, i) => (
-            <ListItem
-              key={i}
-              primaryText={promo.nombre}
-            />
+            <div key={i}>
+              <PromoRow
+                promo={promo}
+              />
+            </div>
           ))
         }
       </List>
     </CardText>
+    <Link to={`${location.pathname}/add`}>
+      <Fab>
+        <ContentAdd />
+      </Fab>
+    </Link>
   </Card>
 );
 

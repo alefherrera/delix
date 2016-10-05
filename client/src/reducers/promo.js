@@ -14,8 +14,27 @@ const initialState = {
 const filter = (f, all) =>
   all.filter(s => s.nombre.toLowerCase().indexOf(f.toLowerCase()) !== -1);
 
+const calcularPrecio = promo => {
+  const platos = promo.platosPorPromos.reduce((p, n) => p + n.plato.precio, 0);
+  const productos = promo.productosPorPromos.reduce((p, n) => p + n.producto.precio, 0);
+  const subTotal = platos + productos;
+  const descuento = subTotal * promo.porcentajeDescuento / 100;
+  return {
+    subTotal,
+    descuento,
+    total: subTotal - descuento,
+  };
+};
+
 export default handleActions({
-  [GET_PROMOS]: (state, { payload }) => ({ ...state, all: payload, list: payload }),
+  [GET_PROMOS]: (state, { payload }) => {
+    const promos = payload.map(promo => ({ ...promo, precio: calcularPrecio(promo) }));
+    return {
+      ...state,
+      all: promos,
+      list: promos,
+    };
+  },
   [FILTER_PROMOS]: (state, { payload }) => (
     {
       ...state,
