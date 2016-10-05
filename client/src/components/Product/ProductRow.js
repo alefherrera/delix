@@ -3,22 +3,24 @@ import { ListItem } from 'material-ui/List';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
 const ProductRow = ({ product, onClick, disabled }) => (
-  <Grid onClick={onClick ? () => onClick(product) : null}>
-    <Row>
-      <Col xs={9}>
-        <ListItem
-          disabled={disabled}
-          primaryText={product.descripcion}
-        />
-      </Col>
-      <Col xs={3}>
-        <ListItem
-          disabled={disabled}
-          primaryText={`$${product.precio}`}
-        />
-      </Col>
-    </Row>
-  </Grid>
+  <ListItem disabled={disabled} innerDivStyle={{ padding: 'initial' }}>
+    <Grid onClick={onClick ? () => onClick(product) : null}>
+      <Row>
+        <Col xs={9}>
+          <ListItem
+            disabled
+            primaryText={product.descripcion}
+          />
+        </Col>
+        <Col xs={3}>
+          <ListItem
+            disabled
+            primaryText={`$${product.precio}`}
+          />
+        </Col>
+      </Row>
+    </Grid>
+  </ListItem>
 );
 
 ProductRow.propTypes = {

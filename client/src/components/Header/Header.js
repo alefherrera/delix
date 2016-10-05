@@ -1,6 +1,5 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
 import { Link } from 'react-router';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -14,10 +13,10 @@ const Menu = (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
-    <MenuItem primaryText={<Link to="/pedido">Pedidos</Link>} />
-    <MenuItem primaryText={<Link to="/producto">Productos</Link>} />
-    <MenuItem primaryText={<Link to="/plato">Platos</Link>} />
-    <MenuItem primaryText={<Link to="/promo">Promos</Link>} />
+    <Link to="/pedido"><MenuItem primaryText="Pedidos" /></Link>
+    <Link to="/producto"><MenuItem primaryText="Productos" /></Link>
+    <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
+    <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
   </IconMenu>
 );
 
