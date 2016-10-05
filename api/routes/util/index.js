@@ -21,6 +21,10 @@ const selectCommand = (req, res, entity) => {
     entity.findAll().then(r => res.json(r));
 };
 
+const selectById = (req, res, entity) => {
+    entity.findById(req.params.id).then(r => res.json(r));
+};
+
 module.exports = {
     abml: (router, tableName) => {
 
@@ -33,6 +37,10 @@ module.exports = {
 
         router.get(url, (req, res) => {
             selectCommand(req, res, entity);
+        });
+
+        router.get(`${url}/:id`, (req, res) => {
+            selectById(req, res, entity);
         });
 
         router.delete(`${url}/:id`, (req, res) => {
@@ -69,6 +77,10 @@ module.exports = {
 
         router.get(url, (req, res) => {
             selectCommand(req, res, entity);
+        });
+
+        router.get(`${url}/:id`, (req, res) => {
+            selectById(req, res, entity);
         });
 
     }

@@ -1,5 +1,5 @@
 const util = require('./util');
-const {productos} = require('../db').Models;
+const { productos } = require('../db').Models;
 
 module.exports = router => {
     util.am(router, 'productos');
@@ -18,5 +18,9 @@ module.exports = router => {
         else
           productos.findAll().then(r => res.json(r));
 
+    });
+
+    router.get('/productos/:id', (req, res) => {
+      productos.findById(req.params.id).then(r => res.json(r));
     });
 };

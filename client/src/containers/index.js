@@ -12,6 +12,8 @@ import Product from './Product';
 import Dish from './Dish';
 import Promo from './Promo';
 import ProductAdd from './ProductAdd';
+import DishEdit from './DishEdit';
+import ProductEdit from './ProductEdit';
 
 export {
   App,
@@ -28,4 +30,6 @@ export {
   Dish,
   Promo,
   ProductAdd,
+  DishEdit,
+  ProductEdit,
 };

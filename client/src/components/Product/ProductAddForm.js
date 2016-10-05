@@ -17,6 +17,10 @@ class ProductAddForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState(nextProps.product);
+  }
+
   handleSubmit(e) {
     e.preventDefault();
     this.props.onSave(this.state);

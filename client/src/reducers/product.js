@@ -1,5 +1,6 @@
 import {
   GET_PRODUCTS,
+  GET_PRODUCT,
   SET_PRODUCT,
   FILTER_PRODUCTS,
 } from '../constants';
@@ -9,6 +10,7 @@ const initialState = {
   selected: null,
   all: [],
   list: [],
+  current: null,
 };
 
 const filter = (f, all) =>
@@ -16,6 +18,7 @@ const filter = (f, all) =>
 
 export default handleActions({
   [GET_PRODUCTS]: (state, { payload }) => ({ ...state, all: payload, list: payload }),
+  [GET_PRODUCT]: (state, { payload }) => ({ ...state, current: payload }),
   [FILTER_PRODUCTS]: (state, { payload }) => (
     {
       ...state,
