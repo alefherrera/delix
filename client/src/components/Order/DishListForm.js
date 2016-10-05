@@ -8,21 +8,23 @@ const DishListForm = ({ dishes, onFilter, onSelect }) => (
   <Card>
     <CardText>
       <TextField hintText="Buscar" onChange={e => onFilter(e.target.value)} />
-      <Card>
-        <List>
+      <List>
+        <Card>
+
           {
             dishes.map((dish, i) => (
               <div key={i}>
                 <ListItem
                   primaryText={dish.nombre}
+                  secondaryText={dish.descripcion}
                   onTouchTap={() => onSelect(dish)}
                 />
                 <Divider />
               </div>
             ))
           }
-        </List>
-      </Card>
+        </Card>
+      </List>
     </CardText>
   </Card>
 );

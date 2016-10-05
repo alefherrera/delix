@@ -1,28 +1,54 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText } from 'material-ui/Card';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import { List, ListItem } from 'material-ui/List';
-import Divider from 'material-ui/Divider';
+import Subheader from 'material-ui/Subheader';
+import styles from './style.css';
 
 const PromoListForm = ({ promos, onFilter, onSelect }) => (
   <Card>
     <CardText>
       <TextField hintText="Buscar" onChange={e => onFilter(e.target.value)} />
-      <Card>
-        <List>
-          {
-            promos.map((promo, i) => (
-              <div key={i}>
-                <ListItem
-                  primaryText={promo.nombre}
-                  onTouchTap={() => onSelect(promo)}
-                />
-                <Divider />
-              </div>
-            ))
-          }
-        </List>
-      </Card>
+      <div>
+        {
+          promos.map((promo, i) => (
+            <Card key={i} className={styles.promos}>
+              <CardTitle
+                className={styles.promoTitle}
+                title={promo.nombre}
+                onClick={() => onSelect(promo)}
+              />
+              <CardText>
+                <List>
+                  <Subheader>Platos</Subheader>
+                  {
+                    promo.platosPorPromos && promo.platosPorPromos.map((plato, j) => (
+                      <ListItem
+                        disabled
+                        key={j}
+                        primaryText={plato.plato.nombre}
+                        secondaryText={plato.plato.descripcion}
+                      />
+                    ))
+                  }
+                </List>
+                <List>
+                  <Subheader>Productos</Subheader>
+                  {
+                    promo.productosPorPromos && promo.productosPorPromos.map((producto, j) => (
+                      <ListItem
+                        disabled
+                        key={j}
+                        primaryText={producto.producto.descripcion}
+                      />
+                    ))
+                  }
+                </List>
+              </CardText>
+            </Card>
+          ))
+        }
+      </div>
     </CardText>
   </Card>
 );

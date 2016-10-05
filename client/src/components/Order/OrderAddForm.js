@@ -1,18 +1,19 @@
 import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
-import { Card, CardText, CardActions } from 'material-ui/Card';
+import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Link } from 'react-router';
 import { List, ListItem } from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
-
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
 const OrderAddForm = (
   { promos, products, dishes, onCloseOrder,
     linkPromo, linkProduct, linkDish }) => (
   <Card>
-    <CardText>
-      Pedido Add
-    </CardText>
+    <CardTitle>
+      Pedido
+    </CardTitle>
     <CardText>
       <Grid fluid>
         <Row>
@@ -21,7 +22,9 @@ const OrderAddForm = (
           </Col>
           <Col xs>
             <Link to={linkPromo}>
-              <RaisedButton label="Agregar" />
+              <FloatingActionButton mini>
+                <ContentAdd />
+              </FloatingActionButton>
             </Link>
           </Col>
         </Row>
@@ -44,7 +47,9 @@ const OrderAddForm = (
           </Col>
           <Col xs>
             <Link to={linkProduct}>
-              <RaisedButton label="Agregar" />
+              <FloatingActionButton mini>
+                <ContentAdd />
+              </FloatingActionButton>
             </Link>
           </Col>
         </Row>
@@ -67,7 +72,9 @@ const OrderAddForm = (
           </Col>
           <Col xs>
             <Link to={linkDish}>
-              <RaisedButton label="Agregar" />
+              <FloatingActionButton mini>
+                <ContentAdd />
+              </FloatingActionButton>
             </Link>
           </Col>
         </Row>

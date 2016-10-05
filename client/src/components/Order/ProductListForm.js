@@ -7,8 +7,8 @@ const ProductListForm = ({ products, onFilter, onSelect }) => (
   <Card>
     <CardText>
       <TextField hintText="Buscar" onChange={e => onFilter(e.target.value)} />
-      <Card>
-        <List>
+      <List>
+        <Card>
           {
             products.map((product, i) => (
               <div key={i}>
@@ -20,8 +20,8 @@ const ProductListForm = ({ products, onFilter, onSelect }) => (
               </div>
             ))
           }
-        </List>
-      </Card>
+        </Card>
+      </List>
     </CardText>
   </Card>
 );
