@@ -1,8 +1,9 @@
 import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import { List, ListItem } from 'material-ui/List';
+import { List } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
+import DishRow from '../Dish/DishRow';
 
 const DishListForm = ({ dishes, onFilter, onSelect }) => (
   <Card>
@@ -14,10 +15,9 @@ const DishListForm = ({ dishes, onFilter, onSelect }) => (
           {
             dishes.map((dish, i) => (
               <div key={i}>
-                <ListItem
-                  primaryText={dish.nombre}
-                  secondaryText={dish.descripcion}
-                  onTouchTap={() => onSelect(dish)}
+                <DishRow
+                  dish={dish}
+                  onClick={onSelect}
                 />
                 <Divider />
               </div>

@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { Card, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
-import { List, ListItem } from 'material-ui/List';
+import { List } from 'material-ui/List';
+import ProductRow from '../Product/ProductRow';
 import Divider from 'material-ui/Divider';
+
 const ProductListForm = ({ products, onFilter, onSelect }) => (
   <Card>
     <CardText>
@@ -12,9 +14,9 @@ const ProductListForm = ({ products, onFilter, onSelect }) => (
           {
             products.map((product, i) => (
               <div key={i}>
-                <ListItem
-                  primaryText={product.descripcion}
-                  onTouchTap={() => onSelect(product)}
+                <ProductRow
+                  product={product}
+                  onClick={onSelect}
                 />
                 <Divider />
               </div>
