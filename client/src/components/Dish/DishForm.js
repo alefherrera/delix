@@ -14,12 +14,12 @@ const DishForm = ({ dishes }) => (
         <Card>
           {
             dishes.map((dish, i) => (
-              <div key={i}>
+              <Link key={i} to={`${location.pathname}/edit/${dish.id}`}>
                 <DishRow
                   dish={dish}
                 />
                 <Divider />
-              </div>
+              </Link>
             ))
           }
         </Card>

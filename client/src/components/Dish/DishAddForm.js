@@ -29,36 +29,27 @@ class DishAddForm extends React.Component {
           <CardText>
             <Grid fluid>
               <Row>
-                <Col xs={2}>
-                  <h3>Nombre</h3>
-                </Col>
                 <Col xs>
                   <TextField
-                    hintText="Nombre"
+                    floatingLabelText="Nombre"
                     value={nombre}
                     onChange={e => this.setState({ nombre: e.target.value })}
                   />
                 </Col>
               </Row>
               <Row>
-                <Col xs={2}>
-                  <h3>Descripcion</h3>
-                </Col>
                 <Col xs>
                   <TextField
-                    hintText="Descripcion"
+                    floatingLabelText="Descripcion"
                     value={descripcion}
                     onChange={e => this.setState({ descripcion: e.target.value })}
                   />
                 </Col>
               </Row>
               <Row>
-                <Col xs={2}>
-                  <h3>Precio</h3>
-                </Col>
                 <Col xs>
                   <TextField
-                    hintText="Precio"
+                    floatingLabelText="Precio"
                     value={precio}
                     onChange={e => this.setState({ precio: parseInt(e.target.value || 0, 10) })}
                   />
@@ -67,7 +58,13 @@ class DishAddForm extends React.Component {
             </Grid>
           </CardText>
           <CardActions>
-            <RaisedButton type="submit" label="Guardar" />
+            <Grid fluid>
+              <Row center="xs">
+                <Col xs>
+                  <RaisedButton type="submit" label="Guardar" />
+                </Col>
+              </Row>
+            </Grid>
           </CardActions>
         </form>
       </Card>

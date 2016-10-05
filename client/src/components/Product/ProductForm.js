@@ -14,12 +14,12 @@ const ProductForm = ({ products }) => (
         <Card>
           {
             products.map((product, i) => (
-              <div key={i}>
+              <Link key={i} to={`${location.pathname}/edit/${product.id}`}>
                 <ProductRow
                   product={product}
                 />
                 <Divider />
-              </div>
+              </Link>
             ))
           }
         </Card>
