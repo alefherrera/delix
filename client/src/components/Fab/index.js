@@ -5,7 +5,7 @@ const Fab = ({ children, onClick }) =>
 (
   <div style={{ position: 'fixed', right: 0, bottom: 0, padding: 25 }}>
     <FloatingActionButton
-      onTouchTap={onClick ? () => onClick() : null}
+      onTouchTap={onClick ? () => onClick() : undefined}
     >
       {children}
     </FloatingActionButton>
