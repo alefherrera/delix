@@ -4,7 +4,7 @@ import OrderAdd from './OrderAdd';
 import PromoList from './PromoList';
 import ProductList from './ProductList';
 import DishList from './DishList';
-import PromoAdd from './PromoAdd';
+import OrderPromoAdd from './OrderPromoAdd';
 import OrderProductAdd from './OrderProductAdd';
 import OrderDishAdd from './OrderDishAdd';
 import DishAdd from './DishAdd';
@@ -22,7 +22,7 @@ export {
   PromoList,
   ProductList,
   DishList,
-  PromoAdd,
+  OrderPromoAdd,
   OrderProductAdd,
   OrderDishAdd,
   DishAdd,

@@ -7,7 +7,7 @@ import {
   PromoList,
   ProductList,
   DishList,
-  PromoAdd,
+  OrderPromoAdd,
   OrderProductAdd,
   OrderDishAdd,
   Product,
@@ -40,7 +40,7 @@ const Routes = ({ history }) => (
           <Route name="Comanda" path="comanda">
             <Route name="Promos" path="promos">
               <IndexRoute component={PromoList} />
-              <Route name="Add" path=":idPromo" component={PromoAdd} />
+              <Route name="Add" path=":idPromo" component={OrderPromoAdd} />
             </Route>
             <Route name="Productos" path="productos">
               <IndexRoute component={ProductList} />

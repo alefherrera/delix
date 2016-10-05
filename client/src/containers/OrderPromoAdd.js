@@ -3,7 +3,7 @@ import OrderLineAddForm from '../components/Order/OrderLine/OrderLineAddForm';
 import * as actions from '../actions/order';
 import { connect } from 'react-redux';
 
-class PromoAdd extends React.Component {
+class OrderPromoAdd extends React.Component {
 
   constructor(props) {
     super(props);
@@ -30,10 +30,10 @@ class PromoAdd extends React.Component {
 
 }
 
-PromoAdd.propTypes = {
+OrderPromoAdd.propTypes = {
   params: PropTypes.object,
   selected: PropTypes.object,
   addOrderLinePromo: PropTypes.func,
 };
 
-export default connect(state => state.promo, { ...actions })(PromoAdd);
+export default connect(state => state.promo, { ...actions })(OrderPromoAdd);
