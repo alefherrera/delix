@@ -3,15 +3,9 @@ import ProductAddForm from '../components/Product/ProductAddForm';
 import * as actions from '../actions/product';
 import { connect } from 'react-redux';
 
-class ProductAdd extends React.Component {
-
-  render() {
-    return (
-      <ProductAddForm onSave={this.props.addProduct} />
-    );
-  }
-
-}
+const ProductAdd = ({ addProduct }) => (
+  <ProductAddForm onSave={addProduct} />
+);
 
 ProductAdd.propTypes = {
   addProduct: PropTypes.func,

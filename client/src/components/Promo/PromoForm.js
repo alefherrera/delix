@@ -12,11 +12,11 @@ const PromoForm = ({ promos }) => (
       <List>
         {
           promos.map((promo, i) => (
-            <div key={i}>
+            <Link key={i} to={`${location.pathname}/edit/${promo.id}`}>
               <PromoRow
                 promo={promo}
               />
-            </div>
+            </Link>
           ))
         }
       </List>
