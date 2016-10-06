@@ -2,12 +2,7 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import TableForm from '../components/Table/TableForm';
 import * as actions from '../actions/table';
-class Tables extends React.Component {
-
-  constructor(props) {
-    super(props);
-    this.handleTableSet = this.handleTableSet.bind(this);
-  }
+class Table extends React.Component {
 
   componentWillMount() {
     this.props.getTables();
@@ -25,7 +20,7 @@ class Tables extends React.Component {
 
 }
 
-Tables.propTypes = {
+Table.propTypes = {
   list: PropTypes.array,
   getTables: PropTypes.func,
 };
@@ -33,4 +28,4 @@ Tables.propTypes = {
 export default connect(
   state => state.table,
   { ...actions }
-)(Tables);
+)(Table);

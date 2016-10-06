@@ -19,6 +19,7 @@ import {
   DishEdit,
   PromoAdd,
   PromoEdit,
+  Table,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -39,7 +40,8 @@ const Routes = ({ history }) => (
         <Route name="Add" path="add" component={PromoAdd} />
         <Route name="Edit" path="edit/:promoId" component={PromoEdit} />
       </Route>
-      <Route name="Table" path="table">
+      <Route name="Table" path="mesa">
+        <IndexRoute component={Table} />
         <Route name="Pedido" path=":idMesa">
           <IndexRoute component={Order} />
           <Route path=":idPedido">

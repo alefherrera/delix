@@ -6,9 +6,7 @@ import Receipt from 'material-ui/svg-icons/action/receipt';
 
 const OrderForm = ({ orders, onCreateClick }) => (
   <Card>
-    <CardTitle>
-      Pedido
-    </CardTitle>
+    <CardTitle title="Pedido" />
     <CardText>
       <div>
         {

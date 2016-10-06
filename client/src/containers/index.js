@@ -16,6 +16,7 @@ import DishEdit from './DishEdit';
 import ProductEdit from './ProductEdit';
 import PromoAdd from './PromoAdd';
 import PromoEdit from './PromoEdit';
+import Table from './Table';
 
 export {
   App,
@@ -36,4 +37,5 @@ export {
   ProductEdit,
   PromoAdd,
   PromoEdit,
+  Table,
 };

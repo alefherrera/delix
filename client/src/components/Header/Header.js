@@ -13,7 +13,7 @@ const Menu = (
     targetOrigin={{ horizontal: 'right', vertical: 'top' }}
     anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
   >
-    <Link to="/pedido"><MenuItem primaryText="Pedidos" /></Link>
+    <Link to="/mesa"><MenuItem primaryText="Mesas" /></Link>
     <Link to="/producto"><MenuItem primaryText="Productos" /></Link>
     <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
     <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
