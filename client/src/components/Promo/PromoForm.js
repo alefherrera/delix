@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText } from 'material-ui/Card';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { List } from 'material-ui/List';
 import PromoRow from './PromoRow';
 import Fab from '../Fab';
@@ -8,6 +8,7 @@ import { Link } from 'react-router';
 
 const PromoForm = ({ promos }) => (
   <Card>
+    <CardTitle title="Promos" />
     <CardText>
       <List>
         {

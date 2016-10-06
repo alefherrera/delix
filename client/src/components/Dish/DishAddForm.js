@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText, CardActions } from 'material-ui/Card';
+import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -29,6 +29,7 @@ class DishAddForm extends React.Component {
     const { descripcion, precio, nombre } = this.state;
     return (
       <Card>
+        <CardTitle title="Plato" />
         <form onSubmit={this.handleSubmit}>
           <CardText>
             <Grid fluid>

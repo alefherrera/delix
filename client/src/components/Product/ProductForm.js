@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText } from 'material-ui/Card';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
 import { List } from 'material-ui/List';
 import Fab from '../Fab';
 import ContentAdd from 'material-ui/svg-icons/content/add';
@@ -9,6 +9,7 @@ import Divider from 'material-ui/Divider';
 
 const ProductForm = ({ products }) => (
   <Card>
+    <CardTitle title="Productos" />
     <CardText>
       <List>
         <Card>

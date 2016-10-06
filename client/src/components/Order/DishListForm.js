@@ -11,7 +11,6 @@ const DishListForm = ({ dishes, onFilter, onSelect }) => (
       <TextField hintText="Buscar" onChange={e => onFilter(e.target.value)} />
       <List>
         <Card>
-
           {
             dishes.map((dish, i) => (
               <div key={i}>
