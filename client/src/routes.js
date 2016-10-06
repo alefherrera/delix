@@ -39,22 +39,24 @@ const Routes = ({ history }) => (
         <Route name="Add" path="add" component={PromoAdd} />
         <Route name="Edit" path="edit/:promoId" component={PromoEdit} />
       </Route>
-      <Route name="Pedido" path="pedido">
-        <IndexRoute component={Order} />
-        <Route path=":idPedido">
-          <IndexRoute component={OrderAdd} />
-          <Route name="Comanda" path="comanda">
-            <Route name="Promos" path="promos">
-              <IndexRoute component={PromoList} />
-              <Route name="Add" path=":idPromo" component={OrderPromoAdd} />
-            </Route>
-            <Route name="Productos" path="productos">
-              <IndexRoute component={ProductList} />
-              <Route name="Add" path=":idProduct" component={OrderProductAdd} />
-            </Route>
-            <Route name="Platos" path="platos">
-              <IndexRoute component={DishList} />
-              <Route name="Add" path=":idDish" component={OrderDishAdd} />
+      <Route name="Table" path="table">
+        <Route name="Pedido" path=":idMesa">
+          <IndexRoute component={Order} />
+          <Route path=":idPedido">
+            <IndexRoute component={OrderAdd} />
+            <Route name="Comanda" path="comanda">
+              <Route name="Promos" path="promos">
+                <IndexRoute component={PromoList} />
+                <Route name="Add" path=":idPromo" component={OrderPromoAdd} />
+              </Route>
+              <Route name="Productos" path="productos">
+                <IndexRoute component={ProductList} />
+                <Route name="Add" path=":idProduct" component={OrderProductAdd} />
+              </Route>
+              <Route name="Platos" path="platos">
+                <IndexRoute component={DishList} />
+                <Route name="Add" path=":idDish" component={OrderDishAdd} />
+              </Route>
             </Route>
           </Route>
         </Route>

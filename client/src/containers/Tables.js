@@ -13,17 +13,12 @@ class Tables extends React.Component {
     this.props.getTables();
   }
 
-  handleTableSet(table) {
-    this.props.setTable(table);
-  }
-
   render() {
-    const { tables } = this.props;
-    if (!tables) return null;
+    const { list } = this.props;
+    if (!list) return null;
     return (
       <TableForm
-        tables={tables}
-        onSetTable={this.handleTableSet}
+        tables={list}
       />
     );
   }
@@ -31,9 +26,8 @@ class Tables extends React.Component {
 }
 
 Tables.propTypes = {
-  tables: PropTypes.array,
+  list: PropTypes.array,
   getTables: PropTypes.func,
-  setTable: PropTypes.func,
 };
 
 export default connect(

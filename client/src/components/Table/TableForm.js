@@ -3,6 +3,7 @@ import { Card, CardText, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import { Link } from 'react-router';
 
 class TableForm extends React.Component {
 
@@ -13,7 +14,7 @@ class TableForm extends React.Component {
   }
 
   render() {
-    const { tables, onSetTable } = this.props;
+    const { tables } = this.props;
     return (
       <Card>
         <CardText>
@@ -29,7 +30,9 @@ class TableForm extends React.Component {
           </SelectField>
         </CardText>
         <CardActions>
-          <RaisedButton label="Cerrar" onTouchTap={onSetTable} />
+          <Link to={`${location.pathname}/${this.state.value.id}`}>
+            <RaisedButton label="Cerrar" />
+          </Link>
         </CardActions>
       </Card>
     );
@@ -40,7 +43,6 @@ class TableForm extends React.Component {
 
 TableForm.propTypes = {
   tables: PropTypes.array,
-  onSetTable: PropTypes.func,
 };
 
 export default TableForm;
