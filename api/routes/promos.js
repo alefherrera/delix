@@ -84,4 +84,20 @@ module.exports = router => {
         });
     });
 
+    router.get('/promos/:id', (req, res) => {
+      Models.promos.findById(req.params.id, {
+          include: [
+              {
+                  model: Models.productosPorPromos,
+                  include: [Models.productos]
+              }, {
+                  model: Models.platosPorPromos,
+                  include: [Models.platos]
+              }
+          ]
+      }).then(result => {
+          res.json(result);
+      });
+    });
+
 };

@@ -1,5 +1,6 @@
 import {
   GET_PROMOS,
+  GET_PROMO,
   SET_PROMO,
   FILTER_PROMOS,
 } from '../constants';
@@ -9,6 +10,7 @@ const initialState = {
   selected: null,
   all: [],
   list: [],
+  current: null,
 };
 
 const filter = (f, all) =>
@@ -35,6 +37,8 @@ export default handleActions({
       list: promos,
     };
   },
+  [GET_PROMO]: (state, { payload }) =>
+    ({ ...state, current: { ...payload, precio: calcularPrecio(payload) } }),
   [FILTER_PROMOS]: (state, { payload }) => (
     {
       ...state,
