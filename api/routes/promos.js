@@ -4,68 +4,31 @@ const util = require('./util');
 module.exports = router => {
     util.b(router, 'promos');
 
-    router.post('/promos', (req, res) => {
-        const promoToSave = req.body;
+router.post('/promos', (req, res) => {
+    const promoToSave = req.body;
+    console.log(promoToSave);
 
-        if (!promoToSave.id) {
-            Models.promos.create(promoToSave).then(newPromo => {
-
-                const promiseBulk = [];
-                if (promoToSave.platos && promoToSave.platos.length > 0) {
-                    for (const plato of promoToSave.platos) {
-                        for (let i = plato.cant; i; i--) {
-                            promiseBulk.push(Models.platosPorPromos.upsert({
-                              promoId: newPromo.id,
-                              platoId: plato.id
-                            }));
-                        }
-                    }
-                }
-                if (promoToSave.productos && promoToSave.productos.length > 0) {
-                    for (const producto of promoToSave.productos) {
-                        for (let i = producto.cant; i; i--) {
-                            promiseBulk.push(Models.productosPorPromos.upsert({
-                              promoId: newPromo.id,
-                              productoId: producto.id
-                            }));
-                        }
-                    }
-                }
-
-                Promise.all(promiseBulk).then(() => res.json(newPromo));
-            });
-        } else {
-            Models.promos.upsert(promoToSave).then(() => {
-
-                const promiseBulk = [];
-                promiseBulk.push(Models.platosPorPromos.destroy({
-                    where: {
-                        promoId: promoToSave.id
-                    }
-                }));
-                promiseBulk.push(Models.productosPorPromos.destroy({
-                    where: {
-                        promoId: promoToSave.id
-                    }
-                }));
-
-                if (promoToSave.platos && promoToSave.platos.length > 0) {
-                    promiseBulk.push(Models.platosPorPromos.bulkCreate(
-                      promoToSave.platos.map((obj) => {
-                        return {promoId: promoToSave.id, platoId: obj.id};
-                    })));
-                }
-                if (promoToSave.productos && promoToSave.productos.length > 0) {
-                    promiseBulk.push(Models.productosPorPromos.bulkCreate(
-                      promoToSave.productos.map((obj) => {
-                        return {promoId: promoToSave.id, productoId: obj.id};
-                    })));
-                }
-
-                Promise.all(promiseBulk).then(() => res.json(promoToSave));
-            });
-        }
-    });
+    if (!promoToSave.id) {
+      Models.promos.create(promoToSave).then(result => {
+        const promo = result;
+        Promise.all(
+          promo.setPlatos(promoToSave.platos.map((plato) => plato.id)),
+          promo.setProductos(promoToSave.productos.map((producto) => producto.id))
+        ).then(res.json(promo));
+      });
+    }
+    else
+    {
+      Models.promos.upsert(promoToSave).then(() => {
+        Models.promos.findById(promoToSave.id).then(promo =>{
+          Promise.all(
+            promo.setPlatos(promoToSave.platos.map((plato) => plato.id)),
+            promo.setProductos(promoToSave.productos.map((producto) => producto.id))
+          ).then(res.json(promo));
+        });
+      });
+    }
+});
 
     router.get('/promos', (req, res) => {
 
@@ -84,20 +47,18 @@ module.exports = router => {
         });
     });
 
-    router.get('/promos/:id', (req, res) => {
-      Models.promos.findById(req.params.id, {
-          include: [
-              {
-                  model: Models.productosPorPromos,
-                  include: [Models.productos]
-              }, {
-                  model: Models.platosPorPromos,
-                  include: [Models.platos]
-              }
-          ]
-      }).then(result => {
-          res.json(result);
-      });
+router.get('/promos/:id', (req, res) => {
+    Models.promos.findById(req.params.id, {
+        include: [
+            {
+                model: Models.platos
+            }, {
+                model: Models.productos
+            }
+        ]
+    }).then(result => {
+        res.json(result);
     });
+});
 
 };
