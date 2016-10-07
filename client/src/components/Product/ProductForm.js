@@ -21,10 +21,10 @@ const iconButtonElement = (
   </IconButton>
 );
 
-const rightIconMenu = (editProduct, deleteProduct) => (
+const rightIconMenu = (editFunc, deleteFunc) => (
   <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem onTouchTap={editProduct}>Edit</MenuItem>
-    <MenuItem onTouchTap={deleteProduct}>Delete</MenuItem>
+    <MenuItem onTouchTap={editFunc}>Edit</MenuItem>
+    <MenuItem onTouchTap={deleteFunc}>Delete</MenuItem>
   </IconMenu>
 );
 

@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { ListItem } from 'material-ui/List';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-const DishRow = ({ dish, onClick, disabled }) => (
+const DishRow = ({ dish, onClick, disabled, rightIconButton }) => (
   <ListItem disabled={disabled} innerDivStyle={{ padding: 'initial' }}>
     <Grid onClick={onClick ? () => onClick(dish) : null}>
       <Row>
@@ -17,6 +17,7 @@ const DishRow = ({ dish, onClick, disabled }) => (
           <ListItem
             disabled
             primaryText={`$${dish.precio}`}
+            rightIconButton={rightIconButton}
           />
         </Col>
       </Row>
@@ -28,6 +29,7 @@ DishRow.propTypes = {
   dish: PropTypes.object,
   onClick: PropTypes.func,
   disabled: PropTypes.bool,
+  rightIconButton: PropTypes.any,
 };
 
 export default DishRow;

@@ -10,9 +10,13 @@ class Dish extends React.Component {
   }
 
   render() {
-    const { list } = this.props;
+    const { list, editDish, deleteDish } = this.props;
     return (
-      <DishForm dishes={list} />
+      <DishForm
+        dishes={list}
+        editDish={editDish}
+        deleteDish={deleteDish}
+      />
     );
   }
 
@@ -21,6 +25,8 @@ class Dish extends React.Component {
 Dish.propTypes = {
   list: PropTypes.array,
   getDishes: PropTypes.func,
+  editDish: PropTypes.func,
+  deleteDish: PropTypes.func,
 };
 
 export default connect(state => state.dish, { ...actions })(Dish);
