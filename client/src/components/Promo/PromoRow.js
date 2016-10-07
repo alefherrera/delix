@@ -27,11 +27,11 @@ const PromoRow = ({ promo, onClick, menu }) => (
       <List>
         <Subheader>Platos</Subheader>
         {
-          promo.platosPorPromos && promo.platosPorPromos.map((plato, j) => (
+          promo.platos && promo.platos.map((plato, j) => (
             <DishRow
               key={j}
               disabled
-              dish={plato.plato}
+              dish={plato}
             />
           ))
         }
@@ -39,11 +39,11 @@ const PromoRow = ({ promo, onClick, menu }) => (
       <List>
         <Subheader>Productos</Subheader>
         {
-          promo.productosPorPromos && promo.productosPorPromos.map((producto, j) => (
+          promo.productos && promo.productos.map((producto, j) => (
             <ProductRow
               key={j}
               disabled
-              product={producto.producto}
+              product={producto}
             />
           ))
         }

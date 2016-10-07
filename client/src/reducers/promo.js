@@ -18,8 +18,8 @@ const filter = (f, all) =>
   all.filter(s => s.nombre.toLowerCase().indexOf(f.toLowerCase()) !== -1);
 
 const calcularPrecio = promo => {
-  const platos = promo.platosPorPromos.reduce((p, n) => p + n.plato.precio, 0);
-  const productos = promo.productosPorPromos.reduce((p, n) => p + n.producto.precio, 0);
+  const platos = promo.platos.reduce((p, n) => p + n.precio, 0);
+  const productos = promo.productos.reduce((p, n) => p + n.precio, 0);
   const subTotal = platos + productos;
   const descuento = subTotal * promo.porcentajeDescuento / 100;
   return {
