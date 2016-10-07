@@ -27,12 +27,22 @@ class PromoAddForm extends React.Component {
     this.handleProductToggle = this.handleProductToggle.bind(this);
     this.handleDishToggle = this.handleDishToggle.bind(this);
     this.handleSliderChange = debounce(this.handleSliderChange.bind(this), 300);
+    this.checkProduct = this.checkProduct.bind(this);
+    this.checkDish = this.checkDish.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.promo) {
       this.setState(nextProps.promo);
     }
+  }
+
+  checkProduct(product) {
+    return this.state.productos.some(x => x.id === product.id);
+  }
+
+  checkDish(dish) {
+    return this.state.platos.some(x => x.id === dish.id);
   }
 
   handleProductToggle(add, product) {
@@ -94,6 +104,7 @@ class PromoAddForm extends React.Component {
                           innerDivStyle={{ padding: '0 60px 0 0' }}
                           rightToggle={
                             <Toggle
+                              toggled={this.checkProduct(product)}
                               onToggle={(e, v) => this.handleProductToggle(v, product)}
                             />
                           }
@@ -117,6 +128,7 @@ class PromoAddForm extends React.Component {
                           innerDivStyle={{ padding: '0 60px 0 0' }}
                           rightToggle={
                             <Toggle
+                              toggled={this.checkDish(dish)}
                               onToggle={(e, v) => this.handleDishToggle(v, dish)}
                             />
                           }
