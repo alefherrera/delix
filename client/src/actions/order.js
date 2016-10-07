@@ -33,8 +33,8 @@ export const addOrderLine = createAction(ADD_ORDERLINE);
 export const editOrderLine = createAction(EDIT_ORDERLINE);
 export const postOrderLines = createAction(POST_ORDERLINES);
 export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO, null,
-  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+  (obj, { mesaId, pedidoId }) => () => `/mesa/${mesaId}/${pedidoId}`);
 export const addOrderLineProduct = createAction(ADD_ORDERLINE_PRODUCT, null,
-  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+  (obj, { mesaId, pedidoId }) => () => `/mesa/${mesaId}/${pedidoId}`);
 export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH, null,
-  (obj, { idPedido }) => () => `/pedido/${idPedido}`);
+  (obj, { mesaId, pedidoId }) => () => `/mesa/${mesaId}/${pedidoId}`);

@@ -42,22 +42,22 @@ const Routes = ({ history }) => (
       </Route>
       <Route name="Table" path="mesa">
         <IndexRoute component={Table} />
-        <Route name="Pedido" path=":idMesa">
+        <Route name="Pedido" path=":mesaId">
           <IndexRoute component={Order} />
-          <Route path=":idPedido">
+          <Route path=":pedidoId">
             <IndexRoute component={OrderAdd} />
             <Route name="Comanda" path="comanda">
               <Route name="Promos" path="promos">
                 <IndexRoute component={PromoList} />
-                <Route name="Add" path=":idPromo" component={OrderPromoAdd} />
+                <Route name="Add" path=":promoId" component={OrderPromoAdd} />
               </Route>
               <Route name="Productos" path="productos">
                 <IndexRoute component={ProductList} />
-                <Route name="Add" path=":idProduct" component={OrderProductAdd} />
+                <Route name="Add" path=":productId" component={OrderProductAdd} />
               </Route>
               <Route name="Platos" path="platos">
                 <IndexRoute component={DishList} />
-                <Route name="Add" path=":idDish" component={OrderDishAdd} />
+                <Route name="Add" path=":dishId" component={OrderDishAdd} />
               </Route>
             </Route>
           </Route>

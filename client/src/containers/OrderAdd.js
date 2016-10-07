@@ -12,7 +12,7 @@ class OrderAdd extends React.Component {
 
   componentWillMount() {
     if (!this.props.current) {
-      this.props.getOrder({ id: this.props.params.idPedido });
+      this.props.getOrder({ id: this.props.params.pedidoId });
     }
   }
 
