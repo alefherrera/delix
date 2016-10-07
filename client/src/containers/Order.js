@@ -18,7 +18,7 @@ class Order extends React.Component {
     this.props.createOrder({
       id: null,
       usuarioId: 1,
-      gruposDeMesaId: 1,
+      gruposDeMesaId: this.props.params.mesaId,
       pedidoEstadoId: 1,
     });
   }
@@ -39,6 +39,7 @@ Order.propTypes = {
   createOrder: PropTypes.func,
   getOrders: PropTypes.func,
   list: PropTypes.array,
+  params: PropTypes.object,
 };
 
 export default connect(state => state.order, { ...actions })(Order);
