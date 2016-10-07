@@ -1,17 +1,11 @@
 module.exports = (models) => {
 
-    models.promos.hasMany(models.platosPorPromos);
-    models.platosPorPromos.belongsTo(models.promos);
     models.promos.hasMany(models.promosPorComandas);
     models.promosPorComandas.belongsTo(models.promos);
 
-    models.productos.hasMany(models.productosPorPromos);
-    models.productosPorPromos.belongsTo(models.productos);
     models.productos.hasMany(models.productosPorComandas);
     models.productosPorComandas.belongsTo(models.productos);
 
-    models.platos.hasMany(models.platosPorPromos);
-    models.platosPorPromos.belongsTo(models.platos);
     models.platos.hasMany(models.platosPorComandas);
     models.platosPorComandas.belongsTo(models.platos);
 
@@ -34,5 +28,9 @@ module.exports = (models) => {
     models.comandas.hasMany(models.promosPorComandas);
     models.promosPorComandas.belongsTo(models.comandas);
 
+    models.promos.belongsToMany(models.platos, { through: models.platosPorPromos });
+    models.platos.belongsToMany(models.promos, { through: models.platosPorPromos });
+    models.promos.belongsToMany(models.productos, { through: models.productosPorPromos });
+    models.productos.belongsToMany(models.promos, { through: models.productosPorPromos });
 
 };

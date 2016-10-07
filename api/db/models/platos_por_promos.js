@@ -21,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'platosPorPromos',
-    paranoid: true,
+    tableName: 'platosPorPromos'
   });
 };
