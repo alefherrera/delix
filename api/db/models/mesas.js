@@ -2,24 +2,17 @@
 
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('mesas', {
-    idmesas: {
+    id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    sectores_id: {
+    grupoDeMesasId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
-        model: 'sectores',
-        key: 'id'
-      }
-    },
-    grupo_de_mesas_id: {
-      type: DataTypes.INTEGER(11),
-      allowNull: false,
-      references: {
-        model: 'grupo_de_mesas',
+        model: 'gruposDeMesas',
         key: 'id'
       }
     },
@@ -28,6 +21,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'mesas'
+    tableName: 'mesas',
+    paranoid: true,
   });
 };

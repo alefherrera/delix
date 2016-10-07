@@ -1,17 +1,27 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('grupo_de_mesas', {
+  return sequelize.define('gruposDeMesas', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    mesa_estado_id: {
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
+    sectorId: {
       type: DataTypes.INTEGER(11),
-      allowNull: false
+      allowNull: false,
+      references: {
+        model: 'sectores',
+        key: 'id'
+      }
     }
   }, {
-    tableName: 'grupo_de_mesas'
+    tableName: 'gruposDeMesas',
+    paranoid: true,
   });
 };

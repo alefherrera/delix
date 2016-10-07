@@ -1,0 +1,33 @@
+.body {
+    font-family: 'Roboto', sans-serif;
+    width: 100%;
+    overflow-x: hidden;
+    height: 100vh;
+}
+
+@media only screen and (min-width: 48em) {
+    .body {
+        margin-top: 40px;
+        padding-bottom: 10px;
+        height: calc(100vh - 75px);
+    }
+    .body::after {
+        position: fixed;
+        z-index: -1;
+        background-color: #0086d4;
+        width: 100%;
+        height: 127px;
+        content: '';
+        top: 0;
+        left: 0;
+    }
+}
+
+body {
+    background-image: linear-gradient(to bottom, #dddbd1, #d2dbdc);
+}
+
+a {
+    text-decoration: initial;
+    color: inherit;
+}

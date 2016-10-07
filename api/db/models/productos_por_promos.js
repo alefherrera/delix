@@ -1,8 +1,8 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('productos_por_promos', {
-    productos_id: {
+  return sequelize.define('productosPorPromos', {
+    productoId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -11,7 +11,7 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    promos_id: {
+    promoId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       primaryKey: true,
@@ -21,6 +21,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'productos_por_promos'
+    tableName: 'productosPorPromos'
   });
 };

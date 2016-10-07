@@ -5,13 +5,14 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    usuario_tipo_id: {
+    usuarioTipoId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
-        model: 'usuario_tipo',
+        model: 'usuarioTipo',
         key: 'id'
       }
     },
@@ -24,6 +25,7 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'usuarios'
+    tableName: 'usuarios',
+    paranoid: true,
   });
 };

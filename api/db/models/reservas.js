@@ -5,9 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    franjas_id: {
+    franjaId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
@@ -15,15 +16,16 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    grupo_de_mesas_id: {
+    grupoDeMesasId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
-        model: 'grupo_de_mesas',
+        model: 'gruposDeMesas',
         key: 'id'
       }
     }
   }, {
-    tableName: 'reservas'
+    tableName: 'reservas',
+    paranoid: true,
   });
 };

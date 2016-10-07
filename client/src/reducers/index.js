@@ -1,6 +1,16 @@
-import { LOGIN } from '../constants';
-import { handleActions } from 'redux-actions';
-const initialState = {};
-export default handleActions({
-  [LOGIN]: (state, action) => ({ ...state, val: action.payload }),
-}, initialState);
+
+import login from './login';
+import order from './order';
+import table from './table';
+import promo from './promo';
+import product from './product';
+import dish from './dish';
+
+export default {
+  login,
+  order,
+  table,
+  promo,
+  product,
+  dish,
+};

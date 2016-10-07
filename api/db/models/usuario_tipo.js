@@ -1,17 +1,19 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('usuario_tipo', {
+  return sequelize.define('usuarioTipo', {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
     descripcion: {
       type: DataTypes.STRING,
       allowNull: true
     }
   }, {
-    tableName: 'usuario_tipo'
+    tableName: 'usuarioTipo',
+    paranoid: true,
   });
 };

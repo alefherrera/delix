@@ -5,9 +5,10 @@ module.exports = function(sequelize, DataTypes) {
     id: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
+      autoIncrement: true
     },
-    pedidos_id: {
+    pedidoId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
@@ -16,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'pagos'
+    tableName: 'pagos',
+    paranoid: true,
   });
 };

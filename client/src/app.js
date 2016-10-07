@@ -3,6 +3,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './config';
 import { AppContainer } from 'react-hot-loader';
+import injectTapEventPlugin from 'react-tap-event-plugin';
+
+injectTapEventPlugin();
 
 const rootEl = document.getElementById('root');
 ReactDOM.render(
