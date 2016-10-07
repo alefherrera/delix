@@ -14,7 +14,7 @@ const deleteCommand = (req, res, entity) => {
         where: {
             id: req.params.id
         }
-    }).then(r => res.json(r));
+    }).then(r => res.json(parseInt(req.params.id)));
 };
 
 const selectCommand = (req, res, entity) => {
