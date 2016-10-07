@@ -10,6 +10,8 @@ import Toggle from 'material-ui/Toggle';
 import { ListItem } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
+import Subheader from 'material-ui/Subheader';
+import debounce from 'lodash/debounce';
 
 class PromoAddForm extends React.Component {
 
@@ -19,14 +21,42 @@ class PromoAddForm extends React.Component {
       productos: [],
       platos: [],
       nombre: '',
+      porcentajeDescuento: 0,
     };
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleProductToggle = this.handleProductToggle.bind(this);
+    this.handleDishToggle = this.handleDishToggle.bind(this);
+    this.handleSliderChange = debounce(this.handleSliderChange.bind(this), 300);
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.promo) {
       this.setState(nextProps.promo);
     }
+  }
+
+  handleProductToggle(add, product) {
+    let productos;
+    if (add) {
+      productos = [...this.state.productos, product];
+    } else {
+      productos = this.state.productos.filter(x => x.id !== product.id);
+    }
+    this.setState({ productos });
+  }
+
+  handleDishToggle(add, dish) {
+    let platos;
+    if (add) {
+      platos = [...this.state.platos, dish];
+    } else {
+      platos = this.state.platos.filter(x => x.id !== dish.id);
+    }
+    this.setState({ platos });
+  }
+
+  handleSliderChange(e, v) {
+    this.setState({ porcentajeDescuento: v });
   }
 
   handleSubmit(e) {
@@ -36,7 +66,7 @@ class PromoAddForm extends React.Component {
 
   render() {
     const { products, dishes } = this.props;
-    const { nombre } = this.state;
+    const { nombre, porcentajeDescuento } = this.state;
     return (
       <Card>
         <CardTitle title="Promo" />
@@ -62,7 +92,11 @@ class PromoAddForm extends React.Component {
                         <ListItem
                           disabled
                           innerDivStyle={{ padding: '0 60px 0 0' }}
-                          rightToggle={<Toggle />}
+                          rightToggle={
+                            <Toggle
+                              onToggle={(e, v) => this.handleProductToggle(v, product)}
+                            />
+                          }
                         >
                           <ProductRow
                             disabled
@@ -81,7 +115,11 @@ class PromoAddForm extends React.Component {
                         <ListItem
                           disabled
                           innerDivStyle={{ padding: '0 60px 0 0' }}
-                          rightToggle={<Toggle />}
+                          rightToggle={
+                            <Toggle
+                              onToggle={(e, v) => this.handleDishToggle(v, dish)}
+                            />
+                          }
                         >
                           <DishRow
                             disabled
@@ -95,7 +133,15 @@ class PromoAddForm extends React.Component {
                 </Tab>
               </Tabs>
             </Card>
-            <Slider />
+            <Subheader>
+              {`Porcentaje de descuento: ${this.state.porcentajeDescuento}%`}
+            </Subheader>
+            <Slider
+              max={100}
+              step={1}
+              value={porcentajeDescuento}
+              onChange={(e, v) => this.handleSliderChange(e, v)}
+            />
           </CardText>
           <CardActions>
             <Grid fluid>
