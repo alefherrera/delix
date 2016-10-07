@@ -6,27 +6,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Link } from 'react-router';
 import ProductRow from './ProductRow';
 import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-
-const iconButtonElement = (
-  <IconButton
-    touch
-    tooltip="Opciones"
-    tooltipPosition="bottom-left"
-  >
-    <MoreVertIcon />
-  </IconButton>
-);
-
-const rightIconMenu = (editFunc, deleteFunc) => (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem onTouchTap={editFunc}>Edit</MenuItem>
-    <MenuItem onTouchTap={deleteFunc}>Delete</MenuItem>
-  </IconMenu>
-);
+import rowMenu from '../rowMenu';
 
 const ProductForm = ({ products, editProduct, deleteProduct }) => (
   <Card>
@@ -38,12 +18,12 @@ const ProductForm = ({ products, editProduct, deleteProduct }) => (
             products.map((product, i) => (
               <div key={i}>
                 <ProductRow
+                  disabled
                   product={product}
                   rightIconButton={
-                    rightIconMenu(
+                    rowMenu(
                     () => editProduct(product.id),
-                    () => deleteProduct(product.id)
-                    )
+                    () => deleteProduct(product.id))
                   }
                 />
                 <Divider />

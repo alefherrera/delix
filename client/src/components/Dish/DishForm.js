@@ -6,27 +6,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Link } from 'react-router';
 import DishRow from './DishRow';
 import Divider from 'material-ui/Divider';
-import IconButton from 'material-ui/IconButton';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconMenu from 'material-ui/IconMenu';
-import MenuItem from 'material-ui/MenuItem';
-
-const iconButtonElement = (
-  <IconButton
-    touch
-    tooltip="Opciones"
-    tooltipPosition="bottom-left"
-  >
-    <MoreVertIcon />
-  </IconButton>
-);
-
-const rightIconMenu = (editFunc, deleteFunc) => (
-  <IconMenu iconButtonElement={iconButtonElement}>
-    <MenuItem onTouchTap={editFunc}>Edit</MenuItem>
-    <MenuItem onTouchTap={deleteFunc}>Delete</MenuItem>
-  </IconMenu>
-);
+import rowMenu from '../rowMenu';
 
 const DishForm = ({ dishes, editDish, deleteDish }) => (
   <Card>
@@ -38,12 +18,12 @@ const DishForm = ({ dishes, editDish, deleteDish }) => (
             dishes.map((dish, i) => (
               <div key={i}>
                 <DishRow
+                  disabled
                   dish={dish}
                   rightIconButton={
-                    rightIconMenu(
+                    rowMenu(
                     () => editDish(dish.id),
-                    () => deleteDish(dish.id)
-                    )
+                    () => deleteDish(dish.id))
                   }
                 />
                 <Divider />

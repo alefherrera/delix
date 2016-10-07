@@ -2,6 +2,7 @@ import {
   GET_DISHES,
   GET_DISH,
   SET_DISH,
+  DELETE_DISH,
   FILTER_DISHES,
 } from '../constants';
 
@@ -19,6 +20,13 @@ const filter = (f, all) =>
 export default handleActions({
   [GET_DISHES]: (state, { payload }) => ({ ...state, all: payload, list: payload }),
   [GET_DISH]: (state, { payload }) => ({ ...state, current: payload }),
+  [DELETE_DISH]: (state, { payload }) => (
+    {
+      ...state,
+      all: state.all.filter(x => x.id !== payload),
+      list: state.list.filter(x => x.id !== payload),
+    }
+  ),
   [FILTER_DISHES]: (state, { payload }) => (
     {
       ...state,

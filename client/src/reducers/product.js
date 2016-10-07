@@ -2,6 +2,7 @@ import {
   GET_PRODUCTS,
   GET_PRODUCT,
   SET_PRODUCT,
+  DELETE_PRODUCT,
   FILTER_PRODUCTS,
 } from '../constants';
 
@@ -19,6 +20,13 @@ const filter = (f, all) =>
 export default handleActions({
   [GET_PRODUCTS]: (state, { payload }) => ({ ...state, all: payload, list: payload }),
   [GET_PRODUCT]: (state, { payload }) => ({ ...state, current: payload }),
+  [DELETE_PRODUCT]: (state, { payload }) => (
+    {
+      ...state,
+      all: state.all.filter(x => x.id !== payload),
+      list: state.list.filter(x => x.id !== payload),
+    }
+  ),
   [FILTER_PRODUCTS]: (state, { payload }) => (
     {
       ...state,

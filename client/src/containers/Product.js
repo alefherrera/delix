@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import ProductForm from '../components/Product/ProductForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/product';
+import { push } from 'react-router-redux';
 
 class Product extends React.Component {
 
@@ -10,11 +11,11 @@ class Product extends React.Component {
   }
 
   render() {
-    const { list, editProduct, deleteProduct } = this.props;
+    const { list, goEditProduct, deleteProduct } = this.props;
     return (
       <ProductForm
         products={list}
-        editProduct={editProduct}
+        editProduct={goEditProduct}
         deleteProduct={deleteProduct}
       />
     );
@@ -25,11 +26,14 @@ class Product extends React.Component {
 Product.propTypes = {
   list: PropTypes.array,
   getProducts: PropTypes.func,
-  editProduct: PropTypes.func,
+  goEditProduct: PropTypes.func,
   deleteProduct: PropTypes.func,
 };
 
 export default connect(
   state => state.product,
-  { ...actions }
+  {
+    ...actions,
+    goEditProduct: id => push(`${location.pathname}/edit/${id}`),
+  }
 )(Product);

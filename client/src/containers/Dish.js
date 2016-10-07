@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import DishForm from '../components/Dish/DishForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/dish';
+import { push } from 'react-router-redux';
 
 class Dish extends React.Component {
 
@@ -10,11 +11,11 @@ class Dish extends React.Component {
   }
 
   render() {
-    const { list, editDish, deleteDish } = this.props;
+    const { list, goEditDish, deleteDish } = this.props;
     return (
       <DishForm
         dishes={list}
-        editDish={editDish}
+        editDish={goEditDish}
         deleteDish={deleteDish}
       />
     );
@@ -25,8 +26,13 @@ class Dish extends React.Component {
 Dish.propTypes = {
   list: PropTypes.array,
   getDishes: PropTypes.func,
-  editDish: PropTypes.func,
+  goEditDish: PropTypes.func,
   deleteDish: PropTypes.func,
 };
 
-export default connect(state => state.dish, { ...actions })(Dish);
+export default connect(
+  state => state.dish,
+  {
+    ...actions,
+    goEditDish: id => push(`${location.pathname}/edit/${id}`),
+  })(Dish);
