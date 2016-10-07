@@ -10,9 +10,13 @@ class Product extends React.Component {
   }
 
   render() {
-    const { list } = this.props;
+    const { list, editProduct, deleteProduct } = this.props;
     return (
-      <ProductForm products={list} />
+      <ProductForm
+        products={list}
+        editProduct={editProduct}
+        deleteProduct={deleteProduct}
+      />
     );
   }
 
@@ -21,6 +25,11 @@ class Product extends React.Component {
 Product.propTypes = {
   list: PropTypes.array,
   getProducts: PropTypes.func,
+  editProduct: PropTypes.func,
+  deleteProduct: PropTypes.func,
 };
 
-export default connect(state => state.product, { ...actions })(Product);
+export default connect(
+  state => state.product,
+  { ...actions }
+)(Product);

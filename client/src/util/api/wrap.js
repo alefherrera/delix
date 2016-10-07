@@ -5,6 +5,10 @@ export default (method, url, params) => {
   switch (method) {
     case 'GET':
       return fetch(url);
+    case 'DELETE':
+      return fetch(url, {
+        method: 'DELETE',
+      });
     default:
       return fetch(url, {
         headers: {
