@@ -5,19 +5,25 @@ import PromoRow from './PromoRow';
 import Fab from '../Fab';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Link } from 'react-router';
+import rowMenu from '../rowMenu';
 
-const PromoForm = ({ promos }) => (
+const PromoForm = ({ promos, editPromo, deletePromo }) => (
   <Card>
     <CardTitle title="Promos" />
     <CardText>
       <List>
         {
           promos.map((promo, i) => (
-            <Link key={i} to={`${location.pathname}/edit/${promo.id}`}>
+            <div key={i}>
               <PromoRow
                 promo={promo}
+                menu={
+                  rowMenu(
+                  () => editPromo(promo.id),
+                  () => deletePromo(promo.id))
+                }
               />
-            </Link>
+            </div>
           ))
         }
       </List>
@@ -32,6 +38,8 @@ const PromoForm = ({ promos }) => (
 
 PromoForm.propTypes = {
   promos: PropTypes.array,
+  editPromo: PropTypes.func,
+  deletePromo: PropTypes.func,
 };
 
 export default PromoForm;

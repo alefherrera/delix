@@ -20,7 +20,7 @@ const ProductForm = ({ products, editProduct, deleteProduct }) => (
                 <ProductRow
                   disabled
                   product={product}
-                  rightIconButton={
+                  menu={
                     rowMenu(
                     () => editProduct(product.id),
                     () => deleteProduct(product.id))

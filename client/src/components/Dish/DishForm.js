@@ -20,7 +20,7 @@ const DishForm = ({ dishes, editDish, deleteDish }) => (
                 <DishRow
                   disabled
                   dish={dish}
-                  rightIconButton={
+                  menu={
                     rowMenu(
                     () => editDish(dish.id),
                     () => deleteDish(dish.id))

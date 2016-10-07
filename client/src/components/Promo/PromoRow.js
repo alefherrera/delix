@@ -7,13 +7,23 @@ import ProductRow from '../Product/ProductRow';
 import DishRow from '../Dish/DishRow';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 
-const PromoRow = ({ promo, onClick }) => (
+const PromoRow = ({ promo, onClick, menu }) => (
   <Card className={styles.promos} onClick={onClick ? () => onClick(promo) : null}>
-    <CardTitle
-      className={styles.promoTitle}
-      title={promo.nombre}
-    />
     <CardText>
+      <CardTitle
+        title={promo.nombre}
+      />
+      <Grid className={styles.menu}>
+        <Row end="xs">
+          <Col xs>
+            {
+              menu
+            }
+          </Col>
+        </Row>
+      </Grid>
+    </CardText>
+    <CardText className={styles.content}>
       <List>
         <Subheader>Platos</Subheader>
         {
@@ -62,6 +72,7 @@ const PromoRow = ({ promo, onClick }) => (
 PromoRow.propTypes = {
   promo: PropTypes.object,
   onClick: PropTypes.func,
+  menu: PropTypes.any,
 };
 
 export default PromoRow;

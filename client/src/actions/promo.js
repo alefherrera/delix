@@ -17,4 +17,4 @@ export const setPromo = createAction(SET_PROMO, null,
   () => p => p.id);
 export const addPromo = createAction(ADD_PROMO, promo.create, () => () => '/promo');
 export const editPromo = createAction(EDIT_PROMO, promo.create, () => () => '/promo');
-export const deletePromo = createAction(DELETE_PROMO);
+export const deletePromo = createAction(DELETE_PROMO, promo.delete);

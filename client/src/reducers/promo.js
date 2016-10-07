@@ -2,6 +2,7 @@ import {
   GET_PROMOS,
   GET_PROMO,
   SET_PROMO,
+  DELETE_PROMO,
   FILTER_PROMOS,
 } from '../constants';
 
@@ -39,6 +40,13 @@ export default handleActions({
   },
   [GET_PROMO]: (state, { payload }) =>
     ({ ...state, current: { ...payload, precio: calcularPrecio(payload) } }),
+  [DELETE_PROMO]: (state, { payload }) => (
+    {
+      ...state,
+      all: state.all.filter(x => x.id !== payload),
+      list: state.list.filter(x => x.id !== payload),
+    }
+  ),
   [FILTER_PROMOS]: (state, { payload }) => (
     {
       ...state,
