@@ -19,18 +19,25 @@ module.exports = (models) => {
     models.pedidos.hasMany(models.comandas);
     models.comandas.belongsTo(models.pedidos);
 
-    models.comandas.hasMany(models.productosPorComandas);
-    models.productosPorComandas.belongsTo(models.comandas);
-
-    models.comandas.hasMany(models.platosPorComandas);
-    models.platosPorComandas.belongsTo(models.comandas);
-
-    models.comandas.hasMany(models.promosPorComandas);
-    models.promosPorComandas.belongsTo(models.comandas);
+    // models.comandas.hasMany(models.productosPorComandas);
+    // models.productosPorComandas.belongsTo(models.comandas);
+    //
+    // models.comandas.hasMany(models.platosPorComandas);
+    // models.platosPorComandas.belongsTo(models.comandas);
+    //
+    // models.comandas.hasMany(models.promosPorComandas);
+    // models.promosPorComandas.belongsTo(models.comandas);
 
     models.promos.belongsToMany(models.platos, { through: models.platosPorPromos });
     models.platos.belongsToMany(models.promos, { through: models.platosPorPromos });
     models.promos.belongsToMany(models.productos, { through: models.productosPorPromos });
     models.productos.belongsToMany(models.promos, { through: models.productosPorPromos });
+
+    models.comandas.belongsToMany(models.productos, { through: models.productosPorComandas });
+    models.productos.belongsToMany(models.comandas, { through: models.productosPorComandas });
+    models.comandas.belongsToMany(models.platos, { through: models.platosPorComandas });
+    models.platos.belongsToMany(models.comandas, { through: models.platosPorComandas });
+    models.comandas.belongsToMany(models.promos, { through: models.promosPorComandas });
+    models.promos.belongsToMany(models.comandas, { through: models.promosPorComandas });
 
 };
