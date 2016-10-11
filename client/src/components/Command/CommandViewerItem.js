@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 
-const ViewerItem = ({ order }) => (
+const CommandViewerItem = ({ order }) => (
   <div>
     {
       order
@@ -8,8 +8,8 @@ const ViewerItem = ({ order }) => (
   </div>
 );
 
-ViewerItem.propTypes = {
+CommandViewerItem.propTypes = {
   order: PropTypes.object,
 };
 
-export default ViewerItem;
+export default CommandViewerItem;

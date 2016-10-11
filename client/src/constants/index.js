@@ -38,3 +38,7 @@ export const SET_PROMO = 'SET_PROMO';
 export const ADD_PROMO = 'ADD_PROMO';
 export const EDIT_PROMO = 'EDIT_PROMO';
 export const DELETE_PROMO = 'DELETE_PROMO';
+
+export const GET_COMMANDS = 'GET_COMMANDS';
+export const ADD_COMMAND = 'ADD_COMMAND';
+export const DELETE_COMMAND = 'DELETE_COMMAND';

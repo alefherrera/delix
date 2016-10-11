@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
-import ViewerItem from './ViewerItem';
+import CommandViewerItem from './CommandViewerItem';
 
-const ViewerForm = ({ orders }) => (
+const CommandViewerForm = ({ orders }) => (
   <div>
     {
       orders.map((order, i) => (
-        <ViewerItem
+        <CommandViewerItem
           key={i}
           order={order}
         />
@@ -14,8 +14,8 @@ const ViewerForm = ({ orders }) => (
   </div>
 );
 
-ViewerForm.propTypes = {
+CommandViewerForm.propTypes = {
   orders: PropTypes.array,
 };
 
-export default ViewerForm;
+export default CommandViewerForm;

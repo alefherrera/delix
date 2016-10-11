@@ -5,6 +5,7 @@ import table from './table';
 import promo from './promo';
 import product from './product';
 import dish from './dish';
+import command from './command';
 
 export default {
   login,
@@ -13,4 +14,5 @@ export default {
   promo,
   product,
   dish,
+  command,
 };

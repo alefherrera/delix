@@ -4,6 +4,7 @@ import dish from './dish';
 import product from './product';
 import promo from './promo';
 import table from './table';
+import command from './command';
 
 export default {
   login: () => API.post('login'),
@@ -15,4 +16,5 @@ export {
   product,
   promo,
   table,
+  command,
 };

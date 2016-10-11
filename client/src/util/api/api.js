@@ -1,4 +1,4 @@
-const HOST = 'http://localhost:3001';
+export const HOST = 'http://localhost:3001';
 const getApi = endpoint => `${HOST}/${endpoint}`;
 import wrap from './wrap';
 

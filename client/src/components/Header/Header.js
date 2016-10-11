@@ -17,6 +17,7 @@ const Menu = (
     <Link to="/producto"><MenuItem primaryText="Productos" /></Link>
     <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
     <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
+    <Link to="/viewer"><MenuItem primaryText="Comandas" /></Link>
   </IconMenu>
 );
 

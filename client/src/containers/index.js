@@ -17,6 +17,7 @@ import ProductEdit from './ProductEdit';
 import PromoAdd from './PromoAdd';
 import PromoEdit from './PromoEdit';
 import Table from './Table';
+import CommandViewer from './CommandViewer';
 
 export {
   App,
@@ -38,4 +39,5 @@ export {
   PromoAdd,
   PromoEdit,
   Table,
+  CommandViewer,
 };

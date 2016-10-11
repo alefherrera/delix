@@ -20,6 +20,7 @@ import {
   PromoAdd,
   PromoEdit,
   Table,
+  CommandViewer,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -63,6 +64,7 @@ const Routes = ({ history }) => (
           </Route>
         </Route>
       </Route>
+      <Route name="Viewer" path="viewer" component={CommandViewer} />
     </Route>
   </Router>
 );
