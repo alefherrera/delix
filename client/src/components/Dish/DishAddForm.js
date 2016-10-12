@@ -6,20 +6,17 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class DishAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      nombre: '',
-      descripcion: '',
-      precio: 0,
-    };
-  }
+  state = {
+    nombre: '',
+    descripcion: '',
+    precio: 0,
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.dish);
   }
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onSave(this.state);
   }

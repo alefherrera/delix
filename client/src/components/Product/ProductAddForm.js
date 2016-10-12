@@ -7,21 +7,17 @@ import Toggle from 'material-ui/Toggle';
 
 class ProductAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      descripcion: '',
-      precio: 0,
-      esFinal: false,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+  state = {
+    descripcion: '',
+    precio: 0,
+    esFinal: false,
+  };
 
   componentWillReceiveProps(nextProps) {
     this.setState(nextProps.product);
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onSave(this.state);
   }

@@ -6,21 +6,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class OrderLineAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 0,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-  }
+  state = {
+    quantity: 0,
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     const quantity = parseInt(e.target.value || 0, 10);
     this.setState({ quantity });
   }
 
-  handleSave() {
+  handleSave = () => {
     this.props.onSave(this.state.quantity);
   }
 

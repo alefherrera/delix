@@ -5,18 +5,13 @@ import * as actions from '../actions/order';
 
 class OrderAdd extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleCloseOrder = this.handleCloseOrder.bind(this);
-  }
-
   componentWillMount() {
     if (!this.props.current) {
       this.props.getOrder({ id: this.props.params.pedidoId });
     }
   }
 
-  handleCloseOrder() {
+  handleCloseOrder = () => {
     const { promos, products, dishes, current } = this.props;
     this.props.closeOrder({
       promos, products, dishes, current,

@@ -2,12 +2,9 @@ import React from 'react';
 
 class TableAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      nombre: '',
-    };
-  }
+  state = {
+    nombre: '',
+  };
 
   render() {
     return (

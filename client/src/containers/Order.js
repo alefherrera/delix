@@ -5,16 +5,11 @@ import * as actions from '../actions/order';
 
 class Order extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleCreateClick = this.handleCreateClick.bind(this);
-  }
-
   componentWillMount() {
     this.props.getOrders();
   }
 
-  handleCreateClick() {
+  handleCreateClick = () => {
     this.props.createOrder({
       id: null,
       usuarioId: 1,

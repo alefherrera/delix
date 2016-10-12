@@ -15,21 +15,12 @@ import debounce from 'lodash/debounce';
 
 class PromoAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      productos: [],
-      platos: [],
-      nombre: '',
-      porcentajeDescuento: 0,
-    };
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleProductToggle = this.handleProductToggle.bind(this);
-    this.handleDishToggle = this.handleDishToggle.bind(this);
-    this.handleSliderChange = debounce(this.handleSliderChange.bind(this), 300);
-    this.checkProduct = this.checkProduct.bind(this);
-    this.checkDish = this.checkDish.bind(this);
-  }
+  state = {
+    productos: [],
+    platos: [],
+    nombre: '',
+    porcentajeDescuento: 0,
+  };
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.promo) {
@@ -37,15 +28,13 @@ class PromoAddForm extends React.Component {
     }
   }
 
-  checkProduct(product) {
-    return this.state.productos.some(x => x.id === product.id);
-  }
+  checkProduct = product =>
+    this.state.productos.some(x => x.id === product.id)
 
-  checkDish(dish) {
-    return this.state.platos.some(x => x.id === dish.id);
-  }
+  checkDish = dish =>
+    this.state.platos.some(x => x.id === dish.id);
 
-  handleProductToggle(add, product) {
+  handleProductToggle = (add, product) => {
     let productos;
     if (add) {
       productos = [...this.state.productos, product];
@@ -55,7 +44,7 @@ class PromoAddForm extends React.Component {
     this.setState({ productos });
   }
 
-  handleDishToggle(add, dish) {
+  handleDishToggle = (add, dish) => {
     let platos;
     if (add) {
       platos = [...this.state.platos, dish];
@@ -65,11 +54,11 @@ class PromoAddForm extends React.Component {
     this.setState({ platos });
   }
 
-  handleSliderChange(e, v) {
+  handleSliderChange = (e, v) => {
     this.setState({ porcentajeDescuento: v });
   }
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
     this.props.onSave(this.state);
   }
@@ -105,7 +94,10 @@ class PromoAddForm extends React.Component {
                           rightToggle={
                             <Toggle
                               toggled={this.checkProduct(product)}
-                              onToggle={(e, v) => this.handleProductToggle(v, product)}
+                              onToggle={
+                                (e, v) =>
+                                debounce(this.handleProductToggle, 300)(v, product)
+                              }
                             />
                           }
                         >

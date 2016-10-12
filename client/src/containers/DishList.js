@@ -5,21 +5,15 @@ import * as actions from '../actions/dish';
 
 class DishList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleFilter = this.handleFilter.bind(this);
-  }
-
   componentWillMount() {
     this.props.getDishes();
   }
 
-  handleSelect(promo) {
+  handleSelect = promo => {
     this.props.setDish(promo);
   }
 
-  handleFilter(filter) {
+  handleFilter = filter => {
     this.props.filterDishes(filter);
   }
 
