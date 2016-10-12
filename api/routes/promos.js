@@ -11,8 +11,8 @@ module.exports = router => {
         if (!promoToSave.id) {
             Models.promos.create(promoToSave).then(result => {
                 const promo = result;
-                Promise.all(promo.setPlatos(
-                  promoToSave.platos.map((plato) => plato.id)),
+                Promise.all(
+                  promo.setPlatos(promoToSave.platos.map((plato) => plato.id)),
                   promo.setProductos(promoToSave.productos.map((producto) => producto.id))
                 ).then(res.json(promo));
             });
