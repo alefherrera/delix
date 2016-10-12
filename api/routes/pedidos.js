@@ -46,39 +46,8 @@ module.exports = router => {
     });
 
     router.post('/pedidos', (req, res) => {
-        const param = {
-            where: req.body,
-            include: [
-                {
-                    model: Models.usuarios
-                }, {
-                    model: Models.grupoDeMesas
-                }, {
-                    model: Models.pedidoEstado
-                }, {
-                    model: Models.comandas,
-                    include: [
-                        {
-                            model: Models.productosPorComandas,
-                            include: {
-                                model: Models.productos
-                            }
-                        }, {
-                            model: Models.platosPorComandas,
-                            include: {
-                                model: Models.platos
-                            }
-                        }, {
-                            model: Models.promosPorComandas,
-                            include: {
-                                model: Models.promos
-                            }
-                        }
-                    ]
-                }
-            ]
-        };
-
+        const param = searchParam;
+        param.where = req.body;
         Models.pedidos.findOrCreate(param).then(result => res.json(result[0]));
 
     });

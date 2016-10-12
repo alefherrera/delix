@@ -11,4 +11,5 @@ module.exports = (router, io) => {
   require('./comandas')(router);
   require('./promos')(router);
   require('./gruposDeMesas')(router);
+  require('./estadoMesas')(router);
 };
