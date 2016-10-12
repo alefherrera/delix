@@ -16,7 +16,14 @@ const router = express.Router();
 require('./routes')(router, io);
 app.use('/', router);
 
+const path = require('path');
 app.use(express.static('../client/dist'));
+
+app.route('/*')
+    .get(function(req, res) {
+      res.sendFile(path.resolve('../client/dist/index.html'));
+    });
+
 
 const url = 'http://localhost:3001';
 
