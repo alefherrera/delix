@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'comandas',
-    paranoid: true,
+    name: {
+      singular: 'comanda',
+      plural: 'comandas',
+    },
+    paranoid: true
   });
 };

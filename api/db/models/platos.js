@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     }
   }, {
-    tableName: 'platos'
+    tableName: 'platos',
+    name: {
+      singular: 'plato',
+      plural: 'platos',
+    },
   });
 };

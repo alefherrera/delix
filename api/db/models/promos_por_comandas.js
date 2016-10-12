@@ -22,6 +22,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'promosPorComandas',
+    name: {
+      singular: 'promosPorComandas',
+      plural: 'promosPorComandas',
+    },
     paranoid: true,
   });
 };

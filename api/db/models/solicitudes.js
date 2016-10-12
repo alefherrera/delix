@@ -10,6 +10,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'solicitudes',
+    name: {
+      singular: 'solicitud',
+      plural: 'solicitudes',
+    },
     paranoid: true,
   });
 };

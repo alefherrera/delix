@@ -12,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    sectoreId: {
+    sectorId: {
       type: DataTypes.INTEGER(11),
       allowNull: false,
       references: {
@@ -21,6 +21,10 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    tableName: 'gruposDeMesas'
+    tableName: 'gruposDeMesas',
+    name: {
+      singular: 'grupoDeMesas',
+      plural: 'gruposDeMesas',
+    },
   });
 };
