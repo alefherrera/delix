@@ -54,9 +54,9 @@ class PromoAddForm extends React.Component {
     this.setState({ platos });
   }
 
-  handleSliderChange = (e, v) => {
+  handleSliderChange = debounce((e, v) => {
     this.setState({ porcentajeDescuento: v });
-  }
+  }, 300);
 
   handleSubmit = e => {
     e.preventDefault();
@@ -96,7 +96,7 @@ class PromoAddForm extends React.Component {
                               toggled={this.checkProduct(product)}
                               onToggle={
                                 (e, v) =>
-                                debounce(this.handleProductToggle, 300)(v, product)
+                                this.handleProductToggle(v, product)
                               }
                             />
                           }
