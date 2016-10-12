@@ -1,6 +1,5 @@
 import React, { PropTypes } from 'react';
-import io from 'socket.io-client';
-import { HOST } from '../util/api/api';
+import io from '../util/io';
 import CommandViewerForm from '../components/Command/CommandViewerForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/command';
@@ -9,7 +8,7 @@ class CommandViewer extends React.Component {
 
   componentWillMount() {
     this.props.getCommands();
-    const socket = io(HOST);
+    const socket = io();
     socket.on('add', this.props.addCommand);
     socket.on('delete', this.props.deleteCommand);
   }
