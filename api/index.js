@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const app = express();
 const server = require('http').Server(app);
 const io = require('./io')(server);
-const fs = require('fs');
 const db = require('./db');
 const cors = require('cors');
 const opn = require('opn');
