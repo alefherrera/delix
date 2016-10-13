@@ -18,6 +18,11 @@ app.use('/', router);
 const path = require('path');
 app.use(express.static('../client/dist'));
 
+app.route('/*.js')
+    .get(function(req, res) {
+      res.sendFile(path.resolve('../client/dist/bundle.js'));
+    });
+
 app.route('/*')
     .get(function(req, res) {
       res.sendFile(path.resolve('../client/dist/index.html'));
