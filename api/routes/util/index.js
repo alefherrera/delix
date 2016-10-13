@@ -37,7 +37,7 @@ const generate = (router, tableName, {config, include}) => {
     if (conf.a || conf.m) {
         router.post(url, (req, res) => {
             modify(entity, req.body, r => res.json(r));
-        })
+        });
     }
 
     if (conf.b) {
@@ -60,7 +60,7 @@ const generate = (router, tableName, {config, include}) => {
         });
     }
 
-}
+};
 
 module.exports = {
     abml: (router, tableName, include) => {

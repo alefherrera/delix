@@ -1,7 +1,7 @@
 /* jshint indent: 2 */
 
 module.exports = function(sequelize, DataTypes) {
-    return sequelize.define('pedidoEstado', {
+    return sequelize.define('comandaEstado', {
         id: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
@@ -13,10 +13,10 @@ module.exports = function(sequelize, DataTypes) {
             allowNull: true
         }
     }, {
-        tableName: 'pedidoEstado',
+        tableName: 'comandaEstado',
         name: {
-          singular: 'pedidoEstado',
-          plural: 'pedidoEstado',
+          singular: 'comandaEstado',
+          plural: 'comandaEstado',
         }
     });
 };

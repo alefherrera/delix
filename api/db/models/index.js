@@ -1,4 +1,5 @@
 module.exports = (sequelize, DataTypes) => ({
+  comandaEstado: require('./comanda_estado')(sequelize, DataTypes),
   comandas: require('./comandas')(sequelize, DataTypes),
   franjas: require('./franjas')(sequelize, DataTypes),
   grupoDeMesas: require('./grupo_de_mesas')(sequelize, DataTypes),

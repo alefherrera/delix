@@ -18,7 +18,7 @@ const sync = sequelize.sync();
 
 const mock = () => {
   sync.then(() => require('./defaults')(Models));
-}
+};
 
 
 

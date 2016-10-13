@@ -25,6 +25,9 @@ module.exports = (models) => {
     models.comandas.belongsToMany(models.promos, { through: models.promosPorComandas });
     models.promos.belongsToMany(models.comandas, { through: models.promosPorComandas });
 
+    models.comandaEstado.hasMany(models.comanda);
+    models.comanda.belongsTo(models.comandaEstado);
+
     models.sectores.hasMany(models.grupoDeMesas);
     models.grupoDeMesas.belongsTo(models.sectores);
 
