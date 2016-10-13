@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        gruposDeMesaId: {
+        grupoDeMesasId: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             references: {
