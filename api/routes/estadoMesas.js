@@ -6,7 +6,9 @@ module.exports = router => {
             include: {
                 model: Models.grupoDeMesas,
                 include: {
-                    model: Models.pedidos
+                    model: Models.pedidos,
+                    limit: 1,
+                    order: [['createdAt', 'DESC']]
                 }
             }
         }).then(result => {
