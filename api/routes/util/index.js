@@ -95,5 +95,10 @@ module.exports = {
             },
             include
         });
+    },
+
+    errorHandler: (res, err) => {
+        console.error(err);
+        res.status(500).send(err);
     }
 };

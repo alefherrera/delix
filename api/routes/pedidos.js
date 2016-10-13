@@ -1,4 +1,4 @@
-//const util = require('./util');
+const util = require('./util');
 const {Models} = require('../db');
 
 const searchParam = {
@@ -32,9 +32,9 @@ module.exports = router => {
         Models.pedidos.findAll(searchParam).then(result => {
             const resultArray = [];
             for (let order of result) {
-              if (order.comandas && order.comandas.length > 0) {
-                resultArray.push(order);
-              }
+                if (order.comandas && order.comandas.length > 0) {
+                    resultArray.push(order);
+                }
             }
 
             res.json(resultArray);
@@ -42,14 +42,38 @@ module.exports = router => {
     });
 
     router.get('/pedidos/:id', (req, res) => {
-      Models.pedidos.findById(req.params.id).then(r => res.json(r));
+        Models.pedidos.findById(req.params.id).then(r => res.json(r));
     });
 
     router.post('/pedidos', (req, res) => {
-        const param = searchParam;
-        param.where = req.body;
-        Models.pedidos.findOrCreate(param).then(result => res.json(result[0]));
 
+        if (!req.body.grupoDeMesasId) {
+            res.status(500).send('Falta grupoDeMesasId para crear/buscar un pedido.');
+        }
+
+        const param = searchParam;
+        param.where = {
+            grupoDeMesasId: req.body.grupoDeMesasId,
+            pedidoEstadoId: 1
+        };
+
+        Models.pedidos.findOne(param).then(function finishFind(result) {
+            if (result) {
+                //hay un pedido abierto para esta mesa
+                res.json(result);
+            } else {
+                if (!req.body.usuarioId)
+                    res.status(500).send('Falta usuarioId para crear un pedido.');
+
+                Models.pedidos.create(req.body).then(function createPedidoCallback(result) {
+                    Models.pedidos.findById(result.id, searchParam).then(function finishFind(result) {
+                        res.json(result);
+                    });
+                }).catch(function createError(err) {
+                  util.errorHandler(res, err);
+                });
+            }
+        });
     });
 
 };
