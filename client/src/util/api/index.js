@@ -5,6 +5,7 @@ import product from './product';
 import promo from './promo';
 import table from './table';
 import command from './command';
+import sector from './sector';
 
 export default {
   login: () => API.post('login'),
@@ -17,4 +18,5 @@ export {
   promo,
   table,
   command,
+  sector,
 };

@@ -5,6 +5,7 @@ import * as actions from '../actions/table';
 class Table extends React.Component {
 
   componentWillMount() {
+    this.props.getSectors();
     this.props.getTables();
   }
 

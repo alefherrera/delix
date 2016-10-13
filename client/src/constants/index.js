@@ -1,5 +1,6 @@
 export const LOGIN = 'LOGIN';
 
+export const GET_SECTORS = 'GET_SECTORS';
 export const GET_TABLES = 'GET_TABLES';
 export const SET_TABLE = 'SET_TABLE';
 
