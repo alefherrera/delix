@@ -1,20 +1,19 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import TableForm from '../components/Table/TableForm';
-import * as actions from '../actions/table';
+import SectorForm from '../components/Sector/SectorForm';
+import * as actions from '../actions/sector';
 class Table extends React.Component {
 
   componentWillMount() {
     this.props.getSectors();
-    this.props.getTables();
   }
 
   render() {
     const { list } = this.props;
     if (!list) return null;
     return (
-      <TableForm
-        tables={list}
+      <SectorForm
+        sectors={list}
       />
     );
   }
@@ -23,10 +22,10 @@ class Table extends React.Component {
 
 Table.propTypes = {
   list: PropTypes.array,
-  getTables: PropTypes.func,
+  getSectors: PropTypes.func,
 };
 
 export default connect(
-  state => state.table,
+  state => state.sector,
   { ...actions }
 )(Table);

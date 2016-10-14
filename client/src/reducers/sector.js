@@ -1,5 +1,5 @@
 import {
-  GET_TABLES,
+  GET_SECTORS,
   SET_TABLE,
 } from '../constants';
 
@@ -9,7 +9,7 @@ const initialState = {
   list: [],
 };
 export default handleActions({
-  [GET_TABLES]: (state, { payload }) =>
+  [GET_SECTORS]: (state, { payload }) =>
     ({ ...state, list: payload }),
   [SET_TABLE]: (state, { payload }) =>
     ({ ...state, selected: payload }),
