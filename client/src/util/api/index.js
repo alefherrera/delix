@@ -6,6 +6,8 @@ import promo from './promo';
 import table from './table';
 import command from './command';
 import sector from './sector';
+import commandStatus from './commandStatus';
+import tablesStatus from './tablesStatus';
 
 export default {
   login: () => API.post('login'),
@@ -19,4 +21,6 @@ export {
   table,
   command,
   sector,
+  commandStatus,
+  tablesStatus,
 };
