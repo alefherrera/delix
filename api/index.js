@@ -6,6 +6,8 @@ const io = require('./io')(server);
 const db = require('./db');
 const cors = require('cors');
 const opn = require('opn');
+const fs = require('fs');
+const path = require('path');
 
 db.init();
 app.use(cors());
@@ -15,17 +17,18 @@ const router = express.Router();
 require('./routes')(router, io);
 app.use('/', router);
 
-const path = require('path');
-app.use(express.static('../client/dist'));
-
 app.route('/*.js')
     .get(function(req, res) {
-      res.sendFile(path.resolve('../client/dist/bundle.js'));
+      const content = fs.readFileSync(path.join(__dirname, 'asset/bundle.js'));
+      res.set('Content-Type', 'text/javascript');
+      res.send(content);
     });
 
 app.route('/*')
     .get(function(req, res) {
-      res.sendFile(path.resolve('../client/dist/index.html'));
+      const content = fs.readFileSync(path.join(__dirname, 'asset/index.html'));
+      res.set('Content-Type', 'text/html');
+      res.send(content);
     });
 
 

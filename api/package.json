@@ -8,7 +8,7 @@
     "start": "nodemon index.js",
     "debug": "node-debug index.js",
     "mock": "node mock.js",
-    "build": "enclose -o app.exe index.js --config=build.js",
+    "build": "enclose -o app.exe index.js",
     "generate": "sequelize-auto -o './db/models' -h localhost -d delix -u root -p 3306 -e mysql",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
