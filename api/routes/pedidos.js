@@ -29,6 +29,11 @@ module.exports = router => {
     //util.abml(router, 'pedidos');
 
     router.get('/pedidos', (req, res) => {
+        const {pedidoEstadoId} = req.query;
+        if (pedidoEstadoId) {
+            searchParam.where = {pedidoEstadoId};
+        }
+
         Models.pedidos.findAll(searchParam).then(result => {
             // const resultArray = [];
             // for (let order of result) {
