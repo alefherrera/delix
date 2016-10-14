@@ -90,19 +90,18 @@ module.exports = router => {
             }
             pedido.update(req.body).then(newPedido => res.json(newPedido));
 
+        }).catch(function errorHandler(err) {
+            util.errorHandler(res, err);
         });
     });
 
-    router.put('/pedidos/:pedidoId/comandas/:comandaId/estado/:comandaEstadoId', (req, res) => {
+    router.put('/pedidos/:pedidoId/comandas/:comandaId', (req, res) => {
         Models.comandas.findOne({pedidoId: req.params.pedidoId, id: req.params.comandaId})
         .then(function finishFind(comanda) {
-
             if (!comanda) {
-                res.status(404).send('No se encontro la comanda.');
+                res.status(404).send();
             }
-
-            comanda.comandaEstadoId = req.params.comandaEstadoId;
-            comanda.save().then(() => res.status(200).send());
+            comanda.update(req.body).then(newComanda => res.json(newComanda));
 
         }).catch(function errorHandler(err) {
             util.errorHandler(res, err);
