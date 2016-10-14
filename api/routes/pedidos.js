@@ -31,7 +31,9 @@ module.exports = router => {
     router.get('/pedidos', (req, res) => {
         const {pedidoEstadoId} = req.query;
         if (pedidoEstadoId) {
-            searchParam.where = {pedidoEstadoId};
+            searchParam.where = {
+                pedidoEstadoId
+            };
         }
 
         Models.pedidos.findAll(searchParam).then(result => {
@@ -75,16 +77,25 @@ module.exports = router => {
                         res.json(result);
                     });
                 }).catch(function createError(err) {
-                  util.errorHandler(res, err);
+                    util.errorHandler(res, err);
                 });
             }
         });
     });
 
+    router.put('/pedidos/:pedidoId', (req, res) => {
+        Models.pedidos.findById(req.params.pedidoId).then(function finishFind(pedido) {
+            if (!pedido) {
+              res.status(404).send();
+            }
+            pedido.update(req.body).then(newPedido => res.json(newPedido));
 
-    router.put('pedidos/:pedidoId/comandas/:comandaId/estado/:comandaEstadoId', (req, res) => {
+        });
+    });
+
+    router.put('/pedidos/:pedidoId/comandas/:comandaId/estado/:comandaEstadoId', (req, res) => {
         Models.comandas.findOne({pedidoId: req.params.pedidoId, id: req.params.comandaId})
-          .then(function finishFind(comanda) {
+        .then(function finishFind(comanda) {
 
             if (!comanda) {
                 res.status(404).send('No se encontro la comanda.');
