@@ -5,11 +5,17 @@ module.exports = router => {
         Models.sectores.findAll({
             include: {
                 model: Models.grupoDeMesas,
-                include: {
-                    model: Models.pedidos,
-                    limit: 1,
-                    order: [['createdAt', 'DESC']]
-                }
+                include: [
+                    {
+                        model: Models.pedidos,
+                        limit: 1,
+                        order: [
+                            ['createdAt', 'DESC']
+                        ]
+                    }, {
+                        model: Models.mesas
+                    }
+                ]
             }
         }).then(result => {
             response.json(result);
