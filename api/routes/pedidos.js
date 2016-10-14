@@ -30,19 +30,19 @@ module.exports = router => {
 
     router.get('/pedidos', (req, res) => {
         Models.pedidos.findAll(searchParam).then(result => {
-            const resultArray = [];
-            for (let order of result) {
-                if (order.comandas && order.comandas.length > 0) {
-                    resultArray.push(order);
-                }
-            }
+            // const resultArray = [];
+            // for (let order of result) {
+            //     if (order.comandas && order.comandas.length > 0) {
+            //         resultArray.push(order);
+            //     }
+            // }
 
-            res.json(resultArray);
+            res.json(result);
         });
     });
 
     router.get('/pedidos/:id', (req, res) => {
-        Models.pedidos.findById(req.params.id).then(r => res.json(r));
+        Models.pedidos.findById(req.params.id, searchParam).then(r => res.json(r));
     });
 
     router.post('/pedidos', (req, res) => {
@@ -73,6 +73,23 @@ module.exports = router => {
                   util.errorHandler(res, err);
                 });
             }
+        });
+    });
+
+
+    router.put('pedidos/:pedidoId/comandas/:comandaId/estado/:comandaEstadoId', (req, res) => {
+        Models.comandas.findOne({pedidoId: req.params.pedidoId, id: req.params.comandaId})
+          .then(function finishFind(comanda) {
+
+            if (!comanda) {
+                res.status(404).send('No se encontro la comanda.');
+            }
+
+            comanda.comandaEstadoId = req.params.comandaEstadoId;
+            comanda.save().then(() => res.status(200).send());
+
+        }).catch(function errorHandler(err) {
+            util.errorHandler(res, err);
         });
     });
 

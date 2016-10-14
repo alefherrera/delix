@@ -1,6 +1,6 @@
-const {
-    Models
-} = require('../db');
+const {Models} = require('../db');
+//const util = require('./util');
+
 module.exports = router => {
 
     router.post('/comandas', (req, res) => {
@@ -70,7 +70,5 @@ module.exports = router => {
         res.json(createdComandas);
 
     });
-
-
 
 };

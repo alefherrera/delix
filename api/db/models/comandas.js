@@ -19,6 +19,7 @@ module.exports = function(sequelize, DataTypes) {
     comandaEstadoId: {
         type: DataTypes.INTEGER(11),
         allowNull: false,
+        defaultValue: 1,
         references: {
             model: 'comandaEstado',
             key: 'id'
