@@ -6,15 +6,9 @@ import * as actions from '../actions/order';
 class Order extends React.Component {
 
   componentWillMount() {
-    this.props.getOrders();
-  }
-
-  handleCreateClick = () => {
     this.props.createOrder({
-      id: null,
       usuarioId: 1,
-      gruposDeMesaId: this.props.params.mesaId,
-      pedidoEstadoId: 1,
+      grupoDeMesasId: this.props.params.mesaId,
     });
   }
 
@@ -23,7 +17,6 @@ class Order extends React.Component {
     return (
       <OrderForm
         orders={list}
-        onCreateClick={this.handleCreateClick}
       />
     );
   }
