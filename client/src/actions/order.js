@@ -28,9 +28,9 @@ export const sendOrderLines = createAction(SEND_ORDERLINES,
       productos: products.map(product => ({ id: product.id, cant: product.quantity })),
       platos: dishes.map(dish => ({ id: dish.id, cant: dish.quantity })),
     };
-    return order.add(comandas)
+    return order.add(comandas);
     // sacar esto cuando agregar comandas devuelva algo bien
-    .then(() => order.create(current));
+    // .then(() => order.create(current));
   });
 export const closeOrder = createAction(CLOSE_ORDER,
   id => {

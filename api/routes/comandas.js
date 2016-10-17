@@ -3,72 +3,70 @@ const {Models} = require('../db');
 
 module.exports = router => {
 
+    const searchParam = {
+        include: [
+            {
+                model: Models.usuarios
+            }, {
+                model: Models.grupoDeMesas
+            }, {
+                model: Models.pedidoEstado
+            }, {
+                model: Models.comandas,
+                include: [
+                    {
+                        model: Models.productos
+                    }, {
+                        model: Models.platos
+                    }, {
+                        model: Models.promos
+                    }
+                ]
+            }
+        ],
+        order: 'updatedAt'
+    };
+
     router.post('/comandas', (req, res) => {
-        const comanda = req.body;
+      const comanda = req.body;
 
-        // {
-        //     pedidoId: 1,
-        //     platos: [],
-        //     productos: [{id: 1000, cant: 2}],
-        //     promos: []
-        // }
+      const expand = array => {
+        const ret = [];
+        array.forEach(item => {
+          for (var i = 0; i < item.cant; i++) {
+            ret.push(item.id);
+          }
+        });
+        return ret;
+      };
 
-        const createdComandas = [];
-
-        const createComandaFunc = (comanda, item) => {
-            Models.comandas.create(comanda).then(newComanda => {
-                if (item.isPlato) {
-                    Models.platosPorComandas.create({
-                        comandaId: newComanda.id,
-                        platoId: item.id
-                    }).then(newItem => createdComandas.push(newItem.comandaId));
-                } else if (item.isProducto) {
-                    Models.productosPorComandas.create({
-                        comandaId: newComanda.id,
-                        productoId: item.id
-                    }).then(newItem => createdComandas.push(newItem.comandaId));
-                } else if (item.isPromo) {
-                    Models.promosPorComandas.create({
-                        comandaId: newComanda.id,
-                        promoId: item.id
-                    }).then(newItem => createdComandas.push(newItem.comandaId));
-                }
-            });
-        };
-
-
-        if (comanda.platos && comanda.platos.length > 0) {
-            for (const plato of comanda.platos) {
-                for (let i = plato.cant; i; i--) {
-                    createComandaFunc(comanda, Object.assign(plato, {
-                        isPlato: true
-                    }));
-                }
-            }
-        }
-
-        if (comanda.productos && comanda.productos.length > 0) {
-            for (const producto of comanda.productos) {
-                for (let i = producto.cant; i; i--) {
-                    createComandaFunc(comanda, Object.assign(producto, {
-                        isProducto: true
-                    }));
-                }
-            }
-        }
-
-        if (comanda.promos && comanda.promos.length > 0) {
-            for (const promo of comanda.promos) {
-                for (let i = promo.cant; i; i--) {
-                    createComandaFunc(comanda, Object.assign(promo, {
-                        isPromo: true
-                    }));
-                }
-            }
-        }
-
-        res.json(createdComandas);
-
+      Promise.all(
+        [Promise.all(
+          expand(comanda.platos).map(plato =>
+            Models.comandas.create(comanda).then(newComanda =>
+              newComanda.addPlato(plato)
+            )
+          )
+        ),
+        Promise.all(
+          expand(comanda.productos).map(producto =>
+            Models.comandas.create(comanda).then(newComanda =>
+              newComanda.addProducto(producto)
+            )
+          )
+        ),
+        Promise.all(
+          expand(comanda.promos).map(promo =>
+            Models.comandas.create(comanda).then(newComanda =>
+              newComanda.addPromo(promo)
+            )
+          )
+        )]
+      ).then(() =>
+        Models.pedidos.findById(comanda.pedidoId, searchParam)
+      ).then(pedido =>
+        res.json(pedido)
+      );
     });
 
 };
