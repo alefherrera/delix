@@ -16,7 +16,7 @@ const SectorDetail = ({ tables, onSelect }) => (
         tables.map((table, i) => (
           <TableRow key={i} onTouchTap={() => onSelect(table.id)}>
             <TableRowColumn>{table.nombre}</TableRowColumn>
-            <TableRowColumn>4</TableRowColumn>
+            <TableRowColumn>{table.capacidad}</TableRowColumn>
             <TableRowColumn>
               {table.pedidos.length && table.pedidos[0].pedidoEstadoId === 1 ? 'Ocupada' : 'Libre'}
             </TableRowColumn>

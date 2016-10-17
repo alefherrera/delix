@@ -36,5 +36,5 @@ const url = 'http://localhost:3001';
 
 app.listen(3001, function () {
   console.log('Example app listening on port 3001!');
-  opn(url);
+  // opn(url);
 });

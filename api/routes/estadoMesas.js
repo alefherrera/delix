@@ -1,4 +1,5 @@
-const {Models} = require('../db');
+const { Models } = require('../db');
+const { reduce } = require('lodash');
 
 module.exports = router => {
     router.get('/estado_mesas', (request, response) => {
@@ -18,15 +19,17 @@ module.exports = router => {
                 ]
             }
         }).then(result => {
-          // console.log(result);
-          //   if (result.gruposDeMesas) {
-          //       for (let i = result.gruposDeMesas.length; i; i--) {
-          //         result.gruposDeMesas[i].capacidadTotal = result.gruposDeMesas[i].mesas.reduce((prev, actual) => prev + actual.capacidad, 0);
-          //         console.log(result.gruposDeMesas[i]);
-          //       }
-          //   }
 
-            response.json(result);
+          const ret = result.map(sector => {
+            sector.gruposDeMesas = sector.gruposDeMesas.map(grupo => {
+              grupo.setDataValue('capacidad', reduce(grupo.mesas, (p, c) => p + c.capacidad , 0));
+              return grupo;
+              }
+            )
+            return sector;
+          });
+
+          response.json(ret);
         });
     });
 

@@ -9,6 +9,10 @@ module.exports = ({
         sectores.upsert({
             id: 2,
             esPrivado: true
+        }),
+        sectores.upsert({
+            id: 3,
+            esPrivado: true
         })
     );
 };
