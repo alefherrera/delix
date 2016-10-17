@@ -14,14 +14,16 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        String url = "file://android_asset/index.html";
+
         WebView view = (WebView) findViewById(R.id.webView);
         view.getSettings().setJavaScriptEnabled(true);
         view.getSettings().setBuiltInZoomControls(true);
-        view.loadUrl("http://www.google.com.ar");
+        view.loadUrl(url);
 
         view.setWebViewClient(new WebViewClient(){
-            
-            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request){
+
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest url){
                 return false;
             }
         });
