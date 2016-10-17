@@ -3,6 +3,7 @@ import {
   GET_ORDER,
   GET_ORDERS,
   CHANGE_ORDER_STATE,
+  SEND_ORDERLINES,
   CLOSE_ORDER,
   ADD_ORDERLINE,
   ADD_ORDERLINE_PROMO,
@@ -17,7 +18,7 @@ export const createOrder = createAction(CREATE_ORDER, order.create, () => pedido
 export const getOrder = createAction(GET_ORDER, order.create);
 export const getOrders = createAction(GET_ORDERS, order.getAll);
 export const changeOrderState = createAction(CHANGE_ORDER_STATE);
-export const closeOrder = createAction(CLOSE_ORDER,
+export const sendOrderLines = createAction(SEND_ORDERLINES,
   ({
     promos, products, dishes, current,
   }) => {
@@ -29,6 +30,15 @@ export const closeOrder = createAction(CLOSE_ORDER,
     };
     return order.add(comandas);
   });
+export const closeOrder = createAction(CLOSE_ORDER,
+  id => {
+    const obj = {
+      pedidoEstadoId: 2,
+    };
+    return order.update(id, obj);
+  },
+  () => () => '/sector'
+);
 export const addOrderLine = createAction(ADD_ORDERLINE);
 export const editOrderLine = createAction(EDIT_ORDERLINE);
 export const postOrderLines = createAction(POST_ORDERLINES);

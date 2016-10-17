@@ -8,7 +8,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import Divider from 'material-ui/Divider';
 
 const OrderAddForm = (
-  { promos, products, dishes, onCloseOrder,
+  { promos, products, dishes, onSendOrderLines, onCloseOrder,
     linkPromo, linkProduct, linkDish }) => (
   <Card>
     <CardTitle>
@@ -86,7 +86,10 @@ const OrderAddForm = (
       <Grid fluid>
         <Row center="xs">
           <Col xs>
-            <RaisedButton label="Enviar Comandas" onTouchTap={() => onCloseOrder()} />
+            <RaisedButton label="Enviar Comandas" onTouchTap={() => onSendOrderLines()} />
+          </Col>
+          <Col xs>
+            <RaisedButton label="Cerrar Orden" onTouchTap={() => onCloseOrder()} />
           </Col>
         </Row>
       </Grid>
@@ -98,6 +101,7 @@ OrderAddForm.propTypes = {
   promos: PropTypes.array,
   products: PropTypes.array,
   dishes: PropTypes.array,
+  onSendOrderLines: PropTypes.func,
   onCloseOrder: PropTypes.func,
   linkPromo: PropTypes.string,
   linkProduct: PropTypes.string,

@@ -4,11 +4,12 @@ export const GET_SECTORS = 'GET_SECTORS';
 export const GET_TABLES = 'GET_TABLES';
 export const SET_TABLE = 'SET_TABLE';
 
-export const CREATE_ORDER = 'CREATE_PEDIDO';
+export const CREATE_ORDER = 'CREATE_ORDER';
 export const GET_ORDER = 'GET_ORDER';
 export const GET_ORDERS = 'GET_ORDERS';
 export const CHANGE_ORDER_STATE = 'CHANGE_ORDER_STATE';
 export const CLOSE_ORDER = 'CLOSE_ORDER';
+export const SEND_ORDERLINES = 'SEND_ORDERLINES';
 export const ADD_ORDERLINE = 'ADD_ORDERLINE';
 export const ADD_ORDERLINE_PROMO = 'ADD_ORDERLINE_PROMO';
 export const ADD_ORDERLINE_PRODUCT = 'ADD_ORDERLINE_PRODUCT';

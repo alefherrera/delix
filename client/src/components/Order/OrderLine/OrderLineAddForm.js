@@ -27,13 +27,15 @@ class OrderLineAddForm extends React.Component {
           <Grid fluid>
             <Row>
               <Col xs>
-                {text}
+                <CardText>
+                  {text}
+                </CardText>
               </Col>
               <Col xs>
                 <TextField
                   type="number"
                   min="0"
-                  hintText="Cantidad"
+                  floatingLabelText="Cantidad"
                   value={this.state.quantity}
                   onChange={this.handleChange}
                 />
@@ -43,7 +45,7 @@ class OrderLineAddForm extends React.Component {
         </CardText>
         <CardActions>
           <Grid fluid>
-            <Row>
+            <Row center="xs">
               <Col xs>
                 <RaisedButton label="Agregar" onTouchTap={this.handleSave} />
               </Col>

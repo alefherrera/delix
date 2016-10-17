@@ -7,15 +7,21 @@ class OrderAdd extends React.Component {
 
   componentWillMount() {
     if (!this.props.current) {
-      this.props.getOrder({ id: this.props.params.pedidoId });
+      const { pedidoId, mesaId } = this.props.params;
+      this.props.getOrder({ id: pedidoId, grupoDeMesasId: mesaId });
     }
   }
 
-  handleCloseOrder = () => {
+  handleSendOrderLines = () => {
     const { promos, products, dishes, current } = this.props;
-    this.props.closeOrder({
+    this.props.sendOrderLines({
       promos, products, dishes, current,
     });
+  }
+
+  handleCloseOrder = () => {
+    const { closeOrder, current } = this.props;
+    closeOrder(current.id);
   }
 
   render() {
@@ -25,6 +31,7 @@ class OrderAdd extends React.Component {
         promos={promos}
         products={products}
         dishes={dishes}
+        onSendOrderLines={this.handleSendOrderLines}
         onCloseOrder={this.handleCloseOrder}
         linkPromo={`${location.pathname}/comanda/promos`}
         linkProduct={`${location.pathname}/comanda/productos`}
@@ -40,6 +47,7 @@ OrderAdd.propTypes = {
   promos: PropTypes.array,
   products: PropTypes.array,
   dishes: PropTypes.array,
+  sendOrderLines: PropTypes.func,
   closeOrder: PropTypes.func,
   current: PropTypes.object,
   getOrder: PropTypes.func,

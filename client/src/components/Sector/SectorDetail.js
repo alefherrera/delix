@@ -17,7 +17,9 @@ const SectorDetail = ({ tables, onSelect }) => (
           <TableRow key={i} onTouchTap={() => onSelect(table.id)}>
             <TableRowColumn>{table.nombre}</TableRowColumn>
             <TableRowColumn>4</TableRowColumn>
-            <TableRowColumn>{table.pedidos.length ? 'Ocupada' : 'Libre'}</TableRowColumn>
+            <TableRowColumn>
+              {table.pedidos.length && table.pedidos[0].pedidoEstadoId === 1 ? 'Ocupada' : 'Libre'}
+            </TableRowColumn>
           </TableRow>
         ))
       }

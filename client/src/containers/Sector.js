@@ -4,7 +4,7 @@ import SectorForm from '../components/Sector/SectorForm';
 import * as actions from '../actions/sector';
 import { push } from 'react-router-redux';
 
-class Table extends React.Component {
+class Sector extends React.Component {
 
   componentWillMount() {
     this.props.getSectors();
@@ -23,7 +23,7 @@ class Table extends React.Component {
 
 }
 
-Table.propTypes = {
+Sector.propTypes = {
   list: PropTypes.array,
   getSectors: PropTypes.func,
   goToOrder: PropTypes.func,
@@ -35,4 +35,4 @@ export default connect(
     ...actions,
     goToOrder: tableId => push(`${location.pathname}/${tableId}`),
   }
-)(Table);
+)(Sector);

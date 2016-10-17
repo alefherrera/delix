@@ -1,5 +1,4 @@
 import {
-  CREATE_ORDER,
   GET_ORDER,
   GET_ORDERS,
   CHANGE_ORDER_STATE,
@@ -20,8 +19,12 @@ const initialState = {
   current: null,
   list: [],
 };
+
+// const transformOrder = order => {
+//
+// };
+
 export default handleActions({
-  [CREATE_ORDER]: (state, action) => ({ ...state, current: action.payload }),
   [GET_ORDER]: (state, action) => ({ ...state, current: action.payload }),
   [GET_ORDERS]: (state, { payload }) => ({ ...state, list: payload }),
   [CHANGE_ORDER_STATE]: (state, action) => ({ ...state, current: action.payload }),
