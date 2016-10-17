@@ -8,7 +8,7 @@ class OrderProductAdd extends React.Component {
   handleAdd = quantity => {
     const { selected, addOrderLineProduct } = this.props;
     addOrderLineProduct({
-      selected,
+      ...selected,
       quantity,
     }, this.props.params);
   }

@@ -8,8 +8,10 @@ const cors = require('cors');
 const opn = require('opn');
 const fs = require('fs');
 const path = require('path');
+const morgan = require('morgan');
 
 db.init();
+// app.use(morgan());
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('images'));

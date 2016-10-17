@@ -8,7 +8,7 @@ class OrderDishAdd extends React.Component {
   handleAdd = quantity => {
     const { selected, addOrderLineDish } = this.props;
     addOrderLineDish({
-      selected,
+      ...selected,
       quantity,
     }, this.props.params);
   }

@@ -1,15 +1,15 @@
 import React, { PropTypes } from 'react';
-import OrderAddForm from '../components/Order/OrderAddForm';
+import OrderAddForm from '../components/Order/OrderAdd/OrderAddForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/order';
 
 class OrderAdd extends React.Component {
 
   componentWillMount() {
-    if (!this.props.current) {
-      const { pedidoId, mesaId } = this.props.params;
-      this.props.getOrder({ id: pedidoId, grupoDeMesasId: mesaId });
-    }
+    // if (!this.props.current) {
+    const { pedidoId, mesaId } = this.props.params;
+    this.props.getOrder({ id: pedidoId, grupoDeMesasId: mesaId });
+    // }
   }
 
   handleSendOrderLines = () => {
@@ -25,9 +25,11 @@ class OrderAdd extends React.Component {
   }
 
   render() {
-    const { location, promos, products, dishes } = this.props;
+    const { current, location, promos, products, dishes } = this.props;
+    if (!current) return null;
     return (
       <OrderAddForm
+        order={current}
         promos={promos}
         products={products}
         dishes={dishes}
