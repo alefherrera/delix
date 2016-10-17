@@ -12,7 +12,7 @@ import {
 } from '../constants';
 
 import { handleActions } from 'redux-actions';
-import { groupBy } from 'lodash';
+import { groupBy, forEach } from 'lodash';
 
 const initialState = {
   promos: [],
@@ -20,6 +20,18 @@ const initialState = {
   dishes: [],
   current: null,
   list: [],
+};
+
+const groupById = array => {
+  const grouped = groupBy(array, 'id');
+  const ret = [];
+  forEach(grouped, value => {
+    ret.push({
+      ...value[0],
+      quantity: value.length,
+    });
+  });
+  return ret;
 };
 
 const groupCommands = comandas => {
@@ -34,6 +46,9 @@ const groupCommands = comandas => {
     if (comanda.productos.length) ret.products.push(...comanda.productos);
     if (comanda.promos.length) ret.promos.push(...comanda.promos);
   });
+  ret.dishes = groupById(ret.dishes);
+  ret.products = groupById(ret.products);
+  ret.promos = groupById(ret.promos);
   return ret;
 };
 
