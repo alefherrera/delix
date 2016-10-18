@@ -1,5 +1,9 @@
 import store from '../store';
 import { syncHistoryWithStore } from 'react-router-redux';
-import { browserHistory } from 'react-router';
+import { hashHistory, browserHistory } from 'react-router';
 
-export default syncHistoryWithStore(browserHistory, store);
+const history = process.env.ANDROID ?
+syncHistoryWithStore(hashHistory, store)
+: syncHistoryWithStore(browserHistory, store);
+
+export default history;
