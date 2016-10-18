@@ -25,7 +25,7 @@ const searchParam = {
     order: 'updatedAt'
 };
 
-module.exports = router => {
+module.exports = (router, io) => {
     //util.abml(router, 'pedidos');
 
     router.get('/pedidos', (req, res) => {
@@ -88,7 +88,13 @@ module.exports = router => {
             if (!pedido) {
               res.status(404).send();
             }
-            pedido.update(req.body).then(newPedido => res.json(newPedido));
+            pedido.update(req.body).then(newPedido => {
+              if (newPedido.pedidoEstadoId === 2)
+              {
+                io.emit('delete', newPedido);
+              }
+              res.json(newPedido)
+            });
 
         }).catch(function errorHandler(err) {
             util.errorHandler(res, err);

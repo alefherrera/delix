@@ -38,13 +38,13 @@ export default handleActions({
   [ADD_COMMAND]: (state, { payload }) => (
     {
       ...state,
-      list: [...state.list, formatOrder(payload)],
+      list: [...state.list.filter(x => x.id !== payload.id), formatOrder(payload)],
     }
   ),
   [DELETE_COMMAND]: (state, { payload }) => (
     {
       ...state,
-      list: state.list.filter(x => x.id !== payload),
+      list: state.list.filter(x => x.id !== payload.id),
     }
   ),
 }, initialState);

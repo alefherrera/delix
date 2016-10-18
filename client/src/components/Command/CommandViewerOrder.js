@@ -3,10 +3,14 @@ import { Card, CardTitle, CardText } from 'material-ui/Card';
 import styles from './style.css';
 import CommandViewerItem from './CommandViewerItem';
 import Divider from 'material-ui/Divider';
+import { FormattedTime } from 'react-intl';
 
 const CommandViewerOrder = ({ title, time, commands }) => (
   <Card className={styles.item}>
-    <CardTitle title={title} subtitle={time} />
+    <CardTitle
+      title={title}
+      subtitle={<FormattedTime value={time} />}
+    />
     <CardText>
       {
         commands.map((command, i) => (
@@ -23,8 +27,8 @@ const CommandViewerOrder = ({ title, time, commands }) => (
 );
 
 CommandViewerOrder.propTypes = {
-  title: PropTypes.object,
-  time: PropTypes.instanceOf(Date),
+  title: PropTypes.string,
+  time: PropTypes.string,
   commands: PropTypes.array,
 };
 
