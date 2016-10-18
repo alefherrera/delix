@@ -15,6 +15,7 @@ class CommandViewer extends React.Component {
 
   render() {
     const { list } = this.props;
+    if (!list) return null;
     return (
       <div>
         {

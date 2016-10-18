@@ -1,8 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const server = require('http').Server(app);
-const io = require('./io')(server);
+const server = require('http').createServer(app);
 const db = require('./db');
 const cors = require('cors');
 const opn = require('opn');
@@ -16,6 +15,7 @@ app.use(cors());
 app.use(bodyParser.json());
 app.use(express.static('images'));
 const router = express.Router();
+const io = require('./io')(server);
 require('./routes')(router, io);
 app.use('/', router);
 

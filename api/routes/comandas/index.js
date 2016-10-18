@@ -1,7 +1,7 @@
-const {Models} = require('../db');
+const { Models } = require('../../db');
 //const util = require('./util');
 
-module.exports = router => {
+module.exports = (router, io) => {
 
     const searchParam = {
         include: [
@@ -64,9 +64,14 @@ module.exports = router => {
         )]
       ).then(() =>
         Models.pedidos.findById(comanda.pedidoId, searchParam)
-      ).then(pedido =>
-        res.json(pedido)
-      );
+      ).then(pedido => {
+        io.emit('add', pedido);
+        res.json(pedido);
+      })
+    });
+
+    router.get('/comandas', (req, res) => {
+      Models.pedidos.findAll(searchParam).then(result => res.json(result));
     });
 
 };

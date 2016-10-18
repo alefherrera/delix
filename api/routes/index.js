@@ -8,7 +8,7 @@ module.exports = (router, io) => {
   require('./proveedores')(router);
   require('./sectores')(router);
   require('./pedidos')(router);
-  require('./comandas')(router);
+  require('./comandas')(router, io);
   require('./promos')(router);
   require('./gruposDeMesas')(router);
   require('./estadoMesas')(router);

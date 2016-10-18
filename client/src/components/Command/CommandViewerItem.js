@@ -1,14 +1,15 @@
 import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
+import styles from './style.css';
 
 const CommandViewerItem = ({ title, time, commands }) => (
-  <Card>
-    <CardTitle title={title} subtitle={time} />
+  <Card className={styles.item}>
+    <CardTitle title={title || 'Pedido'} subtitle={time} />
     <CardText>
       {
         commands.map((command, i) => (
           <div key={i}>
-            {command.text}
+            {command.text || 'comanda'}
           </div>
         ))
       }

@@ -1,17 +1,21 @@
 import React, { PropTypes } from 'react';
 import CommandViewerItem from './CommandViewerItem';
+import { Card, CardText } from 'material-ui/Card';
 
 const CommandViewerForm = ({ orders }) => (
-  <div>
-    {
-      orders.map((order, i) => (
-        <CommandViewerItem
-          key={i}
-          order={order}
-        />
-      ))
-    }
-  </div>
+  <Card>
+    <CardText>
+      {
+        orders.map((order, i) => (
+          <CommandViewerItem
+            key={i}
+            order={order}
+            commands={order.comandas}
+          />
+        ))
+      }
+    </CardText>
+  </Card>
 );
 
 CommandViewerForm.propTypes = {
