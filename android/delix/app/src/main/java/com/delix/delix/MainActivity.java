@@ -2,6 +2,8 @@ package com.delix.delix;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Window;
+import android.view.WindowManager;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -13,8 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         String url = "file:///android_asset/index.html";
-
-        WebView view = (WebView) findViewById(R.id.webView);
+        this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        WebView view = new WebView(getApplicationContext());
         view.getSettings().setJavaScriptEnabled(true);
         // view.getSettings().setBuiltInZoomControls(true);
         view.loadUrl(url);
