@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import SectorForm from '../components/Sector/SectorForm';
 import * as actions from '../actions/sector';
-import { push } from 'react-router-redux';
 
 class Sector extends React.Component {
 
@@ -10,13 +9,17 @@ class Sector extends React.Component {
     this.props.getSectors();
   }
 
+  handleSelect = tableId => {
+    this.props.history.push(`/sector/${tableId}`);
+  }
+
   render() {
-    const { list, goToOrder } = this.props;
+    const { list } = this.props;
     if (!list) return null;
     return (
       <SectorForm
         sectors={list}
-        onTableSelect={goToOrder}
+        onTableSelect={this.handleSelect}
       />
     );
   }
@@ -26,13 +29,12 @@ class Sector extends React.Component {
 Sector.propTypes = {
   list: PropTypes.array,
   getSectors: PropTypes.func,
-  goToOrder: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default connect(
   state => state.sector,
   {
     ...actions,
-    goToOrder: tableId => push(`${location.pathname}/${tableId}`),
   }
 )(Sector);

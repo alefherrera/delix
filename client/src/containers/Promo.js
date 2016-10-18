@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import PromoForm from '../components/Promo/PromoForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/promo';
-import { push } from 'react-router-redux';
 
 class Promo extends React.Component {
 
@@ -10,13 +9,18 @@ class Promo extends React.Component {
     this.props.getPromos();
   }
 
+  handleSelect = id => {
+    this.props.history.push(`promo/edit/${id}`);
+  }
+
   render() {
-    const { list, goEditPromo, deletePromo } = this.props;
+    const { list, deletePromo } = this.props;
     return (
       <PromoForm
         promos={list}
-        editPromo={goEditPromo}
+        editPromo={this.handleSelect}
         deletePromo={deletePromo}
+        addLink={'promo/add'}
       />
     );
   }
@@ -26,13 +30,12 @@ class Promo extends React.Component {
 Promo.propTypes = {
   list: PropTypes.array,
   getPromos: PropTypes.func,
-  goEditPromo: PropTypes.func,
   deletePromo: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default connect(
   state => state.promo,
   {
     ...actions,
-    goEditPromo: id => push(`${location.pathname}/edit/${id}`),
   })(Promo);

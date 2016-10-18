@@ -8,7 +8,7 @@ import DishRow from './DishRow';
 import Divider from 'material-ui/Divider';
 import rowMenu from '../rowMenu';
 
-const DishForm = ({ dishes, editDish, deleteDish }) => (
+const DishForm = ({ dishes, editDish, deleteDish, addLink }) => (
   <Card>
     <CardTitle title="Platos" />
     <CardText>
@@ -33,7 +33,7 @@ const DishForm = ({ dishes, editDish, deleteDish }) => (
         </Card>
       </List>
     </CardText>
-    <Link to={`${location.pathname}/add`}>
+    <Link to={addLink}>
       <Fab>
         <ContentAdd />
       </Fab>
@@ -45,6 +45,7 @@ DishForm.propTypes = {
   dishes: PropTypes.array,
   editDish: PropTypes.func,
   deleteDish: PropTypes.func,
+  addLink: PropTypes.string,
 };
 
 export default DishForm;

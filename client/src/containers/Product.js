@@ -2,7 +2,6 @@ import React, { PropTypes } from 'react';
 import ProductForm from '../components/Product/ProductForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/product';
-import { push } from 'react-router-redux';
 
 class Product extends React.Component {
 
@@ -10,13 +9,18 @@ class Product extends React.Component {
     this.props.getProducts(true);
   }
 
+  handleSelect = id => {
+    this.props.history.push(`producto/edit/${id}`);
+  }
+
   render() {
-    const { list, goEditProduct, deleteProduct } = this.props;
+    const { list, deleteProduct } = this.props;
     return (
       <ProductForm
         products={list}
-        editProduct={goEditProduct}
+        editProduct={this.handleSelect}
         deleteProduct={deleteProduct}
+        addLink={'producto/add'}
       />
     );
   }
@@ -26,14 +30,13 @@ class Product extends React.Component {
 Product.propTypes = {
   list: PropTypes.array,
   getProducts: PropTypes.func,
-  goEditProduct: PropTypes.func,
   deleteProduct: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default connect(
   state => state.product,
   {
-    ...actions,
-    goEditProduct: id => push(`${location.pathname}/edit/${id}`),
+    ...actions
   }
 )(Product);
