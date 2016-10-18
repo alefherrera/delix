@@ -2,11 +2,10 @@ import React, { PropTypes } from 'react';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import { Grid, Row, Col } from 'react-flexbox-grid';
-import { Link } from 'react-router';
-import { List, ListItem } from 'material-ui/List';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import { List } from 'material-ui/List';
 import Divider from 'material-ui/Divider';
 import OrderLineList from './OrderLineList';
+import styles from './style.css';
 
 const OrderAddForm = (
   { promos, products, dishes, onSendOrderLines, onCloseOrder,
@@ -50,10 +49,10 @@ const OrderAddForm = (
     <CardActions>
       <Grid fluid>
         <Row center="xs">
-          <Col xs>
+          <Col className={styles.col} xs={12} sm={6}>
             <RaisedButton label="Enviar Comandas" onTouchTap={() => onSendOrderLines()} />
           </Col>
-          <Col xs>
+          <Col className={styles.col} xs={12} sm={6}>
             <RaisedButton label="Cerrar Orden" onTouchTap={() => onCloseOrder()} />
           </Col>
         </Row>
