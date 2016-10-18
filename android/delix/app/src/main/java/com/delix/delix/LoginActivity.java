@@ -3,9 +3,13 @@ package com.delix.delix;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
+
+import org.json.JSONArray;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -44,13 +48,18 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 runOnUiThread(new Runnable(){
                     @Override
                     public void run(){
-                        Intent i = new Intent(getApplicationContext(), MainActivity.class);
-                        startActivity(i);
-
+                        int r = obtDatosJSON(resultado);
+                        if (r>0)
+                        {
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
+                        }
+                        else {
+                            Toast.makeText(getApplicationContext(), "Datos erróneos", Toast.LENGTH_LONG).show();
+                        }
                     }
                 });
         }
-
         };
         th.start();
     }
@@ -91,4 +100,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         return resul.toString();
     }
 
+    public int obtDatosJSON(String response){
+        int res = 0;
+
+        try{
+            JSONArray json = new JSONArray(response);
+
+            if (json.length() > 0){
+                res = 1;
+            }
+        }
+        catch(Exception ex){
+            ex.printStackTrace();
+        }
+
+        return res;
+    }
 }
