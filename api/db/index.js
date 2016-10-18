@@ -14,7 +14,12 @@ const init = () => {
         });
 };
 
-sequelize.sync().then(() => require('./defaults')(Models));
+const sync = sequelize.sync();
+
+const mock = () => {
+  sync.then(() => require('./defaults')(Models));
+};
+
 
 
 
@@ -22,5 +27,6 @@ sequelize.sync().then(() => require('./defaults')(Models));
 
 module.exports = {
     init,
+    mock,
     Models
 };

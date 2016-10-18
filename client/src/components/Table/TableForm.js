@@ -8,15 +8,11 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 
 class TableForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-    };
-    this.handleChange = this.handleChange.bind(this);
-  }
+  state = {
+    value: '',
+  };
 
-  handleChange(e, k, value) {
+  handleChange = (e, k, value) => {
     this.setState({
       value,
     });

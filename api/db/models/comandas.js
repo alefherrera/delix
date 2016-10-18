@@ -15,9 +15,22 @@ module.exports = function(sequelize, DataTypes) {
         model: 'pedidos',
         key: 'id'
       }
+    },
+    comandaEstadoId: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        defaultValue: 1,
+        references: {
+            model: 'comandaEstado',
+            key: 'id'
+        }
     }
   }, {
     tableName: 'comandas',
-    paranoid: true,
+    name: {
+      singular: 'comanda',
+      plural: 'comandas',
+    },
+    paranoid: true
   });
 };

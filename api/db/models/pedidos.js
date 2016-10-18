@@ -16,7 +16,7 @@ module.exports = function(sequelize, DataTypes) {
                 key: 'id'
             }
         },
-        gruposDeMesaId: {
+        grupoDeMesasId: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
             references: {
@@ -27,6 +27,7 @@ module.exports = function(sequelize, DataTypes) {
         pedidoEstadoId: {
             type: DataTypes.INTEGER(11),
             allowNull: false,
+            defaultValue: 1,
             references: {
                 model: 'pedidoEstado',
                 key: 'id'
@@ -34,6 +35,10 @@ module.exports = function(sequelize, DataTypes) {
         }
     }, {
         tableName: 'pedidos',
-        paranoid: true,
+        name: {
+            singular: 'pedido',
+            plural: 'pedidos'
+        },
+        paranoid: true
     });
 };

@@ -18,6 +18,10 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'franjas',
+    name: {
+      singular: 'franja',
+      plural: 'franjas',
+    },
     paranoid: true,
   });
 };

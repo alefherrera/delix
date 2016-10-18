@@ -4,15 +4,15 @@ module.exports = ({
     return Promise.all(
         pedidoEstado.upsert({
             id: 1,
-            descripcion: 'Libre'
+            descripcion: 'Abierto'
         }),
         pedidoEstado.upsert({
             id: 2,
-            descripcion: 'Ocupada'
+            descripcion: 'Cerrado'
         }),
         pedidoEstado.upsert({
             id: 3,
-            descripcion: 'Reservada'
+            descripcion: 'Pagado'
         })
     );
 };

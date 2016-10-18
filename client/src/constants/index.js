@@ -1,13 +1,15 @@
 export const LOGIN = 'LOGIN';
 
+export const GET_SECTORS = 'GET_SECTORS';
 export const GET_TABLES = 'GET_TABLES';
 export const SET_TABLE = 'SET_TABLE';
 
-export const CREATE_ORDER = 'CREATE_PEDIDO';
+export const CREATE_ORDER = 'CREATE_ORDER';
 export const GET_ORDER = 'GET_ORDER';
 export const GET_ORDERS = 'GET_ORDERS';
 export const CHANGE_ORDER_STATE = 'CHANGE_ORDER_STATE';
 export const CLOSE_ORDER = 'CLOSE_ORDER';
+export const SEND_ORDERLINES = 'SEND_ORDERLINES';
 export const ADD_ORDERLINE = 'ADD_ORDERLINE';
 export const ADD_ORDERLINE_PROMO = 'ADD_ORDERLINE_PROMO';
 export const ADD_ORDERLINE_PRODUCT = 'ADD_ORDERLINE_PRODUCT';
@@ -38,3 +40,7 @@ export const SET_PROMO = 'SET_PROMO';
 export const ADD_PROMO = 'ADD_PROMO';
 export const EDIT_PROMO = 'EDIT_PROMO';
 export const DELETE_PROMO = 'DELETE_PROMO';
+
+export const GET_COMMANDS = 'GET_COMMANDS';
+export const ADD_COMMAND = 'ADD_COMMAND';
+export const DELETE_COMMAND = 'DELETE_COMMAND';

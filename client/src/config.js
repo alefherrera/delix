@@ -3,10 +3,12 @@ import { Provider } from 'react-redux';
 import Routes from './routes';
 import history from './history';
 import store from './store';
-
+import { IntlProvider } from 'react-intl';
 const App = () => (
   <Provider store={store}>
-    <Routes history={history} />
+    <IntlProvider locale="en">
+      <Routes history={history} />
+    </IntlProvider>
   </Provider>
 );
 

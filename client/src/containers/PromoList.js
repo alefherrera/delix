@@ -5,21 +5,15 @@ import * as actions from '../actions/promo';
 
 class PromoList extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleSelect = this.handleSelect.bind(this);
-    this.handleFilter = this.handleFilter.bind(this);
-  }
-
   componentWillMount() {
     this.props.getPromos();
   }
 
-  handleSelect(promo) {
+  handleSelect = promo => {
     this.props.setPromo(promo);
   }
 
-  handleFilter(filter) {
+  handleFilter = filter => {
     this.props.filterPromos(filter);
   }
 

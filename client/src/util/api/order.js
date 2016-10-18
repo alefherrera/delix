@@ -1,7 +1,10 @@
 import API from './api';
 
 export default {
+  getAll: () => API.get('pedidos'),
+  getByStatus: pedidoEstadoId => API.get(`pedidos?pedidoEstadoId=${pedidoEstadoId}`),
+  get: id => API.get(`pedidos/${id}`),
   create: pedido => API.post('pedidos', pedido),
   add: comandas => API.post('comandas', comandas),
-  getAll: () => API.get('pedidos'),
+  update: (id, pedido) => API.put(`pedidos/${id}`, pedido),
 };

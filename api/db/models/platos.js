@@ -22,6 +22,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   }, {
     tableName: 'platos',
-    paranoid: true,
+    name: {
+      singular: 'plato',
+      plural: 'platos',
+    },
   });
 };

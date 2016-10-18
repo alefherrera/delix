@@ -19,7 +19,8 @@ import {
   DishEdit,
   PromoAdd,
   PromoEdit,
-  Table,
+  Sector,
+  CommandViewer,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -40,8 +41,8 @@ const Routes = ({ history }) => (
         <Route name="Add" path="add" component={PromoAdd} />
         <Route name="Edit" path="edit/:promoId" component={PromoEdit} />
       </Route>
-      <Route name="Table" path="mesa">
-        <IndexRoute component={Table} />
+      <Route name="Table" path="sector">
+        <IndexRoute component={Sector} />
         <Route name="Pedido" path=":mesaId">
           <IndexRoute component={Order} />
           <Route path=":pedidoId">
@@ -63,6 +64,7 @@ const Routes = ({ history }) => (
           </Route>
         </Route>
       </Route>
+      <Route name="Viewer" path="viewer" component={CommandViewer} />
     </Route>
   </Router>
 );
