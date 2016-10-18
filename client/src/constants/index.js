@@ -1,4 +1,5 @@
 export const LOGIN = 'LOGIN';
+export const SET_HOSTNAME = 'SET_HOSTNAME';
 
 export const GET_SECTORS = 'GET_SECTORS';
 export const GET_TABLES = 'GET_TABLES';

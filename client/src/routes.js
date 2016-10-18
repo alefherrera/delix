@@ -21,6 +21,7 @@ import {
   PromoEdit,
   Sector,
   CommandViewer,
+  Setting,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -65,6 +66,7 @@ const Routes = ({ history }) => (
         </Route>
       </Route>
       <Route name="Viewer" path="viewer" component={CommandViewer} />
+      <Route name="Setting" path="setting" component={Setting} />
     </Route>
   </Router>
 );

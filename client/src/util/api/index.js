@@ -13,6 +13,8 @@ export default {
   login: () => API.post('login'),
 };
 
+export const setHost = newHost => API.setHost(newHost);
+
 export {
   order,
   dish,

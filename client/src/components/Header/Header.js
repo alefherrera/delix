@@ -18,6 +18,7 @@ const Menu = (
     <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
     <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
     <Link to="/viewer"><MenuItem primaryText="Comandas" /></Link>
+    <Link to="/setting"><MenuItem primaryText="Settings" /></Link>
   </IconMenu>
 );
 

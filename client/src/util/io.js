@@ -1,5 +1,4 @@
 import io from 'socket.io-client';
+import { getHost } from './api/api';
 
-const HOST = `http://${location.hostname}:3002`;
-
-export default () => io(HOST);
+export default () => io(`${getHost()}:3002`);

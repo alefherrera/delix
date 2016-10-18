@@ -18,6 +18,7 @@ import PromoAdd from './PromoAdd';
 import PromoEdit from './PromoEdit';
 import Sector from './Sector';
 import CommandViewer from './CommandViewer';
+import Setting from './Setting';
 
 export {
   App,
@@ -40,4 +41,5 @@ export {
   PromoEdit,
   Sector,
   CommandViewer,
+  Setting,
 };
