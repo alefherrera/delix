@@ -11,13 +11,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
         String url = "file:///android_asset/index.html";
 
         WebView view = (WebView) findViewById(R.id.webView);
         view.getSettings().setJavaScriptEnabled(true);
         // view.getSettings().setBuiltInZoomControls(true);
         view.loadUrl(url);
+        setContentView(view);
         WebView.setWebContentsDebuggingEnabled(true);
         view.setWebViewClient(new WebViewClient(){
 
