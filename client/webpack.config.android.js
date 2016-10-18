@@ -12,7 +12,7 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, 'dist/android'),
+    path: path.resolve(__dirname, '../android/delix/app/src/main/assets'),
     publicPath: '/static/',
     filename: 'bundle.js',
   },
