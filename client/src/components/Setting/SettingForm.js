@@ -19,7 +19,7 @@ class SettingForm extends React.Component {
     const { hostname } = this.state;
     return (
       <Card>
-        <CardTitle title="Producto" />
+        <CardTitle title="Setting" />
         <form onSubmit={this.handleSubmit}>
           <CardText>
             <Grid fluid>
