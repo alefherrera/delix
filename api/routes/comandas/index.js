@@ -1,5 +1,4 @@
 const { Models } = require('../../db');
-//const util = require('./util');
 
 module.exports = (router, io) => {
 
@@ -71,7 +70,7 @@ module.exports = (router, io) => {
     });
 
     router.get('/comandas', (req, res) => {
-      Models.pedidos.findAll(searchParam).then(result => res.json(result));
+      Models.pedidos.findAll(Object.assign(searchParam, { where: { pedidoEstadoId: 1 } })).then(result => res.json(result));
     });
 
 };

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import CommandViewerItem from './CommandViewerItem';
+import CommandViewerOrder from './CommandViewerOrder';
 import { Card, CardText } from 'material-ui/Card';
 
 const CommandViewerForm = ({ orders }) => (
@@ -7,9 +7,10 @@ const CommandViewerForm = ({ orders }) => (
     <CardText>
       {
         orders.map((order, i) => (
-          <CommandViewerItem
+          <CommandViewerOrder
             key={i}
-            order={order}
+            title={order.grupoDeMesas.nombre}
+            time={order.createdAt}
             commands={order.comandas}
           />
         ))

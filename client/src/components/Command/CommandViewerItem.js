@@ -1,26 +1,17 @@
 import React, { PropTypes } from 'react';
-import { Card, CardTitle, CardText } from 'material-ui/Card';
-import styles from './style.css';
+import { ListItem } from 'material-ui/List';
 
-const CommandViewerItem = ({ title, time, commands }) => (
-  <Card className={styles.item}>
-    <CardTitle title={title || 'Pedido'} subtitle={time} />
-    <CardText>
-      {
-        commands.map((command, i) => (
-          <div key={i}>
-            {command.text || 'comanda'}
-          </div>
-        ))
-      }
-    </CardText>
-  </Card>
+const CommandViewerItem = ({ command }) => (
+  <ListItem
+    disabled
+    secondaryTextLines={2}
+    primaryText={command.text}
+    secondaryText={command.createdAt}
+  />
 );
 
 CommandViewerItem.propTypes = {
-  title: PropTypes.object,
-  time: PropTypes.instanceOf(Date),
-  commands: PropTypes.array,
+  command: PropTypes.object,
 };
 
 export default CommandViewerItem;
