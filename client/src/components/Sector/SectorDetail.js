@@ -18,7 +18,7 @@ const SectorDetail = ({ tables, onSelect }) => (
             <TableRowColumn>{table.nombre}</TableRowColumn>
             <TableRowColumn>{table.capacidad}</TableRowColumn>
             <TableRowColumn>
-              {table.pedidos.length && table.pedidos[0].pedidoEstadoId === 1 ? 'Ocupada' : 'Libre'}
+              {table.grupoDeMesasEstado.descripcion}
             </TableRowColumn>
           </TableRow>
         ))

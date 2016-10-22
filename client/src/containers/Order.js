@@ -6,10 +6,10 @@ import * as actions from '../actions/order';
 class Order extends React.Component {
 
   componentWillMount() {
-    this.props.createOrder({
+    /*this.props.createOrder({
       usuarioId: 1,
       grupoDeMesasId: this.props.params.mesaId,
-    });
+    });*/
   }
 
   render() {

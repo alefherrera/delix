@@ -4,6 +4,7 @@ const navigation = ({ getState, dispatch }) => next => action => {
   if (action.meta) {
     if (typeof action.meta === 'function') {
       const param = action.meta(action.payload);
+      if (param === null) return next(action);
       const pathname = getState().routing.locationBeforeTransitions.pathname;
       let base = `${pathname}/`;
       if (typeof param === 'string' && param.startsWith('/')) {

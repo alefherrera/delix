@@ -7,6 +7,7 @@ module.exports = router => {
             include: {
                 model: Models.grupoDeMesas,
                 include: [
+                  Models.grupoDeMesasEstado,
                     {
                         model: Models.pedidos,
                         limit: 1,

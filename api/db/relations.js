@@ -9,6 +9,9 @@ module.exports = (models) => {
     models.pedidoEstado.hasMany(models.pedidos);
     models.pedidos.belongsTo(models.pedidoEstado);
 
+    models.grupoDeMesasEstado.hasMany(models.grupoDeMesas);
+    models.grupoDeMesas.belongsTo(models.grupoDeMesasEstado);
+
     models.pedidos.hasMany(models.comandas);
     models.comandas.belongsTo(models.pedidos);
 

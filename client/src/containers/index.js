@@ -19,6 +19,7 @@ import PromoEdit from './PromoEdit';
 import Sector from './Sector';
 import CommandViewer from './CommandViewer';
 import Setting from './Setting';
+import Table from './Table';
 
 export {
   App,
@@ -42,4 +43,5 @@ export {
   Sector,
   CommandViewer,
   Setting,
+  Table,
 };

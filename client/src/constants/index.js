@@ -4,9 +4,13 @@ export const SET_HOSTNAME = 'SET_HOSTNAME';
 export const GET_SECTORS = 'GET_SECTORS';
 export const GET_TABLES = 'GET_TABLES';
 export const SET_TABLE = 'SET_TABLE';
+export const GET_TABLE = 'GET_TABLE';
+export const TAKE_TABLE = 'TAKE_TABLE';
+export const FREE_TABLE = 'FREE_TABLE';
 
 export const CREATE_ORDER = 'CREATE_ORDER';
 export const GET_ORDER = 'GET_ORDER';
+export const HAVE_ORDER = 'HAVE_ORDER';
 export const GET_ORDERS = 'GET_ORDERS';
 export const CHANGE_ORDER_STATE = 'CHANGE_ORDER_STATE';
 export const CLOSE_ORDER = 'CLOSE_ORDER';

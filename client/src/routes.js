@@ -20,6 +20,7 @@ import {
   PromoAdd,
   PromoEdit,
   Sector,
+  Table,
   CommandViewer,
   Setting,
 } from './containers';
@@ -45,7 +46,7 @@ const Routes = ({ history }) => (
       <Route name="Table" path="sector">
         <IndexRoute component={Sector} />
         <Route name="Pedido" path=":mesaId">
-          <IndexRoute component={Order} />
+          <IndexRoute component={Table} />
           <Route path=":pedidoId">
             <IndexRoute component={OrderAdd} />
             <Route name="Comanda" path="comanda">
