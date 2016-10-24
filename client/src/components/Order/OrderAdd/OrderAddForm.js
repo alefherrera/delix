@@ -8,8 +8,12 @@ import OrderLineList from './OrderLineList';
 import styles from './style.css';
 
 const OrderAddForm = (
-  { promos, products, dishes, onSendOrderLines, onCloseOrder,
-    linkPromo, linkProduct, linkDish, order }) => (
+  { onSendOrderLines, onCloseOrder,
+    linkPromo, linkProduct, linkDish, order,
+    promoStatusClick, promoRemoveClick,
+    productStatusClick, productRemoveClick,
+    dishStatusClick, dishRemoveClick,
+  }) => (
   <Card>
     <CardTitle>
       Pedido
@@ -20,28 +24,31 @@ const OrderAddForm = (
           <OrderLineList
             title="Promociones"
             link={linkPromo}
-            pending={promos}
-            saved={order.promos}
+            items={order.promos}
             getPrimary={item => item.nombre}
             getSecondary={item => item.quantity}
+            statusClick={promoStatusClick}
+            removeClick={promoRemoveClick}
           />
           <Divider />
           <OrderLineList
             title="Productos"
             link={linkProduct}
-            pending={products}
-            saved={order.products}
+            items={order.products}
             getPrimary={item => item.descripcion}
             getSecondary={item => item.quantity}
+            statusClick={productStatusClick}
+            removeClick={productRemoveClick}
           />
           <Divider />
           <OrderLineList
             title="Platos"
             link={linkDish}
-            pending={dishes}
-            saved={order.dishes}
+            items={order.dishes}
             getPrimary={item => item.nombre}
             getSecondary={item => item.quantity}
+            statusClick={dishStatusClick}
+            removeClick={dishRemoveClick}
           />
         </Card>
       </List>
@@ -63,14 +70,17 @@ const OrderAddForm = (
 
 OrderAddForm.propTypes = {
   order: PropTypes.object,
-  promos: PropTypes.array,
-  products: PropTypes.array,
-  dishes: PropTypes.array,
   onSendOrderLines: PropTypes.func,
   onCloseOrder: PropTypes.func,
   linkPromo: PropTypes.string,
   linkProduct: PropTypes.string,
   linkDish: PropTypes.string,
+  promoStatusClick: PropTypes.func,
+  promoRemoveClick: PropTypes.func,
+  productStatusClick: PropTypes.func,
+  productRemoveClick: PropTypes.func,
+  dishStatusClick: PropTypes.func,
+  dishRemoveClick: PropTypes.func,
 };
 
 export default OrderAddForm;

@@ -5,8 +5,11 @@ import {
   CLOSE_ORDER,
   ADD_ORDERLINE,
   ADD_ORDERLINE_PROMO,
+  DELETE_ORDERLINE_PROMO,
   ADD_ORDERLINE_PRODUCT,
+  DELETE_ORDERLINE_PRODUCT,
   ADD_ORDERLINE_DISH,
+  DELETE_ORDERLINE_DISH,
   EDIT_ORDERLINE,
   SEND_ORDERLINES,
 } from '../constants';
@@ -15,9 +18,6 @@ import { handleActions } from 'redux-actions';
 import { groupBy, forEach } from 'lodash';
 
 const initialState = {
-  promos: [],
-  products: [],
-  dishes: [],
   current: null,
   list: [],
 };
@@ -27,7 +27,8 @@ const groupById = array => {
   const ret = [];
   forEach(grouped, value => {
     ret.push({
-      ...value[0],
+      ...value[0][0],
+      estado: value[0].estado,
       quantity: value.length,
     });
   });
@@ -42,9 +43,15 @@ const groupCommands = comandas => {
   };
   if (!comandas) return ret;
   comandas.forEach(comanda => {
-    if (comanda.platos.length) ret.dishes.push(...comanda.platos);
-    if (comanda.productos.length) ret.products.push(...comanda.productos);
-    if (comanda.promos.length) ret.promos.push(...comanda.promos);
+    if (comanda.platos.length) {
+      ret.dishes.push({ ...comanda.platos, estado: comanda.comandaEstadoId });
+    }
+    if (comanda.productos.length) {
+      ret.products.push({ ...comanda.productos, estado: comanda.comandaEstadoId });
+    }
+    if (comanda.promos.length) {
+      ret.promos.push({ ...comanda.promos, estado: comanda.comandaEstadoId });
+    }
   });
   ret.dishes = groupById(ret.dishes);
   ret.products = groupById(ret.products);
@@ -57,6 +64,8 @@ const transformOrder = order => ({
   ...groupCommands(order.comandas),
 });
 
+const removeCondition = payload => x => x.id !== payload.id || x.estado !== payload.estado;
+
 export default handleActions({
   [GET_ORDER]: (state, action) => ({ ...state, current: transformOrder(action.payload) }),
   [GET_ORDERS]: (state, { payload }) => ({ ...state, list: payload }),
@@ -65,24 +74,54 @@ export default handleActions({
   [ADD_ORDERLINE]: (state, action) => ({ ...state, current: action.payload }),
   [ADD_ORDERLINE_PROMO]: (state, { payload }) => ({
     ...state,
-    promos: [
-      ...state.promos,
-      payload,
-    ],
+    current: {
+      ...state.current,
+      promos: [
+        ...state.current.promos,
+        payload,
+      ],
+    },
+  }),
+  [DELETE_ORDERLINE_PROMO]: (state, { payload }) => ({
+    ...state,
+    current: {
+      ...state.current,
+      promos: state.current.promos.filter(removeCondition(payload)),
+    },
   }),
   [ADD_ORDERLINE_PRODUCT]: (state, { payload }) => ({
     ...state,
-    products: [
-      ...state.products,
-      payload,
-    ],
+    current: {
+      ...state.current,
+      products: [
+        ...state.current.products,
+        payload,
+      ],
+    },
+  }),
+  [DELETE_ORDERLINE_PRODUCT]: (state, { payload }) => ({
+    ...state,
+    current: {
+      ...state.current,
+      products: state.current.products.filter(removeCondition(payload)),
+    },
   }),
   [ADD_ORDERLINE_DISH]: (state, { payload }) => ({
     ...state,
-    dishes: [
-      ...state.dishes,
-      payload,
-    ],
+    current: {
+      ...state.current,
+      dishes: [
+        ...state.current.dishes,
+        payload,
+      ],
+    },
+  }),
+  [DELETE_ORDERLINE_DISH]: (state, { payload }) => ({
+    ...state,
+    current: {
+      ...state.current,
+      dishes: state.current.dishes.filter(removeCondition(payload)),
+    },
   }),
   [EDIT_ORDERLINE]: (state, action) => ({ ...state, current: action.payload }),
   [SEND_ORDERLINES]: (state, action) =>

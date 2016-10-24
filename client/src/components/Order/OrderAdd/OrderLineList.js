@@ -2,74 +2,85 @@ import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 import { ListItem } from 'material-ui/List';
 import ContentAdd from 'material-ui/svg-icons/content/add';
-import OrderLineListItem from './OrderLineListItem';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Card, CardText } from 'material-ui/Card';
+import Restaurant from 'material-ui/svg-icons/maps/restaurant';
+import Close from 'material-ui/svg-icons/navigation/close';
+// import Send from 'material-ui/svg-icons/content/send';
+import Alarm from 'material-ui/svg-icons/action/alarm';
+import IconButton from 'material-ui/IconButton';
 
-/* const merge = (first, second) => {
-  if (!first) return second;
-  if (!second) return first;
-  return [...first, ...second];
-}; */
+const getStatus = item => {
+  switch (item.estado) {
+    case 1:
+      return <Restaurant />;
+    default:
+      return <Alarm />;
+  }
+};
 
-const OrderLineList = ({ title, link, saved, pending, getPrimary, getSecondary }) => {
-  /* const renderItem = isSaved => (item, i) => (
+const OrderLineList = ({ title, link, items, getPrimary,
+  getSecondary, statusClick, removeClick }) => (
+  <div>
     <ListItem
-      key={i}
       disabled
-      primaryText={getPrimary(item)}
-      secondaryText={getSecondary(item)}
+      open
+      primaryText={title}
       rightIcon={
-        <div>
-          <Grid>
-            <Row>
-              <Col xs>
-                <RaisedButton label="Entregar" />
-              </Col>
-              <Col xs>
-                {
-                  isSaved ? <NavigationCheck /> : undefined
-                }
-              </Col>
-            </Row>
-          </Grid>
-
-        </div>
+        <Link to={link}>
+          <ContentAdd />
+        </Link>
       }
     />
-  ); */
-
-  return (
-    <div>
-      <ListItem
-        disabled
-        open
-        primaryText={title}
-        rightIcon={
-          <Link to={link}>
-            <ContentAdd />
-          </Link>
-        }
-        /* nestedItems={
-        merge(saved && saved.map(renderItem(true)),
-        pending && pending.map((item, i) => renderItem(false)(item, saved.length + i)))
-        } */
-      />
-      <OrderLineListItem
-        items={pending}
-        saved={saved}
-        getPrimary={getPrimary}
-        getSecondary={getSecondary}
-      />
-    </div>
-  );
-};
+    <Card>
+      <CardText>
+        <Grid>
+          <Row>
+            <Col xs={8}>
+              Descripcion
+            </Col>
+            <Col xs={1}>
+              #
+            </Col>
+            <Col xs={3}>
+              Estado
+            </Col>
+          </Row>
+          {
+            items && items.map((item, i) => (
+              <Row key={i} middle="xs">
+                <Col xs={8}>
+                  {getPrimary(item)}
+                </Col>
+                <Col xs={1}>
+                  {getSecondary(item)}
+                </Col>
+                <Col xs={3}>
+                  <IconButton onTouchTap={() => statusClick(item)}>
+                    {getStatus(item)}
+                  </IconButton>
+                  <IconButton onTouchTap={() => removeClick(item)}>
+                    <Close />
+                  </IconButton>
+                </Col>
+              </Row>
+            )
+            )
+          }
+        </Grid>
+      </CardText>
+    </Card>
+  </div>
+);
 
 OrderLineList.propTypes = {
   title: PropTypes.string,
   link: PropTypes.string,
-  saved: PropTypes.array,
-  pending: PropTypes.array,
+  items: PropTypes.array,
   getPrimary: PropTypes.func,
   getSecondary: PropTypes.func,
+  statusClick: PropTypes.func,
+  removeClick: PropTypes.func,
 };
 
 export default OrderLineList;
