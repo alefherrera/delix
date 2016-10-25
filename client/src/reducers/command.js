@@ -24,7 +24,7 @@ const formatOrder = order => {
   });
   return {
     ...order,
-    comandas,
+    comandas: comandas.filter(x => x.text !== ''),
   };
 };
 
@@ -44,7 +44,7 @@ export default handleActions({
   [GET_COMMANDS]: (state, { payload }) => (
     {
       ...state,
-      list: formatList(payload).filter(x => x.text),
+      list: formatList(payload),
     }
   ),
   [ADD_COMMANDS]: (state, { payload }) => {

@@ -15,7 +15,12 @@ module.exports = (router, Models, io) => {
     .then(comandas =>
       Promise.all(comandas.map(comanda => comanda.destroy()))
     )
-    .then(() => res.json(filter));
+    .then(result => {
+      result.forEach(r => {
+        io.emit('delete:command', r);
+      });
+      res.json(filter);
+    });
   });
 
   router.post('/comandas/promo/status', (req, res) => {
