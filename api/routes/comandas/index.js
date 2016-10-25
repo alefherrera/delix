@@ -40,7 +40,10 @@ module.exports = (router, io) => {
               model: Models.comandas,
               include: [
                   {
-                      model: Models.productos
+                      model: Models.productos,
+                      where: {
+                        esFinal: false,
+                      }
                   }, {
                       model: Models.platos
                   }, {
