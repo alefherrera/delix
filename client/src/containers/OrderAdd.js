@@ -23,19 +23,25 @@ class OrderAdd extends React.Component {
     closeOrder(current.id);
   }
 
-  handlePromoStatusClick = promo => promo;
+  handlePromoStatusClick = promo => {
+    this.props.changeStatusOrderLinePromo(promo);
+  }
 
   handlePromoRemoveClick = promo => {
     this.props.deleteOrderLinePromo(promo);
   }
 
-  handleProductStatusClick = product => product;
+  handleProductStatusClick = product => {
+    this.props.changeStatusOrderLineProduct(product);
+  }
 
   handleProductRemoveClick = product => {
     this.props.deleteOrderLineProduct(product);
   }
 
-  handleDishStatusClick = dish => dish;
+  handleDishStatusClick = dish => {
+    this.props.changeStatusOrderLineDish(dish);
+  }
 
   handleDishRemoveClick = dish => {
     this.props.deleteOrderLineDish(dish);
@@ -72,8 +78,11 @@ OrderAdd.propTypes = {
   getOrder: PropTypes.func,
   params: PropTypes.object,
   deleteOrderLinePromo: PropTypes.func,
+  changeStatusOrderLinePromo: PropTypes.func,
   deleteOrderLineProduct: PropTypes.func,
+  changeStatusOrderLineProduct: PropTypes.func,
   deleteOrderLineDish: PropTypes.func,
+  changeStatusOrderLineDish: PropTypes.func,
 };
 
 export default connect(state => state.order, { ...actions })(OrderAdd);

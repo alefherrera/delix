@@ -6,7 +6,8 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { Card, CardText } from 'material-ui/Card';
 import Restaurant from 'material-ui/svg-icons/maps/restaurant';
 import Close from 'material-ui/svg-icons/navigation/close';
-// import Send from 'material-ui/svg-icons/content/send';
+import Done from 'material-ui/svg-icons/action/done';
+import DoneAll from 'material-ui/svg-icons/action/done-all';
 import Alarm from 'material-ui/svg-icons/action/alarm';
 import IconButton from 'material-ui/IconButton';
 
@@ -14,10 +15,16 @@ const getStatus = item => {
   switch (item.estado) {
     case 1:
       return <Restaurant />;
+    case 2:
+      return <Done />;
+    case 3:
+      return <DoneAll />;
     default:
       return <Alarm />;
   }
 };
+
+const showDelete = item => !item.estado || item.estado === 1;
 
 const OrderLineList = ({ title, link, items, getPrimary,
   getSecondary, statusClick, removeClick }) => (
@@ -59,9 +66,11 @@ const OrderLineList = ({ title, link, items, getPrimary,
                   <IconButton onTouchTap={() => statusClick(item)}>
                     {getStatus(item)}
                   </IconButton>
-                  <IconButton onTouchTap={() => removeClick(item)}>
-                    <Close />
-                  </IconButton>
+                  {
+                    showDelete(item) && <IconButton onTouchTap={() => removeClick(item)}>
+                      <Close />
+                    </IconButton>
+                  }
                 </Col>
               </Row>
             )

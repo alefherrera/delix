@@ -1,30 +1,32 @@
 const { Models } = require('../../db');
 
 module.exports = (router, io) => {
-
-    const searchParam = {
-        include: [
-            {
-                model: Models.usuarios
-            }, {
-                model: Models.grupoDeMesas
-            }, {
-                model: Models.pedidoEstado
-            }, {
-                model: Models.comandas,
-                include: [
-                    {
-                        model: Models.productos
-                    }, {
-                        model: Models.platos
-                    }, {
-                        model: Models.promos
-                    }
-                ]
-            }
-        ],
-        order: 'updatedAt'
-    };
+  require('./promo')(router, Models);
+  require('./producto')(router, Models);
+  require('./plato')(router, Models);
+  const searchParam = {
+      include: [
+          {
+              model: Models.usuarios
+          }, {
+              model: Models.grupoDeMesas
+          }, {
+              model: Models.pedidoEstado
+          }, {
+              model: Models.comandas,
+              include: [
+                  {
+                      model: Models.productos
+                  }, {
+                      model: Models.platos
+                  }, {
+                      model: Models.promos
+                  }
+              ]
+          }
+      ],
+      order: 'updatedAt'
+  };
 
     router.post('/comandas', (req, res) => {
       const comanda = req.body;
@@ -73,64 +75,7 @@ module.exports = (router, io) => {
       Models.pedidos.findAll(Object.assign(searchParam, { where: { pedidoEstadoId: 1 } })).then(result => res.json(result));
     });
 
-    router.post('/comandas/producto/delete', (req, res) => {
-      const filter = req.body;
-      Models.comandas.findAll({
-        where: {
-          pedidoId: filter.pedidoId,
-        },
-        include: [{
-          model: Models.productos,
-          where: {
-            id: filter.id,
-          }
-        }]
-      })
-      .then(comandas =>
-        Promise.all(comandas.map(comanda => comanda.destroy()))
-      )
-      .then(() => res.json(filter));
-    });
-
-    router.post('/comandas/promo/delete', (req, res) => {
-      const filter = req.body;
-      Models.comandas.findAll({
-        where: {
-          pedidoId: filter.pedidoId,
-        },
-        include: [{
-          model: Models.promos,
-          where: {
-            id: filter.id,
-          }
-        }]
-      })
-      .then(comandas =>
-        Promise.all(comandas.map(comanda => comanda.destroy()))
-      )
-      .then(() => res.json(filter));
-    });
-
-    router.post('/comandas/plato/delete', (req, res) => {
-      const filter = req.body;
-      Models.comandas.findAll({
-        where: {
-          pedidoId: filter.pedidoId,
-        },
-        include: [{
-          model: Models.platos,
-          where: {
-            id: filter.id,
-          }
-        }]
-      })
-      .then(comandas =>
-        Promise.all(comandas.map(comanda => comanda.destroy()))
-      )
-      .then(() => res.json(filter));
-    });
-
-    router.post('/comandas/estado', (req, res) => {
+    router.post('/comandas/promo/status', (req, res) => {
       Models.comandas.findAll().then(r => res.json(r));
     });
 
