@@ -6,10 +6,13 @@ import {
   ADD_ORDERLINE,
   ADD_ORDERLINE_PROMO,
   DELETE_ORDERLINE_PROMO,
+  CHANGE_STATUS_ORDERLINE_PROMO,
   ADD_ORDERLINE_PRODUCT,
   DELETE_ORDERLINE_PRODUCT,
+  CHANGE_STATUS_ORDERLINE_PRODUCT,
   ADD_ORDERLINE_DISH,
   DELETE_ORDERLINE_DISH,
+  CHANGE_STATUS_ORDERLINE_DISH,
   EDIT_ORDERLINE,
   SEND_ORDERLINES,
 } from '../constants';
@@ -27,7 +30,7 @@ const groupById = array => {
   const ret = [];
   forEach(grouped, value => {
     ret.push({
-      ...value[0][0],
+      ...value[0],
       estado: value[0].estado,
       pedidoId: value[0].pedidoId,
       quantity: value.length,
@@ -49,21 +52,21 @@ const groupCommands = comandas => {
       pedidoId: comanda.pedidoId,
     };
 
-    if (comanda.platos.length) {
+    if (comanda.platos && comanda.platos.length) {
       ret.dishes.push({
-        ...comanda.platos,
+        ...comanda.platos[0],
         ...extend,
       });
     }
-    if (comanda.productos.length) {
+    if (comanda.productos && comanda.productos.length) {
       ret.products.push({
-        ...comanda.productos,
+        ...comanda.productos[0],
         ...extend,
       });
     }
-    if (comanda.promos.length) {
+    if (comanda.promos && comanda.promos.length) {
       ret.promos.push({
-        ...comanda.promos,
+        ...comanda.promos[0],
         ...extend,
       });
     }
@@ -104,6 +107,17 @@ export default handleActions({
       promos: state.current.promos.filter(removeCondition(payload)),
     },
   }),
+  [CHANGE_STATUS_ORDERLINE_PROMO]: (state, { payload }) => {
+    const command = groupCommands(payload).promos[0];
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        promos: state.current.promos.map(promo =>
+          (promo.id === command.id ? { ...promo, estado: command.estado } : promo)),
+      },
+    };
+  },
   [ADD_ORDERLINE_PRODUCT]: (state, { payload }) => ({
     ...state,
     current: {
@@ -121,6 +135,17 @@ export default handleActions({
       products: state.current.products.filter(removeCondition(payload)),
     },
   }),
+  [CHANGE_STATUS_ORDERLINE_PRODUCT]: (state, { payload }) => {
+    const command = groupCommands(payload).products[0];
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        products: state.current.products.map(product =>
+          (product.id === command.id ? { ...product, estado: command.estado } : product)),
+      },
+    };
+  },
   [ADD_ORDERLINE_DISH]: (state, { payload }) => ({
     ...state,
     current: {
@@ -138,6 +163,17 @@ export default handleActions({
       dishes: state.current.dishes.filter(removeCondition(payload)),
     },
   }),
+  [CHANGE_STATUS_ORDERLINE_DISH]: (state, { payload }) => {
+    const command = groupCommands(payload).dishes[0];
+    return {
+      ...state,
+      current: {
+        ...state.current,
+        dishes: state.current.dishes.map(dish =>
+          (dish.id === command.id ? { ...dish, estado: command.estado } : dish)),
+      },
+    };
+  },
   [EDIT_ORDERLINE]: (state, action) => ({ ...state, current: action.payload }),
   [SEND_ORDERLINES]: (state, action) =>
   (

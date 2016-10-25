@@ -29,11 +29,11 @@ export const sendOrderLines = createAction(SEND_ORDERLINES,
   current => {
     const comandas = {
       pedidoId: current.id,
-      promos: current.promos.filter(x => !x.comandaEstadoId)
+      promos: current.promos.filter(x => !x.estado)
       .map(promo => ({ id: promo.id, cant: promo.quantity })),
-      productos: current.products.filter(x => !x.comandaEstadoId)
+      productos: current.products.filter(x => !x.estado)
       .map(product => ({ id: product.id, cant: product.quantity })),
-      platos: current.dishes.filter(x => !x.comandaEstadoId)
+      platos: current.dishes.filter(x => !x.estado)
       .map(dish => ({ id: dish.id, cant: dish.quantity })),
     };
     return order.add(comandas);
