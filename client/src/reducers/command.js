@@ -47,12 +47,13 @@ export default handleActions({
       list: formatList(payload),
     }
   ),
-  [ADD_COMMANDS]: (state, { payload }) => (
-    {
+  [ADD_COMMANDS]: (state, { payload }) => {
+    if (!payload) return state;
+    return {
       ...state,
       list: [...state.list.filter(x => x.id !== payload.id), formatOrder(payload)],
-    }
-  ),
+    };
+  },
   [ADD_COMMAND]: (state, { payload }) => (
     {
       ...state,
