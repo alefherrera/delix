@@ -37,7 +37,7 @@ const addCommand = (order, command) => ({
 
 const deleteCommand = (order, command) => ({
   ...order,
-  comandas: order.comandas.filter(x => x.id !== command.id),
+  comandas: order.comandas.filter(x => x.id !== command.id && x.text !== ''),
 });
 
 export default handleActions({
