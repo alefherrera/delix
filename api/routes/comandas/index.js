@@ -43,7 +43,8 @@ module.exports = (router, io) => {
                       model: Models.productos,
                       where: {
                         esFinal: false,
-                      }
+                      },
+                      required: false,
                   }, {
                       model: Models.platos
                   }, {
