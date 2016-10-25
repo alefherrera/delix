@@ -8,10 +8,13 @@ import {
   ADD_ORDERLINE,
   ADD_ORDERLINE_PROMO,
   DELETE_ORDERLINE_PROMO,
+  CHANGE_STATUS_ORDERLINE_PROMO,
   ADD_ORDERLINE_PRODUCT,
   DELETE_ORDERLINE_PRODUCT,
+  CHANGE_STATUS_ORDERLINE_PRODUCT,
   ADD_ORDERLINE_DISH,
   DELETE_ORDERLINE_DISH,
+  CHANGE_STATUS_ORDERLINE_DISH,
   EDIT_ORDERLINE,
   POST_ORDERLINES,
 } from '../constants';
@@ -51,10 +54,25 @@ export const editOrderLine = createAction(EDIT_ORDERLINE);
 export const postOrderLines = createAction(POST_ORDERLINES);
 export const addOrderLinePromo = createAction(ADD_ORDERLINE_PROMO, null,
   (obj, { mesaId, pedidoId }) => () => `/sector/${mesaId}/${pedidoId}`);
-export const deleteOrderLinePromo = createAction(DELETE_ORDERLINE_PROMO);
+export const deleteOrderLinePromo = createAction(DELETE_ORDERLINE_PROMO, promo => {
+  if (promo.estado === 1) return order.delete.promo(promo);
+  return promo;
+});
+export const changeStatusOrderLinePromo =
+  createAction(CHANGE_STATUS_ORDERLINE_PROMO, order.status.promo);
 export const addOrderLineProduct = createAction(ADD_ORDERLINE_PRODUCT, null,
   (obj, { mesaId, pedidoId }) => () => `/sector/${mesaId}/${pedidoId}`);
-export const deleteOrderLineProduct = createAction(DELETE_ORDERLINE_PRODUCT);
+export const deleteOrderLineProduct = createAction(DELETE_ORDERLINE_PRODUCT, product => {
+  if (product.estado === 1) return order.delete.product(product);
+  return product;
+});
+export const changeStatusOrderLineProduct =
+  createAction(CHANGE_STATUS_ORDERLINE_PRODUCT, order.status.product);
 export const addOrderLineDish = createAction(ADD_ORDERLINE_DISH, null,
   (obj, { mesaId, pedidoId }) => () => `/sector/${mesaId}/${pedidoId}`);
-export const deleteOrderLineDish = createAction(DELETE_ORDERLINE_DISH);
+export const deleteOrderLineDish = createAction(DELETE_ORDERLINE_DISH, dish => {
+  if (dish.estado === 1) return order.delete.dish(dish);
+  return dish;
+});
+export const changeStatusOrderLineDish =
+  createAction(CHANGE_STATUS_ORDERLINE_DISH, order.status.dish);

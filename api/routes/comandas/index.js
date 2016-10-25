@@ -73,4 +73,65 @@ module.exports = (router, io) => {
       Models.pedidos.findAll(Object.assign(searchParam, { where: { pedidoEstadoId: 1 } })).then(result => res.json(result));
     });
 
+    router.post('/comandas/producto/delete', (req, res) => {
+      const filter = req.body;
+      Models.comandas.findAll({
+        where: {
+          pedidoId: filter.pedidoId,
+        },
+        include: [{
+          model: Models.productos,
+          where: {
+            id: filter.id,
+          }
+        }]
+      })
+      .then(comandas =>
+        Promise.all(comandas.map(comanda => comanda.destroy()))
+      )
+      .then(() => res.json(filter));
+    });
+
+    router.post('/comandas/promo/delete', (req, res) => {
+      const filter = req.body;
+      Models.comandas.findAll({
+        where: {
+          pedidoId: filter.pedidoId,
+        },
+        include: [{
+          model: Models.promos,
+          where: {
+            id: filter.id,
+          }
+        }]
+      })
+      .then(comandas =>
+        Promise.all(comandas.map(comanda => comanda.destroy()))
+      )
+      .then(() => res.json(filter));
+    });
+
+    router.post('/comandas/plato/delete', (req, res) => {
+      const filter = req.body;
+      Models.comandas.findAll({
+        where: {
+          pedidoId: filter.pedidoId,
+        },
+        include: [{
+          model: Models.platos,
+          where: {
+            id: filter.id,
+          }
+        }]
+      })
+      .then(comandas =>
+        Promise.all(comandas.map(comanda => comanda.destroy()))
+      )
+      .then(() => res.json(filter));
+    });
+
+    router.post('/comandas/estado', (req, res) => {
+      Models.comandas.findAll().then(r => res.json(r));
+    });
+
 };

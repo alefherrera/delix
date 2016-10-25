@@ -29,6 +29,7 @@ const groupById = array => {
     ret.push({
       ...value[0][0],
       estado: value[0].estado,
+      pedidoId: value[0].pedidoId,
       quantity: value.length,
     });
   });
@@ -43,14 +44,28 @@ const groupCommands = comandas => {
   };
   if (!comandas) return ret;
   comandas.forEach(comanda => {
+    const extend = {
+      estado: comanda.comandaEstadoId,
+      pedidoId: comanda.pedidoId,
+    };
+
     if (comanda.platos.length) {
-      ret.dishes.push({ ...comanda.platos, estado: comanda.comandaEstadoId });
+      ret.dishes.push({
+        ...comanda.platos,
+        ...extend,
+      });
     }
     if (comanda.productos.length) {
-      ret.products.push({ ...comanda.productos, estado: comanda.comandaEstadoId });
+      ret.products.push({
+        ...comanda.productos,
+        ...extend,
+      });
     }
     if (comanda.promos.length) {
-      ret.promos.push({ ...comanda.promos, estado: comanda.comandaEstadoId });
+      ret.promos.push({
+        ...comanda.promos,
+        ...extend,
+      });
     }
   });
   ret.dishes = groupById(ret.dishes);
