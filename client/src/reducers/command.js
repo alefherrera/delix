@@ -28,7 +28,11 @@ const formatOrder = order => {
   };
 };
 
-const formatList = list => list.map(formatOrder);
+const formatList = list => list.reduce((p, c) => {
+  const newOrder = formatOrder(c);
+  if (newOrder.comandas.length === 0) return p;
+  return [...p, newOrder];
+}, []);
 
 const addCommand = (order, command) => ({
   ...order,
@@ -49,9 +53,11 @@ export default handleActions({
   ),
   [ADD_COMMANDS]: (state, { payload }) => {
     if (!payload) return state;
+    const newOrder = formatOrder(payload);
+    if (newOrder.comandas.length === 0) return state;
     return {
       ...state,
-      list: [...state.list.filter(x => x.id !== payload.id), formatOrder(payload)],
+      list: [...state.list.filter(x => x.id !== payload.id), newOrder],
     };
   },
   [ADD_COMMAND]: (state, { payload }) => (
