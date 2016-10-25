@@ -44,7 +44,7 @@ export default handleActions({
   [GET_COMMANDS]: (state, { payload }) => (
     {
       ...state,
-      list: formatList(payload),
+      list: formatList(payload).filter(x => x.text),
     }
   ),
   [ADD_COMMANDS]: (state, { payload }) => {
