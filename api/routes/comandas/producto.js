@@ -1,4 +1,4 @@
-module.exports = (router, Models) => {
+module.exports = (router, Models, io) => {
   router.post('/comandas/producto/delete', (req, res) => {
     const filter = req.body;
     Models.comandas.findAll({
@@ -34,7 +34,12 @@ module.exports = (router, Models) => {
     .then(comandas =>
       Promise.all(comandas.map(comanda => comanda.update({ comandaEstadoId: Math.min(filter.estado, 2) + 1 })))
     )
-    .then(result => res.json(result));
+    .then(result => {
+      result.forEach(r => {
+        io.emit('delete:command', r);
+      });
+      res.json(result);
+    });
   });
 
 }

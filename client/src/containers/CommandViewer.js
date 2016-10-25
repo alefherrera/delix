@@ -9,8 +9,9 @@ class CommandViewer extends React.Component {
   componentWillMount() {
     this.props.getCommands();
     const socket = io();
-    socket.on('add', this.props.addCommand);
-    socket.on('delete', this.props.deleteCommand);
+    socket.on('add', this.props.addCommands);
+    socket.on('delete:command', this.props.deleteCommand);
+    socket.on('delete', this.props.deleteCommands);
   }
 
   render() {
@@ -34,7 +35,9 @@ CommandViewer.propTypes = {
   list: PropTypes.array,
   getCommands: PropTypes.func,
   addCommand: PropTypes.func,
+  addCommands: PropTypes.func,
   deleteCommand: PropTypes.func,
+  deleteCommands: PropTypes.func,
 };
 
 export default connect(

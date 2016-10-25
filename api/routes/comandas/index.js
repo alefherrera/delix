@@ -1,10 +1,10 @@
 const { Models } = require('../../db');
 
 module.exports = (router, io) => {
-  require('./promo')(router, Models);
-  require('./producto')(router, Models);
-  require('./plato')(router, Models);
-  const searchParam = {
+  require('./promo')(router, Models, io);
+  require('./producto')(router, Models, io);
+  require('./plato')(router, Models, io);
+  const postParam = {
       include: [
           {
               model: Models.usuarios
@@ -22,7 +22,34 @@ module.exports = (router, io) => {
                   }, {
                       model: Models.promos
                   }
-              ]
+              ],
+          }
+      ],
+      order: 'updatedAt'
+  };
+
+  const getParam = {
+      include: [
+          {
+              model: Models.usuarios
+          }, {
+              model: Models.grupoDeMesas
+          }, {
+              model: Models.pedidoEstado
+          }, {
+              model: Models.comandas,
+              include: [
+                  {
+                      model: Models.productos
+                  }, {
+                      model: Models.platos
+                  }, {
+                      model: Models.promos
+                  }
+              ],
+              where: {
+                comandaEstadoId: 1,
+              },
           }
       ],
       order: 'updatedAt'
@@ -64,15 +91,17 @@ module.exports = (router, io) => {
           )
         )]
       ).then(() =>
-        Models.pedidos.findById(comanda.pedidoId, searchParam)
+        Models.pedidos.findById(comanda.pedidoId, postParam)
       ).then(pedido => {
-        io.emit('add', pedido);
+        Models.pedidos.findById(pedido.id, Object.assign(getParam, { where: { pedidoEstadoId: 1 } })).then(result => {
+          io.emit('add', result);
+        });
         res.json(pedido);
       })
     });
 
     router.get('/comandas', (req, res) => {
-      Models.pedidos.findAll(Object.assign(searchParam, { where: { pedidoEstadoId: 1 } })).then(result => res.json(result));
+      Models.pedidos.findAll(Object.assign(getParam, { where: { pedidoEstadoId: 1 } })).then(result => res.json(result));
     });
 
     router.post('/comandas/promo/status', (req, res) => {
