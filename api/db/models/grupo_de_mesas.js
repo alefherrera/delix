@@ -19,9 +19,21 @@ module.exports = function(sequelize, DataTypes) {
         model: 'sectores',
         key: 'id'
       }
+    },
+    grupoDeMesasEstadoId: {
+        type: DataTypes.INTEGER(11),
+        allowNull: false,
+        defaultValue: 1,
+        references: {
+            model: 'grupoDeMesasEstado',
+            key: 'id'
+        }
     }
   }, {
     tableName: 'gruposDeMesas',
-    paranoid: true,
+    name: {
+      singular: 'grupoDeMesas',
+      plural: 'gruposDeMesas',
+    },
   });
 };

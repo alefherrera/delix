@@ -16,6 +16,9 @@ import DishEdit from './DishEdit';
 import ProductEdit from './ProductEdit';
 import PromoAdd from './PromoAdd';
 import PromoEdit from './PromoEdit';
+import Sector from './Sector';
+import CommandViewer from './CommandViewer';
+import Setting from './Setting';
 import Table from './Table';
 
 export {
@@ -37,5 +40,8 @@ export {
   ProductEdit,
   PromoAdd,
   PromoEdit,
+  Sector,
+  CommandViewer,
+  Setting,
   Table,
 };

@@ -6,21 +6,16 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 class OrderLineAddForm extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      quantity: 0,
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSave = this.handleSave.bind(this);
-  }
+  state = {
+    quantity: 0,
+  };
 
-  handleChange(e) {
+  handleChange = e => {
     const quantity = parseInt(e.target.value || 0, 10);
     this.setState({ quantity });
   }
 
-  handleSave() {
+  handleSave = () => {
     this.props.onSave(this.state.quantity);
   }
 
@@ -32,13 +27,15 @@ class OrderLineAddForm extends React.Component {
           <Grid fluid>
             <Row>
               <Col xs>
-                {text}
+                <CardText>
+                  {text}
+                </CardText>
               </Col>
               <Col xs>
                 <TextField
                   type="number"
                   min="0"
-                  hintText="Cantidad"
+                  floatingLabelText="Cantidad"
                   value={this.state.quantity}
                   onChange={this.handleChange}
                 />
@@ -48,7 +45,7 @@ class OrderLineAddForm extends React.Component {
         </CardText>
         <CardActions>
           <Grid fluid>
-            <Row>
+            <Row center="xs">
               <Col xs>
                 <RaisedButton label="Agregar" onTouchTap={this.handleSave} />
               </Col>

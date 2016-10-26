@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 import App from './config';
 import { AppContainer } from 'react-hot-loader';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import objectAssign from 'object-assign';
+
+window.Object.assign = window.Object.assign || objectAssign;
 
 injectTapEventPlugin();
 

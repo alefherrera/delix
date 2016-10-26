@@ -5,15 +5,10 @@ import { connect } from 'react-redux';
 
 class OrderDishAdd extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleAdd = this.handleAdd.bind(this);
-  }
-
-  handleAdd(quantity) {
+  handleAdd = quantity => {
     const { selected, addOrderLineDish } = this.props;
     addOrderLineDish({
-      selected,
+      ...selected,
       quantity,
     }, this.props.params);
   }

@@ -1,38 +1,68 @@
 import React, { PropTypes } from 'react';
-import OrderAddForm from '../components/Order/OrderAddForm';
+import OrderAddForm from '../components/Order/OrderAdd/OrderAddForm';
 import { connect } from 'react-redux';
 import * as actions from '../actions/order';
 
 class OrderAdd extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.handleCloseOrder = this.handleCloseOrder.bind(this);
-  }
-
   componentWillMount() {
-    if (!this.props.current) {
-      this.props.getOrder({ id: this.props.params.pedidoId });
+    const { current, params, getOrder } = this.props;
+    const { pedidoId, mesaId } = params;
+    if (!current || current.id !== parseInt(pedidoId, 10)) {
+      getOrder({ id: pedidoId, grupoDeMesasId: mesaId });
     }
   }
 
-  handleCloseOrder() {
-    const { promos, products, dishes, current } = this.props;
-    this.props.closeOrder({
-      promos, products, dishes, current,
-    });
+  handleSendOrderLines = () => {
+    const { current } = this.props;
+    this.props.sendOrderLines(current);
+  }
+
+  handleCloseOrder = () => {
+    const { closeOrder, current } = this.props;
+    closeOrder(current.id);
+  }
+
+  handlePromoStatusClick = promo => {
+    this.props.changeStatusOrderLinePromo(promo);
+  }
+
+  handlePromoRemoveClick = promo => {
+    this.props.deleteOrderLinePromo(promo);
+  }
+
+  handleProductStatusClick = product => {
+    this.props.changeStatusOrderLineProduct(product);
+  }
+
+  handleProductRemoveClick = product => {
+    this.props.deleteOrderLineProduct(product);
+  }
+
+  handleDishStatusClick = dish => {
+    this.props.changeStatusOrderLineDish(dish);
+  }
+
+  handleDishRemoveClick = dish => {
+    this.props.deleteOrderLineDish(dish);
   }
 
   render() {
-    const { location, promos, products, dishes } = this.props;
+    const { current, location } = this.props;
+    if (!current) return null;
     return (
       <OrderAddForm
-        promos={promos}
-        products={products}
-        dishes={dishes}
+        order={current}
+        onSendOrderLines={this.handleSendOrderLines}
         onCloseOrder={this.handleCloseOrder}
+        promoStatusClick={this.handlePromoStatusClick}
+        promoRemoveClick={this.handlePromoRemoveClick}
         linkPromo={`${location.pathname}/comanda/promos`}
+        productStatusClick={this.handleProductStatusClick}
+        productRemoveClick={this.handleProductRemoveClick}
         linkProduct={`${location.pathname}/comanda/productos`}
+        dishStatusClick={this.handleDishStatusClick}
+        dishRemoveClick={this.handleDishRemoveClick}
         linkDish={`${location.pathname}/comanda/platos`}
       />
     );
@@ -42,13 +72,17 @@ class OrderAdd extends React.Component {
 
 OrderAdd.propTypes = {
   location: PropTypes.object,
-  promos: PropTypes.array,
-  products: PropTypes.array,
-  dishes: PropTypes.array,
+  sendOrderLines: PropTypes.func,
   closeOrder: PropTypes.func,
   current: PropTypes.object,
   getOrder: PropTypes.func,
   params: PropTypes.object,
+  deleteOrderLinePromo: PropTypes.func,
+  changeStatusOrderLinePromo: PropTypes.func,
+  deleteOrderLineProduct: PropTypes.func,
+  changeStatusOrderLineProduct: PropTypes.func,
+  deleteOrderLineDish: PropTypes.func,
+  changeStatusOrderLineDish: PropTypes.func,
 };
 
 export default connect(state => state.order, { ...actions })(OrderAdd);

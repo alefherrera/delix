@@ -1,91 +1,117 @@
-//const util = require('./util');
+const util = require('./util');
 const {Models} = require('../db');
 
-module.exports = router => {
+const searchParam = {
+    include: [
+        {
+            model: Models.usuarios
+        }, {
+            model: Models.grupoDeMesas
+        }, {
+            model: Models.pedidoEstado
+        }, {
+            model: Models.comandas,
+            include: [
+                {
+                    model: Models.productos
+                }, {
+                    model: Models.platos
+                }, {
+                    model: Models.promos
+                }
+            ]
+        }
+    ],
+    order: 'updatedAt'
+};
+
+module.exports = (router, io) => {
     //util.abml(router, 'pedidos');
 
     router.get('/pedidos', (req, res) => {
-        const param = {
-            include: [
-                {
-                    model: Models.usuarios
-                }, {
-                    model: Models.grupoDeMesas
-                }, {
-                    model: Models.pedidoEstado
-                }, {
-                    model: Models.comandas,
-                    include: [
-                        {
-                            model: Models.productosPorComandas,
-                            include: {
-                                model: Models.productos
-                            }
-                        }, {
-                            model: Models.platosPorComandas,
-                            include: {
-                                model: Models.platos
-                            }
-                        }, {
-                            model: Models.promosPorComandas,
-                            include: {
-                                model: Models.promos
-                            }
-                        }
-                    ]
-                }
-            ],
-            order: 'updatedAt'
-        };
+        const {pedidoEstadoId} = req.query;
+        if (pedidoEstadoId) {
+            searchParam.where = {
+                pedidoEstadoId
+            };
+        }
 
-        Models.pedidos.findAll(param).then(result => {
-            const resultArray = [];
-            for (let order of result) {
-              if (order.comandas && order.comandas.length > 0) {
-                resultArray.push(order);
-              }
-            }
+        Models.pedidos.findAll(searchParam).then(result => {
+            // const resultArray = [];
+            // for (let order of result) {
+            //     if (order.comandas && order.comandas.length > 0) {
+            //         resultArray.push(order);
+            //     }
+            // }
 
-            res.json(resultArray);
+            res.json(result);
         });
     });
 
+    router.get('/pedidos/:id', (req, res) => {
+        Models.pedidos.findById(req.params.id, searchParam).then(r => res.json(r));
+    });
+
     router.post('/pedidos', (req, res) => {
-        const param = {
-            where: req.body,
-            include: [
-                {
-                    model: Models.usuarios
-                }, {
-                    model: Models.grupoDeMesas
-                }, {
-                    model: Models.pedidoEstado
-                }, {
-                    model: Models.comandas,
-                    include: [
-                        {
-                            model: Models.productosPorComandas,
-                            include: {
-                                model: Models.productos
-                            }
-                        }, {
-                            model: Models.platosPorComandas,
-                            include: {
-                                model: Models.platos
-                            }
-                        }, {
-                            model: Models.promosPorComandas,
-                            include: {
-                                model: Models.promos
-                            }
-                        }
-                    ]
-                }
-            ]
+
+        if (!req.body.grupoDeMesasId) {
+            res.status(500).send('Falta grupoDeMesasId para crear/buscar un pedido.');
+        }
+
+        const param = searchParam;
+        param.where = {
+            grupoDeMesasId: req.body.grupoDeMesasId,
+            pedidoEstadoId: 1
         };
 
-        Models.pedidos.findOrCreate(param).then(result => res.json(result[0]));
+        Models.pedidos.findOne(param).then(function finishFind(result) {
+            if (result) {
+                //hay un pedido abierto para esta mesa
+                res.json(result);
+            } else {
+                if (!req.body.usuarioId)
+                    res.status(500).send('Falta usuarioId para crear un pedido.');
 
+                Models.pedidos.create(req.body).then(function createPedidoCallback(result) {
+                    Models.pedidos.findById(result.id, searchParam).then(function finishFind(result) {
+                        res.json(result);
+                    });
+                }).catch(function createError(err) {
+                    util.errorHandler(res, err);
+                });
+            }
+        });
+    });
+
+    router.put('/pedidos/:pedidoId', (req, res) => {
+        Models.pedidos.findById(req.params.pedidoId).then(function finishFind(pedido) {
+            if (!pedido) {
+              res.status(404).send();
+            }
+            pedido.update(req.body).then(newPedido => {
+              if (newPedido.pedidoEstadoId === 2)
+              {
+                io.emit('delete', newPedido);
+              }
+              res.json(newPedido)
+            });
+
+        }).catch(function errorHandler(err) {
+            util.errorHandler(res, err);
+        });
+    });
+
+    router.put('/pedidos/:pedidoId/comandas/:comandaId', (req, res) => {
+        Models.comandas.findOne({pedidoId: req.params.pedidoId, id: req.params.comandaId})
+        .then(function finishFind(comanda) {
+            if (!comanda) {
+                res.status(404).send();
+            }
+            comanda.update(req.body).then(newComanda => res.json(newComanda));
+
+        }).catch(function errorHandler(err) {
+            util.errorHandler(res, err);
+        });
     });
 
 };

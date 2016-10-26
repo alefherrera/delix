@@ -7,7 +7,7 @@ import ContentAdd from 'material-ui/svg-icons/content/add';
 import { Link } from 'react-router';
 import rowMenu from '../rowMenu';
 
-const PromoForm = ({ promos, editPromo, deletePromo }) => (
+const PromoForm = ({ promos, editPromo, deletePromo, addLink }) => (
   <Card>
     <CardTitle title="Promos" />
     <CardText>
@@ -28,7 +28,7 @@ const PromoForm = ({ promos, editPromo, deletePromo }) => (
         }
       </List>
     </CardText>
-    <Link to={`${location.pathname}/add`}>
+    <Link to={addLink}>
       <Fab>
         <ContentAdd />
       </Fab>
@@ -40,6 +40,7 @@ PromoForm.propTypes = {
   promos: PropTypes.array,
   editPromo: PropTypes.func,
   deletePromo: PropTypes.func,
+  addLink: PropTypes.string,
 };
 
 export default PromoForm;

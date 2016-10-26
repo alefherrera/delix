@@ -15,7 +15,7 @@ export default (method, url, params) => {
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-        method: 'POST',
+        method,
         body: JSON.stringify(params),
       });
   }

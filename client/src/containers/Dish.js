@@ -10,13 +10,18 @@ class Dish extends React.Component {
     this.props.getDishes();
   }
 
+  handleSelect = id => {
+    this.props.history.push(`plato/edit/${id}`);
+  }
+
   render() {
-    const { list, goEditDish, deleteDish } = this.props;
+    const { list, deleteDish } = this.props;
     return (
       <DishForm
         dishes={list}
-        editDish={goEditDish}
+        editDish={this.handleSelect}
         deleteDish={deleteDish}
+        addLink={'plato/add'}
       />
     );
   }
@@ -26,13 +31,13 @@ class Dish extends React.Component {
 Dish.propTypes = {
   list: PropTypes.array,
   getDishes: PropTypes.func,
-  goEditDish: PropTypes.func,
   deleteDish: PropTypes.func,
+  history: PropTypes.object,
 };
 
 export default connect(
   state => state.dish,
   {
     ...actions,
-    goEditDish: id => push(`${location.pathname}/edit/${id}`),
+    goEditDish: id => push(`plato/edit/${id}`),
   })(Dish);

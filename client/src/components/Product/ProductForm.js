@@ -8,7 +8,7 @@ import ProductRow from './ProductRow';
 import Divider from 'material-ui/Divider';
 import rowMenu from '../rowMenu';
 
-const ProductForm = ({ products, editProduct, deleteProduct }) => (
+const ProductForm = ({ products, editProduct, deleteProduct, addLink }) => (
   <Card>
     <CardTitle title="Productos" />
     <CardText>
@@ -33,7 +33,7 @@ const ProductForm = ({ products, editProduct, deleteProduct }) => (
         </Card>
       </List>
     </CardText>
-    <Link to={`${location.pathname}/add`}>
+    <Link to={addLink}>
       <Fab>
         <ContentAdd />
       </Fab>
@@ -45,6 +45,7 @@ ProductForm.propTypes = {
   products: PropTypes.array,
   editProduct: PropTypes.func,
   deleteProduct: PropTypes.func,
+  addLink: PropTypes.string,
 };
 
 export default ProductForm;
