@@ -6,7 +6,7 @@ import { push } from 'react-router-redux';
 
 class Dish extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getDishes();
   }
 

@@ -5,7 +5,7 @@ import * as actions from '../actions/sector';
 
 class Sector extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getSectors();
   }
 

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 class PromoAdd extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { getDishes, getProducts } = this.props;
     getDishes();
     getProducts();

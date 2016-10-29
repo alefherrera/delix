@@ -17,8 +17,8 @@ const Menu = (
     <Link to="/producto"><MenuItem primaryText="Productos" /></Link>
     <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
     <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
-    <Link to="/viewer"><MenuItem primaryText="Comandas" /></Link>
-    <Link to="/setting"><MenuItem primaryText="Settings" /></Link>
+    <Link to="/visor"><MenuItem primaryText="Comandas" /></Link>
+    <Link to="/configuraciones"><MenuItem primaryText="Settings" /></Link>
   </IconMenu>
 );
 

@@ -9,9 +9,6 @@ import DishRow from '../Dish/DishRow';
 import Toggle from 'material-ui/Toggle';
 import { ListItem } from 'material-ui/List';
 import TextField from 'material-ui/TextField';
-import Slider from 'material-ui/Slider';
-import Subheader from 'material-ui/Subheader';
-import debounce from 'lodash/debounce';
 
 class PromoAddForm extends React.Component {
 
@@ -19,7 +16,7 @@ class PromoAddForm extends React.Component {
     productos: [],
     platos: [],
     nombre: '',
-    porcentajeDescuento: 0,
+    precio: 0,
   };
 
   componentWillReceiveProps(nextProps) {
@@ -54,10 +51,6 @@ class PromoAddForm extends React.Component {
     this.setState({ platos });
   }
 
-  handleSliderChange = debounce((e, v) => {
-    this.setState({ porcentajeDescuento: v });
-  }, 300);
-
   handleSubmit = e => {
     e.preventDefault();
     this.props.onSave(this.state);
@@ -65,7 +58,7 @@ class PromoAddForm extends React.Component {
 
   render() {
     const { products, dishes } = this.props;
-    const { nombre, porcentajeDescuento } = this.state;
+    const { nombre, precio } = this.state;
     return (
       <Card>
         <CardTitle title="Promo" />
@@ -137,14 +130,12 @@ class PromoAddForm extends React.Component {
                 </Tab>
               </Tabs>
             </Card>
-            <Subheader>
-              {`Porcentaje de descuento: ${this.state.porcentajeDescuento}%`}
-            </Subheader>
-            <Slider
-              max={100}
-              step={1}
-              value={porcentajeDescuento}
-              onChange={(e, v) => this.handleSliderChange(e, v)}
+            <TextField
+              type="number"
+              min="0"
+              floatingLabelText="Precio"
+              value={precio}
+              onChange={e => this.setState({ precio: parseFloat(e.target.value) })}
             />
           </CardText>
           <CardActions>

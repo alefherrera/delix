@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class DishEdit extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { getDish, params } = this.props;
     getDish(params.dishId);
   }

@@ -5,11 +5,11 @@ import * as actions from '../actions/order';
 
 class OrderAdd extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { current, params, getOrder } = this.props;
-    const { pedidoId, mesaId } = params;
+    const { pedidoId } = params;
     if (!current || current.id !== parseInt(pedidoId, 10)) {
-      getOrder({ id: pedidoId, grupoDeMesasId: mesaId });
+      getOrder(pedidoId);
     }
   }
 

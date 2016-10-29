@@ -5,7 +5,7 @@ import * as actions from '../actions/product';
 
 class PromoList extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getProducts();
   }
 

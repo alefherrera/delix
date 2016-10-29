@@ -20,6 +20,7 @@ import Sector from './Sector';
 import CommandViewer from './CommandViewer';
 import Setting from './Setting';
 import Table from './Table';
+import OrderDetail from './OrderDetail';
 
 export {
   App,
@@ -44,4 +45,5 @@ export {
   CommandViewer,
   Setting,
   Table,
+  OrderDetail,
 };

@@ -6,7 +6,7 @@ import * as orderActions from '../actions/order';
 
 class Table extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { getTable, params } = this.props;
     getTable(params.mesaId);
   }

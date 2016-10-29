@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class ProductEdit extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     const { getProduct, params } = this.props;
     getProduct(params.productId);
   }

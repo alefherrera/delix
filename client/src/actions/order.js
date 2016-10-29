@@ -22,7 +22,7 @@ import { createAction } from 'redux-actions';
 import { order } from '../util/api';
 
 export const createOrder = createAction(CREATE_ORDER, order.create, () => pedido => pedido.id);
-export const getOrder = createAction(GET_ORDER, order.create);
+export const getOrder = createAction(GET_ORDER, order.get);
 export const getOrders = createAction(GET_ORDERS, order.getAll);
 export const changeOrderState = createAction(CHANGE_ORDER_STATE);
 export const sendOrderLines = createAction(SEND_ORDERLINES,
@@ -47,7 +47,7 @@ export const closeOrder = createAction(CLOSE_ORDER,
     };
     return order.update(id, obj);
   },
-  () => () => '/sector'
+  () => () => 'detalle'
 );
 export const addOrderLine = createAction(ADD_ORDERLINE);
 export const editOrderLine = createAction(EDIT_ORDERLINE);

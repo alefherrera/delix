@@ -5,7 +5,7 @@ import * as actions from '../actions/product';
 
 class Product extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getProducts(true);
   }
 
@@ -36,7 +36,5 @@ Product.propTypes = {
 
 export default connect(
   state => state.product,
-  {
-    ...actions
-  }
+  { ...actions }
 )(Product);

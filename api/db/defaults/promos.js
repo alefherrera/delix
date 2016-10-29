@@ -5,12 +5,12 @@ module.exports = ({
         promos.upsert({
             id: 1,
             nombre: 'Menu Kids',
-            porcentajeDescuento: 10
+            precio: 100
         }),
         promos.upsert({
             id: 2,
             nombre: 'Menu Ejecutivo',
-            porcentajeDescuento: 15
+            precio: 110
         })
     );
 };

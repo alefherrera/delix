@@ -59,8 +59,7 @@ const PromoRow = ({ promo, onClick, menu }) => (
           <Col xs={3}>
             <ListItem
               disabled
-              primaryText={`$${promo.precio.total}`}
-              secondaryText={`$${promo.precio.subTotal} - $${promo.precio.descuento}`}
+              primaryText={`$${promo.precio}`}
             />
           </Col>
         </Row>

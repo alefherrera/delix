@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Router, Route, IndexRoute } from 'react-router';
 import {
   App,
-  Order,
+  // Order,
   OrderAdd,
   PromoList,
   ProductList,
@@ -23,6 +23,7 @@ import {
   Table,
   CommandViewer,
   Setting,
+  OrderDetail,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -49,6 +50,7 @@ const Routes = ({ history }) => (
           <IndexRoute component={Table} />
           <Route path=":pedidoId">
             <IndexRoute component={OrderAdd} />
+            <Route name="Detalle" path="detalle" component={OrderDetail} />
             <Route name="Comanda" path="comanda">
               <Route name="Promos" path="promos">
                 <IndexRoute component={PromoList} />
@@ -66,8 +68,8 @@ const Routes = ({ history }) => (
           </Route>
         </Route>
       </Route>
-      <Route name="Viewer" path="viewer" component={CommandViewer} />
-      <Route name="Setting" path="setting" component={Setting} />
+      <Route name="Viewer" path="visor" component={CommandViewer} />
+      <Route name="Setting" path="configuraciones" component={Setting} />
     </Route>
   </Router>
 );

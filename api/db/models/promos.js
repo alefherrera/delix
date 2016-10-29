@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING,
       allowNull: true
     },
-    porcentajeDescuento: {
-      type: DataTypes.INTEGER(11),
+    precio: {
+      type: DataTypes.DECIMAL,
       allowNull: true
     }
   }, {

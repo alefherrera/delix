@@ -6,7 +6,7 @@ import * as actions from '../actions/command';
 
 class CommandViewer extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getCommands();
     const socket = io();
     socket.on('add', this.props.addCommands);

@@ -5,7 +5,7 @@ import * as actions from '../actions/dish';
 
 class DishList extends React.Component {
 
-  componentWillMount() {
+  componentDidMount() {
     this.props.getDishes();
   }
 
