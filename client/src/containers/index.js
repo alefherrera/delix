@@ -21,6 +21,9 @@ import CommandViewer from './CommandViewer';
 import Setting from './Setting';
 import Table from './Table';
 import OrderDetail from './OrderDetail';
+import TimeZone from './TimeZone';
+import TimeZoneAdd from './TimeZoneAdd';
+import TimeZoneEdit from './TimeZoneEdit';
 
 export {
   App,
@@ -46,4 +49,7 @@ export {
   Setting,
   Table,
   OrderDetail,
+  TimeZone,
+  TimeZoneAdd,
+  TimeZoneEdit,
 };

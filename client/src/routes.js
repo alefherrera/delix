@@ -24,6 +24,9 @@ import {
   CommandViewer,
   Setting,
   OrderDetail,
+  TimeZone,
+  TimeZoneAdd,
+  TimeZoneEdit,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -68,8 +71,13 @@ const Routes = ({ history }) => (
           </Route>
         </Route>
       </Route>
-      <Route name="Viewer" path="visor" component={CommandViewer} />
-      <Route name="Setting" path="configuraciones" component={Setting} />
+      <Route name="Visor" path="visor" component={CommandViewer} />
+      <Route name="Configuraciones" path="configuraciones" component={Setting} />
+      <Route name="Franja" path="franja">
+        <IndexRoute component={TimeZone} />
+        <Route name="Add" path="add" component={TimeZoneAdd} />
+        <Route name="Edit" path="edit/:timeZoneId" component={TimeZoneEdit} />
+      </Route>
     </Route>
   </Router>
 );

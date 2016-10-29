@@ -7,6 +7,7 @@ import product from './product';
 import dish from './dish';
 import command from './command';
 import table from './table';
+import timeZone from './timeZone';
 
 export default {
   login,
@@ -17,4 +18,5 @@ export default {
   dish,
   command,
   table,
+  timeZone,
 };

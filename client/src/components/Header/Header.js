@@ -19,6 +19,7 @@ const Menu = (
     <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
     <Link to="/visor"><MenuItem primaryText="Comandas" /></Link>
     <Link to="/configuraciones"><MenuItem primaryText="Settings" /></Link>
+    <Link to="/franja"><MenuItem primaryText="Franjas" /></Link>
   </IconMenu>
 );
 
