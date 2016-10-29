@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import ProductForm from '../components/Product/ProductForm';
+import ProductForm from '../../components/Product/ProductForm';
 import { connect } from 'react-redux';
-import * as actions from '../actions/product';
+import * as actions from '../../actions/product';
 
 class Product extends React.Component {
 

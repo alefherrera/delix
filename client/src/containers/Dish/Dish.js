@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import DishForm from '../components/Dish/DishForm';
+import DishForm from '../../components/Dish/DishForm';
 import { connect } from 'react-redux';
-import * as actions from '../actions/dish';
+import * as actions from '../../actions/dish';
 import { push } from 'react-router-redux';
 
 class Dish extends React.Component {

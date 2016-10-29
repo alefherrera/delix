@@ -1,8 +1,8 @@
 import React, { PropTypes } from 'react';
-import PromoAddForm from '../components/Promo/PromoAddForm';
-import * as actions from '../actions/promo';
-import * as dishActions from '../actions/dish';
-import * as productActions from '../actions/product';
+import PromoAddForm from '../../components/Promo/PromoAddForm';
+import * as actions from '../../actions/promo';
+import * as dishActions from '../../actions/dish';
+import * as productActions from '../../actions/product';
 import { connect } from 'react-redux';
 
 class PromoAdd extends React.Component {

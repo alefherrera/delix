@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
-import TimeZoneForm from '../components/TimeZone/TimeZoneForm';
+import TimeZoneForm from '../../components/TimeZone/TimeZoneForm';
 import { connect } from 'react-redux';
-import * as actions from '../actions/timeZone';
+import * as actions from '../../actions/timeZone';
 
 class TimeZone extends React.Component {
 

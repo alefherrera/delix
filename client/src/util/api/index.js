@@ -9,6 +9,7 @@ import sector from './sector';
 import commandStatus from './commandStatus';
 import tablesStatus from './tablesStatus';
 import timeZone from './timeZone';
+import reservation from './reservation';
 
 export default {
   login: () => API.post('login'),
@@ -27,4 +28,5 @@ export {
   commandStatus,
   tablesStatus,
   timeZone,
+  reservation,
 };

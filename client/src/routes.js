@@ -27,6 +27,9 @@ import {
   TimeZone,
   TimeZoneAdd,
   TimeZoneEdit,
+  Reservation,
+  ReservationAdd,
+  ReservationEdit,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -47,7 +50,17 @@ const Routes = ({ history }) => (
         <Route name="Add" path="add" component={PromoAdd} />
         <Route name="Edit" path="edit/:promoId" component={PromoEdit} />
       </Route>
-      <Route name="Table" path="sector">
+      <Route name="Franja" path="franja">
+        <IndexRoute component={TimeZone} />
+        <Route name="Add" path="add" component={TimeZoneAdd} />
+        <Route name="Edit" path="edit/:timeZoneId" component={TimeZoneEdit} />
+      </Route>
+      <Route name="Reserva" path="reserva">
+        <IndexRoute component={Reservation} />
+        <Route name="Add" path="add" component={ReservationAdd} />
+        <Route name="Edit" path="edit/:reservationId" component={ReservationEdit} />
+      </Route>
+      <Route name="Sector" path="sector">
         <IndexRoute component={Sector} />
         <Route name="Pedido" path=":mesaId">
           <IndexRoute component={Table} />
@@ -73,11 +86,6 @@ const Routes = ({ history }) => (
       </Route>
       <Route name="Visor" path="visor" component={CommandViewer} />
       <Route name="Configuraciones" path="configuraciones" component={Setting} />
-      <Route name="Franja" path="franja">
-        <IndexRoute component={TimeZone} />
-        <Route name="Add" path="add" component={TimeZoneAdd} />
-        <Route name="Edit" path="edit/:timeZoneId" component={TimeZoneEdit} />
-      </Route>
     </Route>
   </Router>
 );
