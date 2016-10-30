@@ -4,6 +4,7 @@ import {
   ADD_RESERVATION,
   EDIT_RESERVATION,
   DELETE_RESERVATION,
+  GET_RESERVATION_TABLES,
 } from '../constants';
 import { createAction } from 'redux-actions';
 import { reservation } from '../util/api';
@@ -15,3 +16,4 @@ export const addReservation = createAction(ADD_RESERVATION,
 export const editReservation = createAction(EDIT_RESERVATION,
   reservation.create, () => () => '/reserva');
 export const deleteReservation = createAction(DELETE_RESERVATION, reservation.delete);
+export const getReservationTables = createAction(GET_RESERVATION_TABLES, reservation.getTables);

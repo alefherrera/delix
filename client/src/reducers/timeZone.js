@@ -10,16 +10,23 @@ const initialState = {
   current: null,
   list: [],
 };
+
+const convertDate = timeZone => ({
+  ...timeZone,
+  horaInicio: new Date(timeZone.horaInicio),
+  horaFin: new Date(timeZone.horaFin),
+});
+
 export default handleActions({
   [GET_TIMEZONES]: (state, { payload }) =>
     ({
       ...state,
-      list: payload,
+      list: payload.map(convertDate),
     }),
   [GET_TIMEZONE]: (state, { payload }) =>
     ({
       ...state,
-      current: payload,
+      current: convertDate(payload),
     }),
   [ADD_TIMEZONE]: (state, { payload }) =>
   ({

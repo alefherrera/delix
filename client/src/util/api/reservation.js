@@ -5,4 +5,5 @@ export default {
   get: id => API.get(`reservas/${id}`),
   create: reservation => API.post('reservas', reservation),
   delete: id => API.delete(`reservas/${id}`),
+  getTables: () => API.get('reservas_mesas'),
 };

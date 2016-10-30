@@ -16,7 +16,7 @@ const ReservationForm = ({ reservations, editReservation, deleteReservation, add
           reservations.map((reservation, i) => (
             <div key={i}>
               <ReservationRow
-                timeZone={reservation}
+                reservation={reservation}
                 menu={
                   rowMenu(
                   () => editReservation(reservation.id),

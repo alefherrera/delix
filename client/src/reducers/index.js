@@ -8,6 +8,7 @@ import dish from './dish';
 import command from './command';
 import table from './table';
 import timeZone from './timeZone';
+import reservation from './reservation';
 
 export default {
   login,
@@ -19,4 +20,5 @@ export default {
   command,
   table,
   timeZone,
+  reservation,
 };

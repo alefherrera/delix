@@ -1,7 +1,7 @@
 import {
-  ADD_RESERVATION,
   GET_RESERVATIONS,
   GET_RESERVATION,
+  GET_RESERVATION_TABLES,
   DELETE_RESERVATION,
 } from '../constants';
 
@@ -9,6 +9,7 @@ import { handleActions } from 'redux-actions';
 const initialState = {
   current: null,
   list: [],
+  tables: [],
 };
 export default handleActions({
   [GET_RESERVATIONS]: (state, { payload }) =>
@@ -21,10 +22,10 @@ export default handleActions({
       ...state,
       current: payload,
     }),
-  [ADD_RESERVATION]: (state, { payload }) =>
+  [GET_RESERVATION_TABLES]: (state, { payload }) =>
   ({
     ...state,
-    list: [...state.list, payload],
+    tables: payload,
   }),
   [DELETE_RESERVATION]: (state, { payload }) =>
     ({

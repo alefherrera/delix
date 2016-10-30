@@ -1,19 +1,25 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../../actions/reservation';
+import * as timeZoneActions from '../../actions/timeZone';
 import ReservationAddForm from '../../components/Reservation/ReservationAddForm';
 
 class ReservationEdit extends React.Component {
 
   componentDidMount() {
-    this.props.getReservation(this.props.params.reservationId);
+    const { getReservation, getTimeZones, getReservationTables } = this.props;
+    getReservation(this.props.params.reservationId);
+    getTimeZones();
+    getReservationTables();
   }
 
   render() {
-    const { current, editReservation } = this.props;
+    const { current, timeZones, tables, editReservation } = this.props;
     return (
       <ReservationAddForm
         reservation={current}
+        timeZones={timeZones}
+        tables={tables}
         onSave={editReservation}
       />
     );
@@ -24,11 +30,22 @@ class ReservationEdit extends React.Component {
 ReservationEdit.propTypes = {
   params: PropTypes.object,
   current: PropTypes.object,
+  timeZones: PropTypes.array,
+  tables: PropTypes.array,
   getReservation: PropTypes.func,
   editReservation: PropTypes.func,
+  getTimeZones: PropTypes.func,
+  getReservationTables: PropTypes.func,
 };
 
 export default connect(
-  state => state.timeZone,
-  { ...actions }
+  state => ({
+    current: state.reservation.current,
+    timeZones: state.timeZone.list,
+    tables: state.reservation.tables,
+  }),
+  {
+    ...actions,
+    getTimeZones: timeZoneActions.getTimeZones,
+  }
 )(ReservationEdit);

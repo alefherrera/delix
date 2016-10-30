@@ -3,20 +3,19 @@ import { Card, CardTitle, CardText, CardActions } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import TimePicker from 'material-ui/TimePicker';
+import TextField from 'material-ui/TextField';
 
 class TimeZoneAddForm extends React.Component {
 
   state = {
+    nombre: '',
     horaInicio: null,
     horaFin: null,
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.timeZone) {
-      const { timeZone } = nextProps;
-      const horaInicio = new Date(timeZone.horaInicio);
-      const horaFin = new Date(timeZone.horaFin);
-      this.setState({ ...timeZone, horaInicio, horaFin });
+      this.setState(nextProps.timeZone);
     }
   }
 
@@ -26,13 +25,22 @@ class TimeZoneAddForm extends React.Component {
   }
 
   render() {
-    const { horaInicio, horaFin } = this.state;
+    const { nombre, horaInicio, horaFin } = this.state;
     return (
       <Card>
         <CardTitle title="Franja" />
         <form onSubmit={this.handleSubmit}>
           <CardText>
             <Grid fluid>
+              <Row center="xs">
+                <Col xs>
+                  <TextField
+                    floatingLabelText="Nombre"
+                    value={nombre}
+                    onChange={e => this.setState({ nombre: e.target.value })}
+                  />
+                </Col>
+              </Row>
               <Row center="xs">
                 <Col xs>
                   <TimePicker

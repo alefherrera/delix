@@ -10,7 +10,7 @@ const ReservationRow = ({ reservation, onClick, menu }) => (
       <Grid onClick={onClick ? () => onClick(reservation) : null}>
         <Row>
           <Col xs>
-            {reservation}
+            {`${reservation.grupoDeMesas.nombre} - ${reservation.franja.nombre}`}
           </Col>
         </Row>
       </Grid>

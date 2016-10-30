@@ -19,7 +19,7 @@ class Reservation extends React.Component {
     return (
       <ReservationForm
         reservations={list}
-        editTimeReservation={this.handleEdit}
+        editReservation={this.handleEdit}
         deleteReservation={deleteReservation}
         addLink={'reserva/add'}
       />
@@ -36,6 +36,6 @@ Reservation.propTypes = {
 };
 
 export default connect(
-  state => state.timeZone,
+  state => state.reservation,
   { ...actions }
 )(Reservation);

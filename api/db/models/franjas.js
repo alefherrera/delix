@@ -8,6 +8,10 @@ module.exports = function(sequelize, DataTypes) {
       primaryKey: true,
       autoIncrement: true
     },
+    nombre: {
+      type: DataTypes.STRING,
+      allowNull: true
+    },
     horaInicio: {
       type: DataTypes.DATE,
       allowNull: true
