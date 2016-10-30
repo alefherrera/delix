@@ -18,6 +18,7 @@
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
+    "jsreport": "^1.0.9",
     "lodash": "^4.16.4",
     "morgan": "^1.7.0",
     "mysql": "^2.11.1",

@@ -14,4 +14,5 @@ module.exports = (router, io) => {
   require('./estadoMesas')(router);
   require('./comandaEstado')(router);
   require('./reservas')(router);
+  require('./pdf')(router);
 };
