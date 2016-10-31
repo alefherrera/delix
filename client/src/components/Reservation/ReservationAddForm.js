@@ -4,11 +4,14 @@ import RaisedButton from 'material-ui/RaisedButton';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import SelectField from 'material-ui/SelectField';
 import MenuItem from 'material-ui/MenuItem';
+import DatePicker from 'material-ui/DatePicker';
+
 class ReservationAddForm extends React.Component {
 
   state = {
     timeZone: null,
     table: null,
+    date: null,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,6 +31,10 @@ class ReservationAddForm extends React.Component {
 
   handleTableChange = (e, i, table) => {
     this.setState({ table, grupoDeMesasId: table.id });
+  }
+
+  handleDatePickerChange = (nil, date) => {
+    this.setState({ date, fecha: date });
   }
 
   render() {
@@ -74,6 +81,15 @@ class ReservationAddForm extends React.Component {
                       ))
                     }
                   </SelectField>
+                </Col>
+              </Row>
+              <Row>
+                <Col xs>
+                  <DatePicker
+                    hintText="Fecha"
+                    value={this.state.date}
+                    onChange={this.handleDatePickerChange}
+                  />
                 </Col>
               </Row>
             </Grid>

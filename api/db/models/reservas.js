@@ -23,6 +23,10 @@ module.exports = function(sequelize, DataTypes) {
         model: 'gruposDeMesas',
         key: 'id'
       }
+    },
+    fecha: {
+      type: DataTypes.DATEONLY(),
+      allowNull: false
     }
   }, {
     tableName: 'reservas',
