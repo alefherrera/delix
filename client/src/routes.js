@@ -31,6 +31,7 @@ import {
   ReservationAdd,
   ReservationEdit,
   Ticket,
+  Payment,
 } from './containers';
 
 const Routes = ({ history }) => (
@@ -86,6 +87,7 @@ const Routes = ({ history }) => (
       </Route>
       <Route name="Visor" path="visor" component={CommandViewer} />
       <Route name="Tickets" path="tickets" component={Ticket} />
+      <Route name="Pagos" path="pagos" component={Payment} />
       <Route name="Configuraciones" path="configuraciones" component={Setting} />
     </Route>
   </Router>

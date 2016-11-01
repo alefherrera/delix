@@ -34,6 +34,7 @@ class Header extends React.Component {
         {this.renderLink('/franja', 'Franjas')}
         {this.renderLink('/reserva', 'Reservas')}
         {this.renderLink('/tickets', 'Tickets')}
+        {this.renderLink('/pagos', 'Pagos')}
         {this.renderLink('/configuraciones', 'Settings')}
       </Drawer>
     );

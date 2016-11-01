@@ -28,6 +28,7 @@ import Reservation from './Reservation/Reservation';
 import ReservationAdd from './Reservation/ReservationAdd';
 import ReservationEdit from './Reservation/ReservationEdit';
 import Ticket from './Ticket/Ticket';
+import Payment from './Payment/Payment';
 
 export {
   App,
@@ -60,4 +61,5 @@ export {
   ReservationAdd,
   ReservationEdit,
   Ticket,
+  Payment,
 };
