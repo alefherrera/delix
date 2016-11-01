@@ -70,6 +70,7 @@ class PromoAddForm extends React.Component {
                   <TextField
                     floatingLabelText="Nombre"
                     value={nombre}
+                    required
                     onChange={e => this.setState({ nombre: e.target.value })}
                   />
                 </Col>
