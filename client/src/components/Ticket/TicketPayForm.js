@@ -23,7 +23,7 @@ class TicketPayForm extends React.Component {
   }
 
   render() {
-    const { paymentTypes, total } = this.state;
+    const { paymentTypes, total } = this.props;
     return (
       <Card>
         <CardTitle title="Pago" subtitle={total} />

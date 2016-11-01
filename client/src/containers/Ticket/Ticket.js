@@ -30,6 +30,7 @@ class Ticket extends React.Component {
       ...state,
       pedidoId: this.state.pedidoId,
     });
+    this.setState({ pedidoId: null, open: false });
   }
 
   render() {
@@ -48,6 +49,7 @@ class Ticket extends React.Component {
         >
           <TicketPayForm
             paymentTypes={types}
+            onSave={this.handlePaySave}
           />
         </Dialog>
       </div>
