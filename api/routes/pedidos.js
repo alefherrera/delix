@@ -1,5 +1,6 @@
 const util = require('./util');
 const {Models} = require('../db');
+const _ = require('lodash');
 
 const searchParam = {
     include: [
@@ -25,6 +26,49 @@ const searchParam = {
     order: 'updatedAt'
 };
 
+const generateOrderLines = itemArray => {
+    return _(itemArray)
+      .groupBy('id')
+      .map(function(grouped) {
+        let result = {};
+        result.precioTotal = 0;
+        grouped.forEach(prod => result.precioTotal += prod.precio);
+        result.cantidad = grouped.length;
+        result.id = grouped[0].id;
+        result.descripcion = grouped[0].descripcion || grouped[0].nombre;
+        return result;
+    }).valueOf();
+};
+
+const summarizeOrder = order => {
+  const prodsArray = [];
+  const platoArray = [];
+  const promoArray = [];
+
+  if (!order.comandas) {
+    return order;
+  }
+
+  order = order.toJSON();
+
+  order.comandas.forEach(current => {
+    if (current.productos)
+      current.productos.forEach(prod => prodsArray.push(prod));
+    if (current.platos)
+      current.platos.forEach(plato => platoArray.push(plato));
+    if (current.promos)
+      current.promos.forEach(promo => promoArray.push(promo));
+  });
+
+  order.orderLines = _.concat(generateOrderLines(prodsArray), generateOrderLines(platoArray), generateOrderLines(promoArray));
+
+  order.total = require('lodash').reduce(order.orderLines,(p, c) => {
+    return p + c.precioTotal;
+  }, 0);
+
+  return order;
+};
+
 module.exports = (router, io) => {
     //util.abml(router, 'pedidos');
 
@@ -37,13 +81,6 @@ module.exports = (router, io) => {
         }
 
         Models.pedidos.findAll(searchParam).then(result => {
-            // const resultArray = [];
-            // for (let order of result) {
-            //     if (order.comandas && order.comandas.length > 0) {
-            //         resultArray.push(order);
-            //     }
-            // }
-
             res.json(result);
         });
     });
@@ -73,7 +110,8 @@ module.exports = (router, io) => {
                     res.status(500).send('Falta usuarioId para crear un pedido.');
 
                 Models.pedidos.create(req.body).then(function createPedidoCallback(result) {
-                    Models.pedidos.findById(result.id, searchParam).then(function finishFind(result) {
+                    Models.pedidos.findById(result.id, searchParam)
+                      .then(function finishFind(result) {
                         res.json(result);
                     });
                 }).catch(function createError(err) {
@@ -93,7 +131,7 @@ module.exports = (router, io) => {
               {
                 io.emit('delete', newPedido);
               }
-              res.json(newPedido)
+              res.json(newPedido);
             });
 
         }).catch(function errorHandler(err) {
@@ -113,5 +151,26 @@ module.exports = (router, io) => {
             util.errorHandler(res, err);
         });
     });
+
+
+    router.get('/ticket_pedido/', (req, res) => {
+          Models.pedidos.findAll(searchParam).then(result => {
+              res.json(result.map((pedido) => summarizeOrder(pedido)));
+          });
+    });
+
+
+    router.get('/ticket_pedido/:id', (req, res) => {
+        Models.pedidos.findById(req.params.id, searchParam).then(pedido => {
+          if (!pedido) {
+              res.status(404).send();
+          }
+
+          res.json(summarizeOrder(pedido));
+
+
+        });
+    });
+
 
 };
