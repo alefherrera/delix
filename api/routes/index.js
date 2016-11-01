@@ -15,4 +15,5 @@ module.exports = (router, io) => {
   require('./comandaEstado')(router);
   require('./reservas')(router);
   require('./pdf')(router);
+  require('./pagoTipos')(router);
 };
