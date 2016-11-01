@@ -24,7 +24,7 @@ export const freeTable = createAction(FREE_TABLE, id => {
 
 export const getTable = createAction(GET_TABLE, table.get, () => t => {
   if (t.pedidos.length > 0) {
-    return t.pedidos[0].id;
+    return `/sector/${t.id}/${t.pedidos[0].id}`;
   }
   return null;
 });
