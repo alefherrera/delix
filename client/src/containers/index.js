@@ -16,10 +16,10 @@ import ProductEdit from './Product/ProductEdit';
 import Promo from './Promo/Promo';
 import PromoAdd from './Promo/PromoAdd';
 import PromoEdit from './Promo/PromoEdit';
-import Sector from './Sector';
+import Sector from './Sector/Sector';
+import TableStatus from './Sector/TableStatus';
 import CommandViewer from './CommandViewer';
 import Setting from './Setting';
-import Table from './Table';
 import OrderDetail from './OrderDetail';
 import TimeZone from './TimeZone/TimeZone';
 import TimeZoneAdd from './TimeZone/TimeZoneAdd';
@@ -49,9 +49,9 @@ export {
   PromoAdd,
   PromoEdit,
   Sector,
+  TableStatus,
   CommandViewer,
   Setting,
-  Table,
   OrderDetail,
   TimeZone,
   TimeZoneAdd,

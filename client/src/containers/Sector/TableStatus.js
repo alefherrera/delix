@@ -1,10 +1,10 @@
 import React, { PropTypes } from 'react';
-import TableForm from '../components/Table/TableForm';
+import TableStatusForm from '../../components/Sector/TableStatusForm';
 import { connect } from 'react-redux';
-import * as actions from '../actions/table';
-import * as orderActions from '../actions/order';
+import * as actions from '../../actions/table';
+import * as orderActions from '../../actions/order';
 
-class Table extends React.Component {
+class TableStatus extends React.Component {
 
   componentDidMount() {
     const { getTable, params } = this.props;
@@ -32,7 +32,7 @@ class Table extends React.Component {
     const { current } = this.props;
     if (!current) return null;
     return (
-      <TableForm
+      <TableStatusForm
         title={current.nombre}
         isBusy={this.isBusy()}
         onTableClick={this.handleTableClick}
@@ -43,7 +43,7 @@ class Table extends React.Component {
 
 }
 
-Table.propTypes = {
+TableStatus.propTypes = {
   createOrder: PropTypes.func,
   getTable: PropTypes.func,
   takeTable: PropTypes.func,
@@ -58,4 +58,4 @@ export default connect(
     ...actions,
     ...orderActions,
   }
-)(Table);
+)(TableStatus);

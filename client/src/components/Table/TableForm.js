@@ -1,36 +1,51 @@
 import React, { PropTypes } from 'react';
-import { Card, CardTitle, CardText } from 'material-ui';
-import { Grid, Row, Col } from 'react-flexbox-grid';
-import RaisedButton from 'material-ui/RaisedButton';
+import { Card, CardTitle, CardText } from 'material-ui/Card';
+import { List } from 'material-ui/List';
+import Fab from '../Fab';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import { Link } from 'react-router';
+import TableRow from './TableRow';
+import Divider from 'material-ui/Divider';
+import rowMenu from '../rowMenu';
 
-const TableForm = ({ title, isBusy, onTableClick, onOrderClick }) => (
+const TableForm = ({ tables, editTable, deleteTable, addLink }) => (
   <Card>
-    <CardTitle title={title} />
+    <CardTitle title="Mesas" />
     <CardText>
-      <Grid fluid>
-        <Row center="xs">
-          <Col xs>
-            <RaisedButton
-              label={`${isBusy ? 'Liberar' : 'Ocupar'} Mesa`}
-              onTouchTap={() => onTableClick()}
-            />
-          </Col>
+      <List>
+        <Card>
           {
-            isBusy && <Col xs>
-              <RaisedButton label="Crear Pedido" onTouchTap={() => onOrderClick()} />
-            </Col>
+            tables.map((table, i) => (
+              <div key={i}>
+                <TableRow
+                  disabled
+                  table={table}
+                  menu={
+                    rowMenu(
+                    () => editTable(table.id),
+                    () => deleteTable(table.id))
+                  }
+                />
+                <Divider />
+              </div>
+            ))
           }
-        </Row>
-      </Grid>
+        </Card>
+      </List>
     </CardText>
+    <Link to={addLink}>
+      <Fab>
+        <ContentAdd />
+      </Fab>
+    </Link>
   </Card>
-  );
+);
 
 TableForm.propTypes = {
-  title: PropTypes.string,
-  isBusy: PropTypes.bool,
-  onTableClick: PropTypes.func,
-  onOrderClick: PropTypes.func,
+  tables: PropTypes.array,
+  editTable: PropTypes.func,
+  deleteTable: PropTypes.func,
+  addLink: PropTypes.string,
 };
 
 export default TableForm;
