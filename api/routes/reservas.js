@@ -7,10 +7,11 @@ module.exports = router => {
 
     router.post('/reservas', (req, res) => {
 
-        // const dateToSave = new Date(req.body.fecha);
-        // dateToSave.setHours(0,0,0,0);
+        //TODO usar momentjs
+        const dateToSave = new Date(req.body.fecha);
+        req.body.fecha = dateToSave;
         // const today = new Date();
-        // today.setHours(0,0,0,0);
+        // //today.setHours(0,0,0,0);
         //
         // console.log('dateToSave que viene en el JSON');
         // console.log(dateToSave);
