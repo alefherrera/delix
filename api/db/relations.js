@@ -18,6 +18,8 @@ module.exports = ({
   mesas,
   reservas,
   franjas,
+  pagos,
+  pagoTipos,
 }) => {
 
     usuarios.hasMany(pedidos);
@@ -61,5 +63,8 @@ module.exports = ({
 
     franjas.hasMany(reservas);
     reservas.belongsTo(franjas);
+
+    pagoTipos.hasMany(pagos);
+    pagos.belongsTo(pagoTipos);
 
 };
