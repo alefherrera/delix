@@ -20,7 +20,7 @@ import {
   PromoAdd,
   PromoEdit,
   Sector,
-  Table,
+  TableStatus,
   CommandViewer,
   Setting,
   OrderDetail,
@@ -64,7 +64,7 @@ const Routes = ({ history }) => (
       <Route name="Sector" path="sector">
         <IndexRoute component={Sector} />
         <Route name="Pedido" path=":mesaId">
-          <IndexRoute component={Table} />
+          <IndexRoute component={TableStatus} />
           <Route path=":pedidoId">
             <IndexRoute component={OrderAdd} />
             <Route name="Detalle" path="detalle" component={OrderDetail} />

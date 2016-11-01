@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import SectorForm from '../components/Sector/SectorForm';
-import * as actions from '../actions/sector';
+import SectorForm from '../../components/Sector/SectorForm';
+import * as actions from '../../actions/sector';
 
 class Sector extends React.Component {
 

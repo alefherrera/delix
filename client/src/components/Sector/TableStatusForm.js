@@ -3,7 +3,7 @@ import { Card, CardTitle, CardText } from 'material-ui';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const TableForm = ({ title, isBusy, onTableClick, onOrderClick }) => (
+const TableStatusForm = ({ title, isBusy, onTableClick, onOrderClick }) => (
   <Card>
     <CardTitle title={title} />
     <CardText>
@@ -26,11 +26,11 @@ const TableForm = ({ title, isBusy, onTableClick, onOrderClick }) => (
   </Card>
   );
 
-TableForm.propTypes = {
+TableStatusForm.propTypes = {
   title: PropTypes.string,
   isBusy: PropTypes.bool,
   onTableClick: PropTypes.func,
   onOrderClick: PropTypes.func,
 };
 
-export default TableForm;
+export default TableStatusForm;
