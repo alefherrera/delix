@@ -19,8 +19,15 @@ class Ticket extends React.Component {
     this.setState({ open: false });
   }
 
-  handleItemClick = () => {
-    this.setState({ open: true });
+  handleItemClick = ticket => {
+    this.setState({ pedidoId: ticket.id, open: true });
+  }
+
+  handlePaySave = state => {
+    this.props.payTicket({
+      ...state,
+      pedidoId: this.state.pedidoId,
+    });
   }
 
   render() {
@@ -49,6 +56,7 @@ class Ticket extends React.Component {
 Ticket.propTypes = {
   list: PropTypes.array,
   getTickets: PropTypes.func,
+  payTicket: PropTypes.func,
 };
 
 export default connect(
