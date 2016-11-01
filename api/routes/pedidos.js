@@ -2,7 +2,8 @@ const util = require('./util');
 const {Models} = require('../db');
 const _ = require('lodash');
 
-const searchParam = {
+const searchParam = () => (
+  {
     include: [
         {
             model: Models.usuarios
@@ -24,7 +25,7 @@ const searchParam = {
         }
     ],
     order: 'updatedAt'
-};
+});
 
 const generateOrderLines = itemArray => {
     return _(itemArray)
@@ -75,19 +76,20 @@ module.exports = (router, io) => {
 
     router.get('/pedidos', (req, res) => {
         const {pedidoEstadoId} = req.query;
+        let param = searchParam();
         if (pedidoEstadoId) {
-            searchParam.where = {
+            param.where = {
                 pedidoEstadoId
             };
         }
 
-        Models.pedidos.findAll(searchParam).then(result => {
+        Models.pedidos.findAll(param).then(result => {
             res.json(result);
         });
     });
 
     router.get('/pedidos/:id', (req, res) => {
-        Models.pedidos.findById(req.params.id, searchParam).then(r => res.json(r));
+        Models.pedidos.findById(req.params.id, searchParam()).then(r => res.json(r));
     });
 
     router.post('/pedidos', (req, res) => {
@@ -96,7 +98,7 @@ module.exports = (router, io) => {
             res.status(500).send('Falta grupoDeMesasId para crear/buscar un pedido.');
         }
 
-        const param = searchParam;
+        const param = searchParam();
         param.where = {
             grupoDeMesasId: req.body.grupoDeMesasId,
             pedidoEstadoId: 1
@@ -155,14 +157,20 @@ module.exports = (router, io) => {
 
 
     router.get('/ticket_pedido/', (req, res) => {
-          Models.pedidos.findAll(searchParam).then(result => {
-              res.json(result.map((pedido) => summarizeOrder(pedido)));
-          });
+        let param = searchParam();
+        param.where = {pedidoEstadoId: 2};
+
+        Models.pedidos.findAll(param).then(result => {
+            res.json(result.map((pedido) => summarizeOrder(pedido)));
+        });
     });
 
 
     router.get('/ticket_pedido/:id', (req, res) => {
-        Models.pedidos.findById(req.params.id, searchParam).then(pedido => {
+        let param = searchParam();
+        param.where = {pedidoEstadoId: 2, id: req.params.id};
+
+        Models.pedidos.findOne(param).then(pedido => {
           if (!pedido) {
               res.status(404).send();
           }
