@@ -1,20 +1,32 @@
 import React, { PropTypes } from 'react';
-import { Card, CardText, CardTitle } from 'material-ui/Card';
+import { Card, CardText, CardTitle, CardActions } from 'material-ui/Card';
+import TicketRow from '../../Ticket/TicketRow';
+import RaisedButton from 'material-ui/RaisedButton';
+import { Grid, Row, Col } from 'react-flexbox-grid';
+import { Link } from 'react-router';
 
-const OrderDetailForm = ({ order }) => (
+const OrderDetailForm = ({ ticket }) => (
   <Card>
     <CardText>
-      <CardTitle
-        title={`Pedido ${order.id}`}
-        subtitle={order.grupoDeMesas.nombre}
-      />
-      {JSON.stringify(order)}
+      <CardTitle title="Detalle" />
+      <TicketRow ticket={ticket} />
     </CardText>
+    <CardActions>
+      <Grid>
+        <Row center="xs">
+          <Col xs>
+            <Link to="/pdf">
+              <RaisedButton label="Imprimir" />
+            </Link>
+          </Col>
+        </Row>
+      </Grid>
+    </CardActions>
   </Card>
 );
 
 OrderDetailForm.propTypes = {
-  order: PropTypes.object,
+  ticket: PropTypes.object,
 };
 
 export default OrderDetailForm;

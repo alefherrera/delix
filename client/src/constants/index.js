@@ -75,4 +75,5 @@ export const EDIT_RESERVATION = 'EDIT_RESERVATION';
 export const DELETE_RESERVATION = 'DELETE_RESERVATION';
 
 export const GET_TICKETS = 'GET_TICKETS';
+export const GET_TICKET = 'GET_TICKET';
 export const PAY_TICKET = 'PAY_TICKET';
