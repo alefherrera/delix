@@ -16,11 +16,11 @@ module.exports = function(sequelize, DataTypes) {
         key: 'id'
       }
     },
-    Nombre: {
+    nombre: {
       type: DataTypes.STRING,
       allowNull: true
     },
-    Apellido: {
+    apellido: {
       type: DataTypes.STRING,
       allowNull: true
     }
