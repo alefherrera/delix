@@ -3,26 +3,30 @@ import { Card, CardTitle, CardText } from 'material-ui';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import RaisedButton from 'material-ui/RaisedButton';
 
-const TableStatusForm = ({ title, isBusy, onTableClick, onOrderClick }) => (
+const TableStatusForm = ({ title, isBusy, onTableClick, onOrderClick, children }) => (
   <Card>
     <CardTitle title={title} />
-    <CardText>
-      <Grid fluid>
-        <Row center="xs">
-          <Col xs>
-            <RaisedButton
-              label={`${isBusy ? 'Liberar' : 'Ocupar'} Mesa`}
-              onTouchTap={() => onTableClick()}
-            />
-          </Col>
-          {
-            isBusy && <Col xs>
-              <RaisedButton label="Crear Pedido" onTouchTap={() => onOrderClick()} />
-            </Col>
-          }
-        </Row>
-      </Grid>
-    </CardText>
+    {
+      children || (
+        <CardText>
+          <Grid fluid>
+            <Row center="xs">
+              <Col xs>
+                <RaisedButton
+                  label={`${isBusy ? 'Liberar' : 'Ocupar'} Mesa`}
+                  onTouchTap={() => onTableClick()}
+                />
+              </Col>
+              {
+                isBusy && <Col xs>
+                  <RaisedButton label="Crear Pedido" onTouchTap={() => onOrderClick()} />
+                </Col>
+              }
+            </Row>
+          </Grid>
+        </CardText>
+      )
+    }
   </Card>
   );
 
@@ -31,6 +35,7 @@ TableStatusForm.propTypes = {
   isBusy: PropTypes.bool,
   onTableClick: PropTypes.func,
   onOrderClick: PropTypes.func,
+  children: PropTypes.any,
 };
 
 export default TableStatusForm;

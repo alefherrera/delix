@@ -29,7 +29,7 @@ class TableStatus extends React.Component {
   }
 
   render() {
-    const { current } = this.props;
+    const { current, children } = this.props;
     if (!current) return null;
     return (
       <TableStatusForm
@@ -37,7 +37,9 @@ class TableStatus extends React.Component {
         isBusy={this.isBusy()}
         onTableClick={this.handleTableClick}
         onOrderClick={this.handleOrderClick}
-      />
+      >
+        {children}
+      </TableStatusForm>
     );
   }
 
@@ -50,6 +52,7 @@ TableStatus.propTypes = {
   freeTable: PropTypes.func,
   params: PropTypes.object,
   current: PropTypes.object,
+  children: PropTypes.any,
 };
 
 export default connect(
