@@ -2,7 +2,7 @@ import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
 import TicketRow from './TicketRow';
 
-const TicketForm = ({ tickets }) => (
+const TicketForm = ({ tickets, onItemClick }) => (
   <Card>
     <CardTitle title="Tickets" />
     <CardText>
@@ -11,6 +11,7 @@ const TicketForm = ({ tickets }) => (
           <TicketRow
             key={i}
             ticket={ticket}
+            onClick={onItemClick}
           />
         ))
       }
@@ -20,6 +21,7 @@ const TicketForm = ({ tickets }) => (
 
 TicketForm.propTypes = {
   tickets: PropTypes.array,
+  onItemClick: PropTypes.func,
 };
 
 export default TicketForm;

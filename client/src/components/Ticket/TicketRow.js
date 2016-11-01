@@ -4,8 +4,8 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import Divider from 'material-ui/Divider';
 import styles from './style.css';
 
-const TicketRow = ({ ticket }) => (
-  <Card className={styles.item}>
+const TicketRow = ({ ticket, onClick }) => (
+  <Card className={styles.item} onClick={onClick ? () => onClick(ticket) : null}>
     <CardTitle
       title={ticket.grupoDeMesas.nombre}
       subtitle={`${ticket.usuario.nombre} ${ticket.usuario.apellido}`}
@@ -56,6 +56,7 @@ const TicketRow = ({ ticket }) => (
 
 TicketRow.propTypes = {
   ticket: PropTypes.object,
+  onClick: PropTypes.func,
 };
 
 export default TicketRow;
