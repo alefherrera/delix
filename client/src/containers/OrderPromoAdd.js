@@ -5,11 +5,11 @@ import { connect } from 'react-redux';
 
 class OrderPromoAdd extends React.Component {
 
-  handleAdd = quantity => {
+  handleAdd = state => {
     const { selected, addOrderLinePromo } = this.props;
     addOrderLinePromo({
       ...selected,
-      quantity,
+      ...state,
     }, this.props.params);
   }
 
