@@ -4,8 +4,8 @@ module.exports = ({
     return Promise.all(
         usuarios.upsert({
             id: 1,
-            Nombre: 'Alejandro',
-            Apellido: 'Herrera',
+            nombre: 'Alejandro',
+            apellido: 'Herrera',
             usuarioTipoId: 1
         })
     );
