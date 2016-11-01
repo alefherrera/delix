@@ -34,6 +34,7 @@ const generateOrderLines = itemArray => {
         result.precioTotal = 0;
         grouped.forEach(prod => result.precioTotal += prod.precio);
         result.cantidad = grouped.length;
+        result.precio = grouped[0].precio;
         result.id = grouped[0].id;
         result.descripcion = grouped[0].descripcion || grouped[0].nombre;
         return result;
@@ -165,10 +166,7 @@ module.exports = (router, io) => {
           if (!pedido) {
               res.status(404).send();
           }
-
           res.json(summarizeOrder(pedido));
-
-
         });
     });
 
