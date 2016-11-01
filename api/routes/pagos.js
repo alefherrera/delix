@@ -1,6 +1,7 @@
 const util = require('./util');
 const {Models} = require('../db');
 const jsreport = require('jsreport');
+const _ = require('lodash');
 
 const searchParam = () => (
   {
@@ -27,6 +28,50 @@ const searchParam = () => (
     order: 'updatedAt'
 });
 
+const generateOrderLines = itemArray => {
+    return _(itemArray)
+      .groupBy('id')
+      .map(function(grouped) {
+        let result = {};
+        result.precioTotal = 0;
+        grouped.forEach(prod => result.precioTotal += prod.precio);
+        result.cantidad = grouped.length;
+        result.precio = grouped[0].precio;
+        result.id = grouped[0].id;
+        result.descripcion = grouped[0].descripcion || grouped[0].nombre;
+        return result;
+    }).valueOf();
+};
+
+const summarizeOrder = order => {
+  const prodsArray = [];
+  const platoArray = [];
+  const promoArray = [];
+
+  if (!order.comandas) {
+    return order;
+  }
+
+  order = order.toJSON();
+
+  order.comandas.forEach(current => {
+    if (current.productos)
+      current.productos.forEach(prod => prodsArray.push(prod));
+    if (current.platos)
+      current.platos.forEach(plato => platoArray.push(plato));
+    if (current.promos)
+      current.promos.forEach(promo => promoArray.push(promo));
+  });
+
+  order.orderLines = _.concat(generateOrderLines(prodsArray), generateOrderLines(platoArray), generateOrderLines(promoArray));
+
+  order.total = require('lodash').reduce(order.orderLines,(p, c) => {
+    return p + c.precioTotal;
+  }, 0);
+
+  return order;
+};
+
 module.exports = router => {
   util.abml(router, 'pagos', [Models.pagoTipos]);
 
@@ -47,7 +92,7 @@ module.exports = router => {
               res.status(404).send();
           }
 
-          Models.pedidos.findById(pago.pedidoId).then(pedido => {
+          Models.pedidos.findById(pago.pedidoId, searchParam()).then(pedido => {
               if (!pedido) {
                   res.status(404).send();
               }
@@ -69,7 +114,7 @@ module.exports = router => {
               }, '');
 
               pagoString += `<tr><td>Total</td><td>${order.total}</td></tr>`;
-              pagoString += `<tr><td>Medio de pago</td><td>${pago}</td></tr>`;
+              pagoString += `<tr><td>Medio de pago</td><td>${pago.pagoTipo.descripcion || ''}</td></tr>`;
               pagoString += `<tr><td>Paga con</td><td>${pago.montoRecibido}</td></tr>`;
               pagoString += `<tr><td>Vuelto</td><td>${order.total - pago.montoRecibido}</td></tr>`;
 
