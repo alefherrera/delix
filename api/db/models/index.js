@@ -27,4 +27,6 @@ module.exports = (sequelize, DataTypes) => ({
   solicitudes: require('./solicitudes')(sequelize, DataTypes),
   usuarioTipo: require('./usuario_tipo')(sequelize, DataTypes),
   usuarios: require('./usuarios')(sequelize, DataTypes),
+  pagoTipos: require('./pago_tipos')(sequelize, DataTypes),
+  pagos: require('./pagos')(sequelize, DataTypes),
 });

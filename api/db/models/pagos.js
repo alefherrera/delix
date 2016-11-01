@@ -1,5 +1,3 @@
-/* jshint indent: 2 */
-
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('pagos', {
     id: {
@@ -15,6 +13,18 @@ module.exports = function(sequelize, DataTypes) {
         model: 'pedidos',
         key: 'id'
       }
+    },
+    pagoTipoId: {
+      type: DataTypes.INTEGER(11),
+      allowNull: false,
+      references: {
+        model: 'pagoTipos',
+        key: 'id'
+      }
+    },
+    montoRecibido: {
+      type: DataTypes.DECIMAL,
+      allowNull: true
     }
   }, {
     tableName: 'pagos',

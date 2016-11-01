@@ -12,5 +12,6 @@ module.exports = Models => {
   .then(require('./platos')(Models))
   .then(require('./promos')(Models))
   .then(require('./productosPorPromos')(Models))
-  .then(require('./platosPorPromos')(Models));
+  .then(require('./platosPorPromos')(Models))
+  .then(require('./pago_tipos')(Models));
 };
