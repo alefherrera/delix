@@ -79,3 +79,4 @@ export const GET_TICKET = 'GET_TICKET';
 export const PAY_TICKET = 'PAY_TICKET';
 
 export const GET_PAYMENT_TYPES = 'GET_PAYMENT_TYPES';
+export const GET_PAYMENTS = 'GET_PAYMENTS';

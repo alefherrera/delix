@@ -1,5 +1,7 @@
 import React, { PropTypes } from 'react';
 import PaymentForm from '../../components/Payment/PaymentForm';
+import { connect } from 'react-redux';
+import * as actions from '../../actions/payment';
 
 class Payment extends React.Component {
 
@@ -23,4 +25,7 @@ Payment.propTypes = {
   getPayments: PropTypes.func,
 };
 
-export default Payment;
+export default connect(
+  state => state.payment,
+  { ...actions }
+)(Payment);

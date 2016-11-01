@@ -12,6 +12,7 @@ import timeZone from './timeZone';
 import reservation from './reservation';
 import ticket from './ticket';
 import paymentType from './paymentType';
+import payment from './payment';
 
 export default {
   login: () => API.post('login'),
@@ -33,4 +34,5 @@ export {
   reservation,
   ticket,
   paymentType,
+  payment,
 };

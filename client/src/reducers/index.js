@@ -10,6 +10,7 @@ import table from './table';
 import timeZone from './timeZone';
 import reservation from './reservation';
 import ticket from './ticket';
+import payment from './payment';
 
 export default {
   login,
@@ -23,4 +24,5 @@ export default {
   timeZone,
   reservation,
   ticket,
+  payment,
 };
