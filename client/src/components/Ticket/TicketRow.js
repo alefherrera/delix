@@ -23,7 +23,7 @@ class TicketRow extends React.Component {
               #
             </Col>
             <Col xs={2}>
-              $
+              Precio
             </Col>
             <Col xs={2}>
               Total
