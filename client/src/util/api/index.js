@@ -10,6 +10,7 @@ import commandStatus from './commandStatus';
 import tablesStatus from './tablesStatus';
 import timeZone from './timeZone';
 import reservation from './reservation';
+import ticket from './ticket';
 
 export default {
   login: () => API.post('login'),
@@ -29,4 +30,5 @@ export {
   tablesStatus,
   timeZone,
   reservation,
+  ticket,
 };

@@ -1,37 +1,56 @@
 import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import { Link } from 'react-router';
-import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
-import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import IconButton from 'material-ui/IconButton';
+import Drawer from 'material-ui/Drawer';
 
-const Menu = (
-  <IconMenu
-    iconStyle={{ color: 'white' }}
-    iconButtonElement={<IconButton><MoreVertIcon /></IconButton>}
-    targetOrigin={{ horizontal: 'right', vertical: 'top' }}
-    anchorOrigin={{ horizontal: 'right', vertical: 'top' }}
-  >
-    <Link to="/sector"><MenuItem primaryText="Sectores" /></Link>
-    <Link to="/producto"><MenuItem primaryText="Productos" /></Link>
-    <Link to="/plato"><MenuItem primaryText="Platos" /></Link>
-    <Link to="/promo"><MenuItem primaryText="Promos" /></Link>
-    <Link to="/visor"><MenuItem primaryText="Comandas" /></Link>
-    <Link to="/franja"><MenuItem primaryText="Franjas" /></Link>
-    <Link to="/reserva"><MenuItem primaryText="Reservas" /></Link>
-    <Link to="/configuraciones"><MenuItem primaryText="Settings" /></Link>
-  </IconMenu>
-);
+class Header extends React.Component {
 
-const Header = () => (
-  <div>
-    <AppBar
-      title="Delix"
-      iconElementRight={Menu}
-      showMenuIconButton={false}
-    />
-  </div>
-);
+  state = {
+    open: false,
+  }
+
+  handleMenuClick = () => {
+    this.setState({ open: !this.state.open });
+  }
+
+  renderLink = (path, title) => (
+    <Link
+      to={path}
+      onClick={this.handleMenuClick}
+    >
+      <MenuItem primaryText={title} />
+    </Link>
+  );
+
+  renderMenu(open) {
+    return (
+      <Drawer docked={false} open={open} onRequestChange={this.handleMenuClick}>
+        {this.renderLink('/sector', 'Sectores')}
+        {this.renderLink('/producto', 'Productos')}
+        {this.renderLink('/plato', 'Platos')}
+        {this.renderLink('/promo', 'Promos')}
+        {this.renderLink('/visor', 'Comandas')}
+        {this.renderLink('/franja', 'Franjas')}
+        {this.renderLink('/reserva', 'Reservas')}
+        {this.renderLink('/tickets', 'Tickets')}
+        {this.renderLink('/configuraciones', 'Settings')}
+      </Drawer>
+    );
+  }
+
+  render() {
+    return (
+      <div>
+        <AppBar
+          title="Delix"
+          onLeftIconButtonTouchTap={this.handleMenuClick}
+        />
+        {this.renderMenu(this.state.open)}
+      </div>
+    );
+  }
+
+}
 
 export default Header;

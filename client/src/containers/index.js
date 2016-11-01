@@ -27,6 +27,7 @@ import TimeZoneEdit from './TimeZone/TimeZoneEdit';
 import Reservation from './Reservation/Reservation';
 import ReservationAdd from './Reservation/ReservationAdd';
 import ReservationEdit from './Reservation/ReservationEdit';
+import Ticket from './Ticket/Ticket';
 
 export {
   App,
@@ -58,4 +59,5 @@ export {
   Reservation,
   ReservationAdd,
   ReservationEdit,
+  Ticket,
 };

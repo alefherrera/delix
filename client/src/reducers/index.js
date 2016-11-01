@@ -9,6 +9,7 @@ import command from './command';
 import table from './table';
 import timeZone from './timeZone';
 import reservation from './reservation';
+import ticket from './ticket';
 
 export default {
   login,
@@ -21,4 +22,5 @@ export default {
   table,
   timeZone,
   reservation,
+  ticket,
 };
