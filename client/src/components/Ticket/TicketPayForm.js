@@ -29,7 +29,7 @@ class TicketPayForm extends React.Component {
         <CardTitle title="Pago" subtitle={total} />
         <form onSubmit={this.handleSubmit}>
           <CardText>
-            <Grid>
+            <Grid fluid>
               <Row>
                 <Col xs>
                   <SelectField
@@ -63,7 +63,7 @@ class TicketPayForm extends React.Component {
             </Grid>
           </CardText>
           <CardActions>
-            <Grid>
+            <Grid fluid>
               <Row center="xs">
                 <Col xs>
                   <RaisedButton
