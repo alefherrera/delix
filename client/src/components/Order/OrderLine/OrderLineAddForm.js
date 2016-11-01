@@ -8,15 +8,21 @@ class OrderLineAddForm extends React.Component {
 
   state = {
     quantity: 0,
+    comment: '',
   };
 
-  handleChange = e => {
+  handleQuantityChange = e => {
     const quantity = parseInt(e.target.value || 0, 10);
     this.setState({ quantity });
   }
 
+  handleCommentChange = e => {
+    const comment = e.target.value;
+    this.setState({ comment });
+  }
+
   handleSave = () => {
-    this.props.onSave(this.state.quantity);
+    this.props.onSave(this.state);
   }
 
   render() {
@@ -37,7 +43,17 @@ class OrderLineAddForm extends React.Component {
                   min="0"
                   floatingLabelText="Cantidad"
                   value={this.state.quantity}
-                  onChange={this.handleChange}
+                  onChange={this.handleQuantityChange}
+                />
+              </Col>
+            </Row>
+            <Row>
+              <Col xs>
+                <TextField
+                  style={{ width: '100%' }}
+                  floatingLabelText="Comentario"
+                  value={this.state.comment}
+                  onChange={this.handleCommentChange}
                 />
               </Col>
             </Row>

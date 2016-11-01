@@ -30,11 +30,11 @@ export const sendOrderLines = createAction(SEND_ORDERLINES,
     const comandas = {
       pedidoId: current.id,
       promos: current.promos.filter(x => !x.estado)
-      .map(promo => ({ id: promo.id, cant: promo.quantity })),
+      .map(promo => ({ id: promo.id, cant: promo.quantity, comentario: promo.comment })),
       productos: current.products.filter(x => !x.estado)
-      .map(product => ({ id: product.id, cant: product.quantity })),
+      .map(product => ({ id: product.id, cant: product.quantity, comentario: product.comment })),
       platos: current.dishes.filter(x => !x.estado)
-      .map(dish => ({ id: dish.id, cant: dish.quantity })),
+      .map(dish => ({ id: dish.id, cant: dish.quantity, comentario: dish.comment })),
     };
     return order.add(comandas);
     // sacar esto cuando agregar comandas devuelva algo bien
