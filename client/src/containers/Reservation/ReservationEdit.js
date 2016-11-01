@@ -13,11 +13,22 @@ class ReservationEdit extends React.Component {
     getReservationTables();
   }
 
+  getReservation = () => {
+    const { current, tables, timeZones } = this.props;
+    if (!current || tables.length === 0 || timeZones.length === 0) return undefined;
+    return {
+      ...current,
+      fecha: new Date(current.fecha),
+      timeZone: timeZones.find(x => x.id === current.franjaId),
+      table: tables.find(x => x.id === current.grupoDeMesasId),
+    };
+  }
+
   render() {
-    const { current, timeZones, tables, editReservation } = this.props;
+    const { timeZones, tables, editReservation } = this.props;
     return (
       <ReservationAddForm
-        reservation={current}
+        reservation={this.getReservation()}
         timeZones={timeZones}
         tables={tables}
         onSave={editReservation}

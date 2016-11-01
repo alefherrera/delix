@@ -35,6 +35,7 @@ class ProductAddForm extends React.Component {
                   <TextField
                     floatingLabelText="Descripcion"
                     value={descripcion}
+                    required
                     onChange={e => this.setState({ descripcion: e.target.value })}
                   />
                 </Col>

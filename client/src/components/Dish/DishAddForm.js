@@ -34,6 +34,7 @@ class DishAddForm extends React.Component {
                   <TextField
                     floatingLabelText="Nombre"
                     value={nombre}
+                    required
                     onChange={e => this.setState({ nombre: e.target.value })}
                   />
                 </Col>
@@ -43,6 +44,7 @@ class DishAddForm extends React.Component {
                   <TextField
                     floatingLabelText="Descripcion"
                     value={descripcion}
+                    required
                     onChange={e => this.setState({ descripcion: e.target.value })}
                   />
                 </Col>

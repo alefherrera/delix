@@ -11,7 +11,7 @@ class ReservationAddForm extends React.Component {
   state = {
     timeZone: null,
     table: null,
-    date: null,
+    fecha: null,
   }
 
   componentWillReceiveProps(nextProps) {
@@ -33,8 +33,8 @@ class ReservationAddForm extends React.Component {
     this.setState({ table, grupoDeMesasId: table.id });
   }
 
-  handleDatePickerChange = (nil, date) => {
-    this.setState({ date, fecha: date });
+  handleDatePickerChange = (nil, fecha) => {
+    this.setState({ fecha });
   }
 
   render() {
@@ -87,7 +87,7 @@ class ReservationAddForm extends React.Component {
                 <Col xs>
                   <DatePicker
                     hintText="Fecha"
-                    value={this.state.date}
+                    value={this.state.fecha}
                     onChange={this.handleDatePickerChange}
                   />
                 </Col>
