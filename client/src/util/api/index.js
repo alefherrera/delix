@@ -11,6 +11,7 @@ import tablesStatus from './tablesStatus';
 import timeZone from './timeZone';
 import reservation from './reservation';
 import ticket from './ticket';
+import paymentType from './paymentType';
 
 export default {
   login: () => API.post('login'),
@@ -31,4 +32,5 @@ export {
   timeZone,
   reservation,
   ticket,
+  paymentType,
 };

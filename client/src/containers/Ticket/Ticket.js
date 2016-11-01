@@ -12,7 +12,9 @@ class Ticket extends React.Component {
   }
 
   componentDidMount() {
-    this.props.getTickets();
+    const { getTickets, getPaymentTypes } = this.props;
+    getTickets();
+    getPaymentTypes();
   }
 
   handleRequestClose = () => {
@@ -31,7 +33,7 @@ class Ticket extends React.Component {
   }
 
   render() {
-    const { list } = this.props;
+    const { list, types } = this.props;
     if (!list) return null;
     return (
       <div>
@@ -44,7 +46,9 @@ class Ticket extends React.Component {
           onRequestClose={this.handleRequestClose}
           bodyStyle={{ padding: 0 }}
         >
-          <TicketPayForm />
+          <TicketPayForm
+            paymentTypes={types}
+          />
         </Dialog>
       </div>
 
@@ -55,8 +59,10 @@ class Ticket extends React.Component {
 
 Ticket.propTypes = {
   list: PropTypes.array,
+  types: PropTypes.array,
   getTickets: PropTypes.func,
   payTicket: PropTypes.func,
+  getPaymentTypes: PropTypes.func,
 };
 
 export default connect(
