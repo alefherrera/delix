@@ -15,7 +15,7 @@ const OrderDetailForm = ({ ticket }) => (
       <Grid>
         <Row center="xs">
           <Col xs>
-            <Link to="/pdf">
+            <Link to={`/generar_ticket/${ticket.id}`} target="_blank">
               <RaisedButton label="Imprimir" />
             </Link>
           </Col>
