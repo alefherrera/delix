@@ -1,21 +1,19 @@
 import React, { PropTypes } from 'react';
 import { Card, CardTitle, CardText } from 'material-ui/Card';
-import { List, ListItem } from 'material-ui/List';
+import TicketRow from './TicketRow';
 
 const TicketForm = ({ tickets }) => (
   <Card>
     <CardTitle title="Tickets" />
     <CardText>
-      <List>
-        {
-          tickets.map((ticket, i) => (
-            <ListItem
-              key={i}
-              primaryText="Ticket"
-            />
-          ))
-        }
-      </List>
+      {
+        tickets.map((ticket, i) => (
+          <TicketRow
+            key={i}
+            ticket={ticket}
+          />
+        ))
+      }
     </CardText>
   </Card>
 );
